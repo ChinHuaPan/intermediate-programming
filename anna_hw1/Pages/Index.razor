@@ -6,11 +6,27 @@
         width: 400px;
     }
 
-    button {
+    .btn-animal {
         width: 100px;
         height: 100px;
         font-size: 50px;
     }
+
+    .btn-play {
+        width: 200px;
+        height: 80px;
+        font-size: 30px;
+    }
+
+    .hidden {
+        visibility: hidden;
+    }
+
+    .show {
+        visibility: visible;
+    }
+
+
 </style>
 
 <!--anima board-->
@@ -24,7 +40,7 @@
 
             <div class="col-3">
                 <!--button with onclick event:input current animal emoji and description-->
-                <button @onclick="@(() => ButtonClick(animal, uniqueDescription))" tvpe="button" class="btn btn-outline-dark">
+                <button @onclick="@(() => ButtonClick(animal, uniqueDescription))" tvpe="button" class="btn btn-outline-dark btn-animal">
                     <!--show the animal emoji on the button-->
                     <h1>@animal</h1>
                 </button>
@@ -42,6 +58,12 @@
     <div class="row">
         <h2>Time: @timeDisplay</h2>
     </div>
+
+    <div class="row">
+        <button @onclick="@(() => ButtonPlayAgainClick())" type="button" class="btn btn-outline-dark btn-play">
+            <scan>play again</scan>
+        </button>
+    </div>
 </div>
 
 
@@ -51,7 +73,7 @@
 
     //define animals
     List<string> animalEmoji = new List<string>()
-{
+    {
         "🦊","🦊",
         "🐷","🐷",
         "🐨","🐨",
@@ -88,6 +110,7 @@
 
         matchesFound = 0; //reset matchesFound
         tenthsOfSecondElapsed = 0; //reset the time elapsed
+        lastAnimalFound = string.Empty; //reset lastAnimalFound
     }
 
     //define variables
@@ -95,9 +118,12 @@
     string lastDescription = string.Empty; //note the description of the last animal the player found 
 
 
-    //onclick event
+    //onclick event of animal button
     private void ButtonClick(string animal, string animalDescription)
     {
+
+        Console.WriteLine(animalDescription);
+
         //if there is no animal is found
         if (lastAnimalFound == string.Empty)
         {
@@ -119,9 +145,9 @@
             if (matchesFound == 8)
             {
                 timer.Stop(); // timer stops
-                timeDisplay += "- Play Again?"; //display "play again" wording behind the time 
+                timeDisplay += "Good job!"; //display "play again" wording behind the time 
 
-                SetUpGame(); // reset the game
+                //SetUpGame(); // reset the game
             }
         }
         //if the one player choose doesn't match the last one
@@ -131,6 +157,14 @@
         }
     }
 
+    //onclick event of play again button
+    private void ButtonPlayAgainClick()
+    {
+        SetUpGame();// reset the game
+
+    }
+
+    //timer
     private void Timer_Tick(Object source, ElapsedEventArgs e)
     {
         InvokeAsync(() =>
@@ -144,6 +178,8 @@
         });
     }
 
+
+    //HtmlElement tableElem = webBrowser1.Document.GetElementById(tableID);
+
+
 }
-
-
