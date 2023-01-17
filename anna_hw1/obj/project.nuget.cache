@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Q9T6RkCa3h0BvyLOmFu4x/kph7uK5XDI9BcpPssyMNXlGPGlT+KpFfloQyjB3iNu/lhh8MT+YYsZyDGT8qQpEw==",
+  "dgSpecHash": "x2Wr9csos9Z+kJZjDgkN2PAPY800CaeQUlbhjJYmfcQOLCVRkZkvaFOwKMWN+Hzm9N0DeMvK2OAgGBONWeXWmQ==",
   "success": true,
-  "projectFilePath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week 1/HW/anna_hw1/anna_hw1/anna_hw1.csproj",
+  "projectFilePath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/anna_hw1.csproj",
   "expectedPackageFiles": [
     "/Users/chin-huapan/.nuget/packages/microsoft.aspnetcore.authorization/5.0.17/microsoft.aspnetcore.authorization.5.0.17.nupkg.sha512",
     "/Users/chin-huapan/.nuget/packages/microsoft.aspnetcore.components/5.0.17/microsoft.aspnetcore.components.5.0.17.nupkg.sha512",

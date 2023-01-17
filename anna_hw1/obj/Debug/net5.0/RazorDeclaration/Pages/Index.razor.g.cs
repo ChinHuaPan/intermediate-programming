@@ -13,77 +13,77 @@ namespace anna_hw1.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week 1/HW/anna_hw1/anna_hw1/_Imports.razor"
+#line 1 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week 1/HW/anna_hw1/anna_hw1/_Imports.razor"
+#line 2 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/_Imports.razor"
 using System.Net.Http.Json;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week 1/HW/anna_hw1/anna_hw1/_Imports.razor"
+#line 3 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week 1/HW/anna_hw1/anna_hw1/_Imports.razor"
+#line 4 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week 1/HW/anna_hw1/anna_hw1/_Imports.razor"
+#line 5 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week 1/HW/anna_hw1/anna_hw1/_Imports.razor"
+#line 6 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week 1/HW/anna_hw1/anna_hw1/_Imports.razor"
+#line 7 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/_Imports.razor"
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week 1/HW/anna_hw1/anna_hw1/_Imports.razor"
+#line 8 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week 1/HW/anna_hw1/anna_hw1/_Imports.razor"
+#line 9 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/_Imports.razor"
 using anna_hw1;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week 1/HW/anna_hw1/anna_hw1/_Imports.razor"
+#line 10 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/_Imports.razor"
 using anna_hw1.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week 1/HW/anna_hw1/anna_hw1/Pages/Index.razor"
+#line 2 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/Pages/Index.razor"
 using System.Timers;
 
 #line default
@@ -98,10 +98,10 @@ using System.Timers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 50 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week 1/HW/anna_hw1/anna_hw1/Pages/Index.razor"
+#line 76 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/Pages/Index.razor"
       
 
-    //define animals
+    //declare animals
     List<string> animalEmoji = new List<string>()
 {
         "🦊","🦊",
@@ -114,12 +114,12 @@ using System.Timers;
         "🐿","🐿",
     };
 
-    //define variables
+    //declare variables
     List<string> shuffledAnimals = new List<string>(); //a list to store sheffled animals
     int matchesFound = 0; //amount of matches the player found
     Timer timer; // timer to show how much time passes
     int tenthsOfSecondElapsed = 0; //how many 1/10 seconds elapsed
-    string timeDisplay; //time to display
+    string timeDisplay="Ready?"; //time to display
 
     // override OnInitalized function
     protected override void OnInitialized()
@@ -140,16 +140,21 @@ using System.Timers;
 
         matchesFound = 0; //reset matchesFound
         tenthsOfSecondElapsed = 0; //reset the time elapsed
+        lastAnimalFound = string.Empty; //reset lastAnimalFound
+        timeDisplay = "Ready?";//reset time display
     }
 
-    //define variables
+    //declare variables
     string lastAnimalFound = string.Empty; //note which animal is found last time
-    string lastDescription = string.Empty; //note the description of the last animal the player found 
+    string lastDescription = string.Empty; //note the description of the last animal the player found
 
 
-    //onclick event
+    //onclick event of animal button
     private void ButtonClick(string animal, string animalDescription)
     {
+
+        Console.WriteLine(animalDescription);
+
         //if there is no animal is found
         if (lastAnimalFound == string.Empty)
         {
@@ -165,15 +170,15 @@ using System.Timers;
             then convert to list and give it back to shuggledAnimals*/
             shuffledAnimals = shuffledAnimals.Select(a => a.Replace(animal, string.Empty)).ToList();
             lastAnimalFound = string.Empty; //clear lastAnimalFound (we don't need to compare this one to another next time)
-            matchesFound++; //plus 1 to amount of matches the player found 
+            matchesFound++; //plus 1 to amount of matches the player found
 
             //if the amount of matches is 8, also means the player already found out all animals
             if (matchesFound == 8)
             {
                 timer.Stop(); // timer stops
-                timeDisplay += "- Play Again?"; //display "play again" wording behind the time 
+                timeDisplay += "  Good job!"; //display "play again" wording behind the time
 
-                SetUpGame(); // reset the game
+                //SetUpGame(); // reset the game
             }
         }
         //if the one player choose doesn't match the last one
@@ -183,6 +188,14 @@ using System.Timers;
         }
     }
 
+    //onclick event of play again button
+    private void ButtonPlayAgainClick()
+    {
+        SetUpGame();// reset the game
+
+    }
+
+    //timer
     private void Timer_Tick(Object source, ElapsedEventArgs e)
     {
         InvokeAsync(() =>
@@ -197,9 +210,15 @@ using System.Timers;
     }
 
 
+
+
+    //Reference:
+    //https://stackoverflow.com/questions/62730963/how-to-hide-buttons-and-show-them-when-clicking-another-button-in-c-sharp-and-as
+
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JsRuntime { get; set; }
     }
 }
 #pragma warning restore 1591
