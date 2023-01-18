@@ -55,7 +55,7 @@
 
     <!--matches count-->
     <div class="row">
-        <h2>Matches found: @matchesFound</h2>
+        <h2>Score: @score</h2>
     </div>
 
     <!--timer-->
@@ -107,6 +107,14 @@
         SetUpGame(); //initial the game
     }
 
+    //declare variables
+    string lastAnimalFound; //note which animal is found last time
+    int[] chosenIndex; //note last chosen 2 index (last and last one, last one)
+    int score = 0;
+    int lastTimeMatched = 0;
+    int timeBetweenMatches = 0;
+
+
     //initial the game
     private void SetUpGame()
     {
@@ -124,62 +132,73 @@
         tenthsOfSecondElapsed = 0; //reset the time elapsed
         lastAnimalFound = String.Empty; //reset lastAnimalFound
         timeDisplay = "Ready?";//reset time display
-        lastIndex = -1;
         chosenIndex = new int[2] { -1, -1 };
+        lastTimeMatched = 0;
+        score = 0;
     }
 
-    //declare variables
-    string lastAnimalFound; //note which animal is found last time
-    int lastIndex; // note last index
-    int[] chosenIndex; //
 
     private void ButtonClick2(string animal, int indexAnimal)
     {
-        if (matchesFound == 8) { return; }
 
+        /********* check wheather hidden the cards or not ***********/
+        //match failed
         if (chosenIndex[0] > -1 && chosenIndex[1] > -1 && chosenIndex[0] != chosenIndex[1])
         {
-            hidden(chosenIndex[1], chosenIndex[0]);
-            lastAnimalFound = string.Empty; //clear lastAnimalFound (we don't need to compare this one to another next time)
-            lastIndex = -1;
+            //hidden last 2
+            hiddenUnmateched(chosenIndex[1], chosenIndex[0]);
+            lastAnimalFound = string.Empty; //clear lastAnimalFound
             chosenIndex[0] = -1;
             chosenIndex[1] = -1;
+
+            //show current chosen
+            show(indexAnimal);
+            lastAnimalFound = animal; //give current animal to lastAnimalFound
+            chosenIndex[0] = indexAnimal;
+
             return;
         }
 
+
+        //if the player click the one which is already matched or flipped, do nothing (return)
         if (showAnimals[indexAnimal] != "?") { return; }
 
-        show(indexAnimal);
+        show(indexAnimal);//show animal emoji
 
-        //if there is no animal found
+        /************ check wheather match is successful or not **************/
+        //if there is no animal found or the player matched successfully last time
         if (lastAnimalFound == string.Empty)
         {
             lastAnimalFound = animal; //give current animal to lastAnimalFound
-                                      //lastDescription = animalDescription; //give current description of animal to lastDescription
-            lastIndex = indexAnimal;
-            chosenIndex[0] = indexAnimal;
+            chosenIndex[0] = indexAnimal; //store the 1st anmimal
             timer.Start(); //timer starts
         }
-        else if ((lastAnimalFound == animal) && (lastIndex != indexAnimal))
+        //if match successfully
+        else if ((lastAnimalFound == animal) && (chosenIndex[0] != chosenIndex[1]))
         {
             lastAnimalFound = string.Empty; //clear lastAnimalFound (we don't need to compare this one to another next time)
-            lastIndex = -1;
-            chosenIndex[0] = -1;
-            chosenIndex[1] = -1;
+            chosenIndex[0] = -1; //reset 1st animal
+            chosenIndex[1] = -1; //reset 2nd animal
             matchesFound++;
-
+            int scoreTemp = calScore();
+            score = score + scoreTemp;
+            Console.WriteLine("total:"+score + ", this time:" + scoreTemp);
         }
+        //if matche failed
         else
         {
             lastAnimalFound = string.Empty; //clear lastAnimalFound (we don't need to compare this one to another next time)
-            lastIndex = -1;
-            chosenIndex[1] = indexAnimal;
+            chosenIndex[1] = indexAnimal; //store the 2nd animal
         }
 
-        if (matchesFound == 8) {
+        if (matchesFound == 8)
+        {
             timer.Stop(); // timer stops
             timeDisplay += "  Good job!"; //display "play again" wording behind the time
+            return;
         }
+
+
 
     }
 
@@ -188,11 +207,9 @@
         showAnimals[index] = shuffledAnimals[index];
     }
 
-    
-    private void hidden(int index, int lastIndex)
+
+    private void hiddenUnmateched(int index, int lastIndex)
     {
-
-
         showAnimals[index] = "?";
         showAnimals[lastIndex] = "?";
     }
@@ -215,10 +232,46 @@
             convert to string with 0.0s format and pass to timeDisplay*/
             timeDisplay = (tenthsOfSecondElapsed / 10F).ToString("0.0s");
             StateHasChanged(); //notify the component that state has changed || reference: https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.components.componentbase.statehaschanged?view=aspnetcore-7.0
+
         });
     }
 
+    private int calScore()
+    {
 
+        timeBetweenMatches = tenthsOfSecondElapsed - lastTimeMatched;
+
+        lastTimeMatched = tenthsOfSecondElapsed;
+
+        Console.WriteLine("the moment:" + tenthsOfSecondElapsed + ", time between matches:" + timeBetweenMatches);
+
+
+        if(timeBetweenMatches <= 5)
+        {
+            return 1000;
+        }else if(timeBetweenMatches <= 10)
+        {
+            return 900;
+        }else if (timeBetweenMatches <= 20)
+        {
+            return 700;
+        }else if(timeBetweenMatches <= 30)
+        {
+            return 500;
+        }else if(timeBetweenMatches <= 50)
+        {
+            return 400;
+        }else if(timeBetweenMatches <= 70)
+        {
+            return 300;
+        }else if(timeBetweenMatches <= 100)
+        {
+            return 200;
+        }else
+        {
+            return 100;
+        }
+    }
 
 
     //Reference:
