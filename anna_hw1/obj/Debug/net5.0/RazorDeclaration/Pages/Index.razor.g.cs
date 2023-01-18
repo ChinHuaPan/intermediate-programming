@@ -104,7 +104,7 @@ using System.Collections.Generic;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 79 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/Pages/Index.razor"
+#line 93 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/Pages/Index.razor"
       
 
     //declare animals
@@ -138,10 +138,11 @@ using System.Collections.Generic;
 
     //declare variables
     string lastAnimalFound; //note which animal is found last time
+    int lastIndex; //note the index of last animal
     int[] chosenIndex; //note last chosen 2 index (last and last one, last one)
-    int score = 0;
-    int lastTimeMatched = 0;
-    int timeBetweenMatches = 0;
+    int score = 0; //note the score
+    int lastTimeMatched = 0; //note the timing of last successful match
+    int timeBetweenMatches = 0; //calculate the length of time period between two successful match
 
 
     //initial the game
@@ -160,89 +161,117 @@ using System.Collections.Generic;
         matchesFound = 0; //reset matchesFound
         tenthsOfSecondElapsed = 0; //reset the time elapsed
         lastAnimalFound = String.Empty; //reset lastAnimalFound
+        lastIndex = -1; //reset last index
+
         timeDisplay = "Ready?";//reset time display
-        chosenIndex = new int[2] { -1, -1 };
-        lastTimeMatched = 0;
-        score = 0;
+        chosenIndex = new int[2] { -1, -1 }; //reset 
+        lastTimeMatched = 0; //reset time
+        score = 0; //reset score
     }
 
 
-    private void ButtonClick2(string animal, int indexAnimal)
+    private void ButtonClick(string animal, int indexAnimal)
     {
 
+        //if the player click the one which is already flipped or matched, do nothing (return)
+        if (showAnimals[indexAnimal] != "?" || shuffledAnimals[indexAnimal] == "Matched") { return; }
+
         /********* check wheather hidden the cards or not ***********/
-        //match failed
+        //clicked at least 2 animals
+        //if last 2 animals are not empty and they are different
         if (chosenIndex[0] > -1 && chosenIndex[1] > -1 && chosenIndex[0] != chosenIndex[1])
         {
-            //hidden last 2
-            hiddenUnmateched(chosenIndex[1], chosenIndex[0]);
-            lastAnimalFound = string.Empty; //clear lastAnimalFound
-            chosenIndex[0] = -1;
-            chosenIndex[1] = -1;
 
-            //show current chosen
-            show(indexAnimal);
-            lastAnimalFound = animal; //give current animal to lastAnimalFound
-            chosenIndex[0] = indexAnimal;
 
-            return;
+            show(indexAnimal);//show current animal
+            hiddenUnmateched(chosenIndex[1], chosenIndex[0]);//hidden last 2 animals
+
+            lastAnimalFound = animal; //pass current animal to lastAnimalFound
+            lastIndex = indexAnimal; //pass current index to last index
+
+            chosenIndex[0] = indexAnimal; //pass current animal to the 1st animal
+            chosenIndex[1] = -1; //reset the 2nd aniaml
+
+            return;//then do nothing
         }
 
+        show(indexAnimal);//show current animal emoji
 
-        //if the player click the one which is already matched or flipped, do nothing (return)
-        if (showAnimals[indexAnimal] != "?") { return; }
-
-        show(indexAnimal);//show animal emoji
 
         /************ check wheather match is successful or not **************/
         //if there is no animal found or the player matched successfully last time
         if (lastAnimalFound == string.Empty)
         {
             lastAnimalFound = animal; //give current animal to lastAnimalFound
+            lastIndex = indexAnimal; //pass current index to last index
             chosenIndex[0] = indexAnimal; //store the 1st anmimal
             timer.Start(); //timer starts
         }
         //if match successfully
-        else if ((lastAnimalFound == animal) && (chosenIndex[0] != chosenIndex[1]))
+        //if last animal equals to current animal and last index doesn't eaual to current index
+        else if ((lastAnimalFound == animal) && (lastIndex != indexAnimal))
         {
+            shuffledAnimals[lastIndex] = "Matched"; //mark last animal as "Matched"
+            shuffledAnimals[indexAnimal] = "Matched"; //mark current animal as "Matched"
+
             lastAnimalFound = string.Empty; //clear lastAnimalFound (we don't need to compare this one to another next time)
+            lastIndex = -1; //reset lastindex
             chosenIndex[0] = -1; //reset 1st animal
             chosenIndex[1] = -1; //reset 2nd animal
-            matchesFound++;
-            int scoreTemp = calScore();
-            score = score + scoreTemp;
-            Console.WriteLine("total:"+score + ", this time:" + scoreTemp);
+
+
+            matchesFound++; //matchesFound +1 and pass back to matchesFound
+
+            score = score + calScore(); //calculate the score
         }
         //if matche failed
         else
         {
+
             lastAnimalFound = string.Empty; //clear lastAnimalFound (we don't need to compare this one to another next time)
+            lastIndex = -1; //reset last Index
             chosenIndex[1] = indexAnimal; //store the 2nd animal
         }
 
+        //if all matches are found
         if (matchesFound == 8)
         {
             timer.Stop(); // timer stops
-            timeDisplay += "  Good job!"; //display "play again" wording behind the time
             return;
         }
 
-
-
     }
 
+    /*** show ***/
+    /***
+    input: int index
+    output: none
+    ***/
     private void show(int index)
     {
-        showAnimals[index] = shuffledAnimals[index];
+        if (shuffledAnimals[index] != "Matched")
+        {
+            showAnimals[index] = shuffledAnimals[index];
+        }
+
     }
 
-
+    /*** hiddenUnmateched ***/
+    /***
+    input: int index, int lastIndex
+    output: none
+    ***/
     private void hiddenUnmateched(int index, int lastIndex)
     {
         showAnimals[index] = "?";
         showAnimals[lastIndex] = "?";
     }
 
+    /*** ButtonPlayAgainClick ***/
+    /***
+    input: none
+    output: none
+    ***/
     //onclick event of play again button
     private void ButtonPlayAgainClick()
     {
@@ -250,6 +279,12 @@ using System.Collections.Generic;
 
     }
 
+
+    /*** Timer_Tick ***/
+    /***
+    input: none
+    output: none
+    ***/
     //timer
     private void Timer_Tick(Object source, ElapsedEventArgs e)
     {
@@ -265,31 +300,35 @@ using System.Collections.Generic;
         });
     }
 
+
+    /*** calScore ***/
+    /***
+    input: none
+    output: (score depends on timeBetweenMatches)
+    ***/
     private int calScore()
     {
 
-        timeBetweenMatches = tenthsOfSecondElapsed - lastTimeMatched;
+        timeBetweenMatches = tenthsOfSecondElapsed - lastTimeMatched; //calculate how long the player matches successfully since last time
 
-        lastTimeMatched = tenthsOfSecondElapsed;
+        lastTimeMatched = tenthsOfSecondElapsed; //pass current timing to lastTimeMatched
 
-        Console.WriteLine("the moment:" + tenthsOfSecondElapsed + ", time between matches:" + timeBetweenMatches);
-
-
-        if(timeBetweenMatches <= 5)
+        //return score depends on timeBetweenMatches
+        if (timeBetweenMatches <= 5)
         {
-            return 1000;
+            return 1500;
         }else if(timeBetweenMatches <= 10)
         {
-            return 900;
+            return 1200;
         }else if (timeBetweenMatches <= 20)
         {
-            return 700;
+            return 1000;
         }else if(timeBetweenMatches <= 30)
         {
-            return 500;
+            return 800;
         }else if(timeBetweenMatches <= 50)
         {
-            return 400;
+            return 500;
         }else if(timeBetweenMatches <= 70)
         {
             return 300;
@@ -302,11 +341,6 @@ using System.Collections.Generic;
         }
     }
 
-
-    //Reference:
-    //hidden the btn
-    //https://stackoverflow.com/questions/62730963/how-to-hide-buttons-and-show-them-when-clicking-another-button-in-c-sharp-and-as
-    //
 
 #line default
 #line hidden
