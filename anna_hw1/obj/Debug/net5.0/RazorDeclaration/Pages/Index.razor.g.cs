@@ -8,7 +8,6 @@ namespace anna_hw1.Pages
 {
     #line hidden
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
@@ -89,6 +88,13 @@ using System.Timers;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/Pages/Index.razor"
+using System.Collections.Generic;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
     public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -98,7 +104,7 @@ using System.Timers;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 76 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/Pages/Index.razor"
+#line 79 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/Pages/Index.razor"
       
 
     //declare animals
@@ -116,10 +122,11 @@ using System.Timers;
 
     //declare variables
     List<string> shuffledAnimals = new List<string>(); //a list to store sheffled animals
+    List<string> showAnimals; // a list to store the status (show/hidden) of animals
     int matchesFound = 0; //amount of matches the player found
     Timer timer; // timer to show how much time passes
     int tenthsOfSecondElapsed = 0; //how many 1/10 seconds elapsed
-    string timeDisplay="Ready?"; //time to display
+    string timeDisplay = "Ready?"; //time to display
 
     // override OnInitalized function
     protected override void OnInitialized()
@@ -138,37 +145,156 @@ using System.Timers;
         Then convert the type to list and give it back to shuffled animal variable*/
         shuffledAnimals = animalEmoji.OrderBy(item => random.Next()).ToList();
 
+        showAnimals = new List<string>();
+        animalEmoji.ForEach(x => showAnimals.Add("?"));
+
+
         matchesFound = 0; //reset matchesFound
         tenthsOfSecondElapsed = 0; //reset the time elapsed
-        lastAnimalFound = string.Empty; //reset lastAnimalFound
+        lastAnimalFound = String.Empty; //reset lastAnimalFound
         timeDisplay = "Ready?";//reset time display
+        lastIndex = -1;
+        chosenIndex = new int[2] { -1, -1 };
     }
 
     //declare variables
-    string lastAnimalFound = string.Empty; //note which animal is found last time
-    string lastDescription = string.Empty; //note the description of the last animal the player found
+    string lastAnimalFound; //note which animal is found last time
+    int lastIndex;
+    int[] chosenIndex;
 
-
-    //onclick event of animal button
-    private void ButtonClick(string animal, string animalDescription)
+    private void ButtonClick2(string animal, int indexAnimal)
     {
+        if (matchesFound == 8) { return; }
 
-        Console.WriteLine(animalDescription);
+        if (chosenIndex[0] > -1 && chosenIndex[1] > -1 && chosenIndex[0] != chosenIndex[1])
+        {
+            hidden(chosenIndex[1], chosenIndex[0]);
+            lastAnimalFound = string.Empty; //clear lastAnimalFound (we don't need to compare this one to another next time)
+            lastIndex = -1;
+            chosenIndex[0] = -1;
+            chosenIndex[1] = -1;
+            return;
+        }
 
-        //if there is no animal is found
+        if (showAnimals[indexAnimal] != "?") { return; }
+
+        show(indexAnimal);
+
+        //if there is no animal found
         if (lastAnimalFound == string.Empty)
         {
             lastAnimalFound = animal; //give current animal to lastAnimalFound
-            lastDescription = animalDescription; //give current description of animal to lastDescription
+                                      //lastDescription = animalDescription; //give current description of animal to lastDescription
+            lastIndex = indexAnimal;
+            chosenIndex[0] = indexAnimal;
+            timer.Start(); //timer starts
+        }
+        else if ((lastAnimalFound == animal) && (lastIndex != indexAnimal))
+        {
+            lastAnimalFound = string.Empty; //clear lastAnimalFound (we don't need to compare this one to another next time)
+            lastIndex = -1;
+            chosenIndex[0] = -1;
+            chosenIndex[1] = -1;
+            matchesFound++;
+
+        }
+        else
+        {
+            lastAnimalFound = string.Empty; //clear lastAnimalFound (we don't need to compare this one to another next time)
+            lastIndex = -1;
+            chosenIndex[1] = indexAnimal;
+        }
+
+        if (matchesFound == 8) {
+            timer.Stop(); // timer stops
+            timeDisplay += "  Good job!"; //display "play again" wording behind the time
+        }
+
+    }
+
+    private void show(int index)
+    {
+        showAnimals[index] = shuffledAnimals[index];
+    }
+
+    //private async void hidden(int index, int lastIndex)
+    private void hidden(int index, int lastIndex)
+    {
+
+        //await Task.Delay(1000);
+
+        showAnimals[index] = "?";
+        showAnimals[lastIndex] = "?";
+    }
+
+    //onclick event of animal button
+    private void ButtonClick(string animal, string animalDescription, int indexAnimal)
+    {
+        //if there is no animal found
+        if (lastAnimalFound == string.Empty)
+        {
+            show(indexAnimal);
+            lastAnimalFound = animal; //give current animal to lastAnimalFound
+                                      //lastDescription = animalDescription; //give current description of animal to lastDescription
+            lastIndex = indexAnimal;
             timer.Start(); //timer starts
         }
         /*or, if the animal that player found last time equals to current animal, and same as the descriptions
         also means the player matches successfully*/
-        else if ((lastAnimalFound == animal) && (lastDescription != animalDescription))
+        else if ((lastAnimalFound == animal) && (lastIndex != indexAnimal))
         {
+            show(indexAnimal);
             /*we select the animals the players found in the suffledAnimals list, and clear them
             then convert to list and give it back to shuggledAnimals*/
-            shuffledAnimals = shuffledAnimals.Select(a => a.Replace(animal, string.Empty)).ToList();
+            //shuffledAnimals = shuffledAnimals.Select(a => a.Replace(animal, string.Empty)).ToList();
+            //showAnimals = shuffledAnimals.Select(a => a.Replace(string.Empty, animal)).ToList();
+
+            lastAnimalFound = string.Empty; //clear lastAnimalFound (we don't need to compare this one to another next time)
+            lastIndex = -1;
+            matchesFound++; //plus 1 to amount of matches the player found
+
+            //if the amount of matches is 8, also means the player already found out all animals
+            if (matchesFound == 8)
+            {
+                timer.Stop(); // timer stops
+                timeDisplay += "  Good job!"; //display "play again" wording behind the time
+
+                //SetUpGame(); // reset the game
+            }
+        }
+        //if the one player choose doesn't match the last one
+        else
+        {
+            show(indexAnimal);
+            lastAnimalFound = string.Empty; //clear lastAnimalFound
+            lastIndex = -1;
+            hidden(indexAnimal, lastIndex);
+        }
+
+        ///////////////////
+
+
+        //showAnimals[animalNumber] = animal;
+        showAnimals = shuffledAnimals.Select(a => a.Replace(string.Empty, animal)).ToList();
+
+        //if there is no animal found
+        if (lastAnimalFound == string.Empty)
+        {
+            lastAnimalFound = animal; //give current animal to lastAnimalFound
+
+            timer.Start(); //timer starts
+        }
+        /*or, if the animal that player found last time equals to current animal, and same as the descriptions
+        also means the player matches successfully*/
+        else if ((lastAnimalFound == animal) )
+        {
+            showAnimals[indexAnimal] = shuffledAnimals[indexAnimal];
+
+            /*we select the animals the players found in the suffledAnimals list, and clear them
+            then convert to list and give it back to shuggledAnimals*/
+            //shuffledAnimals = shuffledAnimals.Select(a => a.Replace(animal, string.Empty)).ToList();
+            showAnimals = shuffledAnimals.Select(a => a.Replace(string.Empty, animal)).ToList();
+
             lastAnimalFound = string.Empty; //clear lastAnimalFound (we don't need to compare this one to another next time)
             matchesFound++; //plus 1 to amount of matches the player found
 
@@ -185,6 +311,8 @@ using System.Timers;
         else
         {
             lastAnimalFound = string.Empty; //clear lastAnimalFound
+                                            //hidden
+            showAnimals[indexAnimal] = string.Empty;
         }
     }
 
@@ -213,12 +341,13 @@ using System.Timers;
 
 
     //Reference:
+    //hidden the btn
     //https://stackoverflow.com/questions/62730963/how-to-hide-buttons-and-show-them-when-clicking-another-button-in-c-sharp-and-as
+    //
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JsRuntime { get; set; }
     }
 }
 #pragma warning restore 1591
