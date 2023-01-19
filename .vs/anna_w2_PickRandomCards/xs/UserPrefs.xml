@@ -1,15 +1,15 @@
 ﻿<Properties StartupConfiguration="{0ACF260A-8236-40A6-A25F-55457569D74B}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="anna_w2_PickRandomCards/CardPicker.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="anna_w2_PickRandomCards/Program.cs">
     <Files>
-      <File FileName="anna_w2_PickRandomCards/Program.cs" Line="9" Column="47" />
-      <File FileName="anna_w2_PickRandomCards/CardPicker.cs" Line="1" Column="1" />
+      <File FileName="anna_w2_PickRandomCards/Program.cs" Line="25" Column="18" />
+      <File FileName="anna_w2_PickRandomCards/CardPicker.cs" Line="53" Column="38" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="anna_w2_PickRandomCards" expanded="True">
             <Node name="anna_w2_PickRandomCards" expanded="True">
-              <Node name="CardPicker.cs" selected="True" />
+              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>
