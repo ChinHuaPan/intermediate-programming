@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "N0FC/ooA5VrWbOvqXt2/2UNk6O+9rcUC29vlszLfLnf/7loOsOL9SC0AQkL8Kze3vqMaGap8FEm//UbtmtQTeQ==",
+  "dgSpecHash": "GoYHPmOpU1Nkkfj4oXphLA33X2xTVlrAdw6bOnMcOvE7xDKhN0t6yIIIZFDf0XTS8qmKYsTG9u0BcWUIv/yjEA==",
   "success": true,
-  "projectFilePath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw2_PickACardBlazor/anna_hw2_PickACardBlazor/anna_hw2_PickACardBlazor.csproj",
+  "projectFilePath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw2_PickACardBlazor/anna_hw2_PickACardBlazor.csproj",
   "expectedPackageFiles": [
     "/Users/chin-huapan/.nuget/packages/microsoft.aspnetcore.authorization/5.0.17/microsoft.aspnetcore.authorization.5.0.17.nupkg.sha512",
     "/Users/chin-huapan/.nuget/packages/microsoft.aspnetcore.components/5.0.17/microsoft.aspnetcore.components.5.0.17.nupkg.sha512",

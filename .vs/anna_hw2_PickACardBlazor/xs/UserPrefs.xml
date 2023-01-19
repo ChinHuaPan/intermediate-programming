@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{72FD2A1C-7045-4127-B172-3EB3D55AD9B9}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="anna_hw2_PickACardBlazor/Pages/Index.razor">
+    <Files>
+      <File FileName="anna_hw2_PickACardBlazor/Program.cs" Line="1" Column="1" />
+      <File FileName="anna_hw2_PickACardBlazor/Pages/Index.razor" Line="1" Column="1" />
+      <File FileName="anna_hw2_PickACardBlazor/CardPicker.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="anna_hw2_PickACardBlazor" expanded="True">
+            <Node name="anna_hw2_PickACardBlazor" expanded="True">
+              <Node name="Pages" expanded="True">
+                <Node name="Index.razor" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.anna__hw2__PickACardBlazor PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

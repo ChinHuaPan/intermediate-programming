@@ -1150,11 +1150,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw2_PickACardBlazor/anna_hw2_PickACardBlazor/anna_hw2_PickACardBlazor.csproj",
+      "projectUniqueName": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw2_PickACardBlazor/anna_hw2_PickACardBlazor.csproj",
       "projectName": "anna_hw2_PickACardBlazor",
-      "projectPath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw2_PickACardBlazor/anna_hw2_PickACardBlazor/anna_hw2_PickACardBlazor.csproj",
+      "projectPath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw2_PickACardBlazor/anna_hw2_PickACardBlazor.csproj",
       "packagesPath": "/Users/chin-huapan/.nuget/packages/",
-      "outputPath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw2_PickACardBlazor/anna_hw2_PickACardBlazor/obj/",
+      "outputPath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw2_PickACardBlazor/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/chin-huapan/.config/NuGet/NuGet.Config"
