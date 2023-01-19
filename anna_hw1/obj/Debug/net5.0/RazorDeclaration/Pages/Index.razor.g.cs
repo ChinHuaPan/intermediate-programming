@@ -104,7 +104,7 @@ using System.Collections.Generic;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 93 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/Pages/Index.razor"
+#line 99 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/Pages/Index.razor"
       
 
     //declare animals

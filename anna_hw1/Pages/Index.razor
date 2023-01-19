@@ -27,15 +27,14 @@
         visibility: visible;
     }
 
-    .center{
+    .center {
         display: flex;
         justify-content: center;
         align-content: center:
     }
 
-    h2{
-        margin: 20px 0;
-
+    h2 {
+        margin: 10px 0;
     }
 </style>
 
@@ -80,16 +79,18 @@
         hidden the btn
         https://stackoverflow.com/questions/62730963/how-to-hide-buttons-and-show-them-when-clicking-another-button-in-c-sharp-and-as
     -->
-    <div class="row center">
-         <h2>Good Job!</h2>
-    </div>
-    <div class="row center">
-         <button @onclick="@(() => ButtonPlayAgainClick())" type="button" class="btn btn-outline-dark btn-play" id="btnPlay">
+    @if (matchesFound == 8)
+    {
+        <div class="row center">
+            <h2>Good Job!</h2>
+        </div>
+        <div class="row center">
+            <button @onclick="@(() => ButtonPlayAgainClick())" type="button" class="btn btn-outline-dark btn-play" id="btnPlay">
                 <scan>play again</scan>
             </button>
 
-        
-    </div>
+
+        </div>}
 </div>
 
 
@@ -134,7 +135,11 @@
     int lastTimeMatched = 0; //note the timing of last successful match
     int timeBetweenMatches = 0; //calculate the length of time period between two successful match
 
-
+    /*** FUNCTION: SetUpGame ***/
+    /***
+    input: none
+    output: none
+    ***/
     //initial the game
     private void SetUpGame()
     {
@@ -154,12 +159,16 @@
         lastIndex = -1; //reset last index
 
         timeDisplay = "Ready?";//reset time display
-        chosenIndex = new int[2] { -1, -1 }; //reset 
+        chosenIndex = new int[2] { -1, -1 }; //reset
         lastTimeMatched = 0; //reset time
         score = 0; //reset score
     }
 
-
+    /*** FUNCTION: ButtonClick ***/
+    /***
+    input: string animal, int indexAnimal
+    output: none
+    ***/
     private void ButtonClick(string animal, int indexAnimal)
     {
 
@@ -232,7 +241,7 @@
 
     }
 
-    /*** show ***/
+    /*** FUNCTION: show ***/
     /***
     input: int index
     output: none
@@ -246,7 +255,7 @@
 
     }
 
-    /*** hiddenUnmateched ***/
+    /*** FUNCTION: hiddenUnmateched ***/
     /***
     input: int index, int lastIndex
     output: none
@@ -257,7 +266,7 @@
         showAnimals[lastIndex] = "?";
     }
 
-    /*** ButtonPlayAgainClick ***/
+    /*** FUNCTION: ButtonPlayAgainClick ***/
     /***
     input: none
     output: none
@@ -270,7 +279,7 @@
     }
 
 
-    /*** Timer_Tick ***/
+    /*** FUNCTION: Timer_Tick ***/
     /***
     input: none
     output: none
@@ -291,7 +300,7 @@
     }
 
 
-    /*** calScore ***/
+    /*** FUNCTION: calScore ***/
     /***
     input: none
     output: (score depends on timeBetweenMatches)
@@ -307,29 +316,60 @@
         if (timeBetweenMatches <= 5)
         {
             return 1500;
-        }else if(timeBetweenMatches <= 10)
+        }
+        else if (timeBetweenMatches <= 10)
         {
             return 1200;
-        }else if (timeBetweenMatches <= 20)
+        }
+        else if (timeBetweenMatches <= 20)
         {
             return 1000;
-        }else if(timeBetweenMatches <= 30)
+        }
+        else if (timeBetweenMatches <= 30)
         {
             return 800;
-        }else if(timeBetweenMatches <= 50)
+        }
+        else if (timeBetweenMatches <= 50)
         {
             return 500;
-        }else if(timeBetweenMatches <= 70)
+        }
+        else if (timeBetweenMatches <= 70)
         {
             return 300;
-        }else if(timeBetweenMatches <= 100)
+        }
+        else if (timeBetweenMatches <= 100)
         {
             return 200;
-        }else
+        }
+        else
         {
             return 100;
         }
     }
 
+    /**************************************************************************************/
+    /***
+    1. Hidden instead of clear
+       Hidden all animals at first and show the ones that the player matches successfully until the game ends.
+         > (A) List<string> showAnimals // create a list to store the status (show/hidden) of animals
+         > (A) int lastIndex; //note the index of last animal
+         > (A) int[] chosenIndex; //note last chosen 2 index (last and last one, last one)
+         > (C) Hidden the emoji at first and show all successful matches in the end
+
+    2. The "play-again" button
+       Show a "play agian" button instead of just words when the game ends, and it allows the player to play a new game by clicking it.
+         > (B) "Good job!" h2 tag
+         > (B) "play-again" button
+         > (C) Allow the players play again by clicking the button
+
+    3. Player can score higher if they matches faster
+       Calculate the time period between 2 succeful matches
+         > (A) int score = 0; //note the score
+         > (A) int lastTimeMatched = 0; //note the timing of last successful match
+         > (A) int timeBetweenMatches = 0; //calculate the length of time period between two successful match
+         > (C) Build a score system and score the players depending on how fast they match successfully
+    ***/
+    /**************************************************************************************/
 }
+
 

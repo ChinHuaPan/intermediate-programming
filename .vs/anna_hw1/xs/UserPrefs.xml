@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{736A4105-F59B-4991-93D2-2348DD9B042E}|Default">
-  <MonoDevelop.Ide.ItemProperties.anna__hw1 PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.ItemProperties.anna__hw1 PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench ActiveDocument="anna_hw1/Pages/Index.razor">
     <Files>
-      <File FileName="anna_hw1/Pages/Index.razor" Line="32" Column="19" />
+      <File FileName="anna_hw1/Pages/Index.razor" Line="38" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
