@@ -1,0 +1,136 @@
+﻿@page "/"
+
+<style>
+    small{
+        margin-top: 10px;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <!-- title -->
+            <div class="row">
+                <h3>How many cards should I pick?</h3>
+            </div>
+            <!-- range controler -->
+            <div class="row mt-5">
+                <input type="range" class="col-10 form-control-range"
+                       min="1" max="52" @bind="numberOfCards" />
+                <div class="col-2">@numberOfCards</div>
+            </div>
+
+            <!-- pick-some-cards btn -->
+            <div class="row mt-5">
+                <button type="button" class="btn btn-primary"
+                        @onclick="UpdateCards">
+                    Pick Some Cards
+                </button>
+            </div>
+
+            <!-- reminder -->
+            <div class="row">
+                <small>@reminder</small>
+            </div>
+
+            <!-- shuffle / reset btn -->
+            <div class="row mt-5">
+                <button type="button" class="btn btn-warning" style="display:@showResetBtn"
+                        @onclick="Reset">
+                    Shuffle
+                </button>
+            </div>
+
+
+            <!-- warning -->
+            <div class="row">
+                <small style="display:@showWarning">@warning</small>
+            </div>
+        </div>
+
+        <!-- result: picked cards -->
+        <div class="col-4">
+            <ul class="list-group">
+                <!--repeat for amount of pickedCards returns times
+                    when pickedCards returns something, pass it to card
+                    and create a li tag to show "card"
+                    until there is no return of pickedCards-->
+                @foreach (var card in pickedCards)
+                {
+                    <li class="list-group-item">@card</li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+@code{
+    int numberOfCards = 5; //set inital value as 5
+    string[] pickedCards = new string[0]; //create an array with string type, length is 0
+    int leftCardsNum = 52;
+    string reminder = "Good luck!";
+    string warning = "Choose less cards or shuffle the cards"; 
+    string showWarning = "none"; //control the warning message to show or hidden
+    string showResetBtn = "none"; //control the shuffle/reset btn to show or hidden
+
+    //onclick event of button
+    void UpdateCards()
+    {
+        leftCardsNum = CardPicker.LeftCardsNum();
+
+        if (numberOfCards == leftCardsNum)
+        {
+            Pick();
+
+            reminder = "Cards clear";
+            warning = "Shuffle the cards";
+
+            Block();
+        }
+        else if (numberOfCards < leftCardsNum)
+        {
+            Pick();
+
+            reminder = leftCardsNum + " cards left";
+            warning = "Choose less cards or shuffle the cards";
+        }
+        else{
+            Block();
+        }
+
+    }
+
+    void Pick()
+    {
+        //Use method "PickSomeCards" in class "CardPicker" to pick cards
+        //and pass to pickedCards
+        pickedCards = CardPicker.PickSomeCards(numberOfCards);
+        leftCardsNum = CardPicker.LeftCardsNum();
+    }
+
+    void Reset()
+    {
+        CardPicker.initializeCards();
+
+        pickedCards = new string[0];
+
+        leftCardsNum = 52;
+        numberOfCards = 5;
+
+        showWarning = "none";
+        showResetBtn = "none";
+
+        reminder = "Reset!  " + leftCardsNum + " cards left";
+    }
+
+    void Block()
+    {
+
+        showWarning = "block";
+        showResetBtn = "block";
+    }
+}
+
+

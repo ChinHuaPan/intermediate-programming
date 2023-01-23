@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{41F96DA6-C481-48CD-94BA-FDD0507F4B14}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="anna_hw2_PickAUniqueCardBlazor/CardPicker.cs">
+    <Files>
+      <File FileName="anna_hw2_PickAUniqueCardBlazor/Pages/Index.razor" Line="12" Column="21" />
+      <File FileName="anna_hw2_PickAUniqueCardBlazor/CardPicker.cs" Line="40" Column="42" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="anna_hw2_PickAUniqueCardBlazor" expanded="True">
+            <Node name="anna_hw2_PickAUniqueCardBlazor" expanded="True">
+              <Node name="Pages" expanded="True" />
+              <Node name="CardPicker.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.anna__hw2__PickAUniqueCardBlazor PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
