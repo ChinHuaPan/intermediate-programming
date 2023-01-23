@@ -33,10 +33,10 @@
                 <small>@reminder</small>
             </div>
 
-            <!-- shuffle / reset btn -->
+            <!-- reshuffle btn -->
             <div class="row mt-5">
-                <button type="button" class="btn btn-warning" style="display:@showResetBtn"
-                        @onclick="Reset">
+                <button type="button" class="btn btn-warning" style="display:@showReshuffleBtn"
+                        @onclick="Reshuffle">
                     Shuffle
                 </button>
             </div>
@@ -69,67 +69,93 @@
 @code{
     int numberOfCards = 5; //set inital value as 5
     string[] pickedCards = new string[0]; //create an array with string type, length is 0
-    int leftCardsNum = 52;
-    string reminder = "Good luck!";
-    string warning = "Choose less cards or shuffle the cards"; 
+    int leftCardsNum = 52; //how many cards are left after picking
+    string reminder = "Good luck!"; //reminder message
+    string warning = "Choose less cards or shuffle the cards"; //warning message
     string showWarning = "none"; //control the warning message to show or hidden
-    string showResetBtn = "none"; //control the shuffle/reset btn to show or hidden
+    string showReshuffleBtn = "none"; //control the shuffle/reset btn to show or hidden
 
-    //onclick event of button
+    //onclick event of pick-some-cards
+    /*** FUNCTION: UpdateCards ***
+    input: none
+    output: none
+    > pick cards based on the range
+    ***/
     void UpdateCards()
     {
-        leftCardsNum = CardPicker.LeftCardsNum();
-
+        //if the player just pick all the cards (left)
         if (numberOfCards == leftCardsNum)
         {
-            Pick();
+            Pick(); //pick cards
 
-            reminder = "Cards clear";
-            warning = "Shuffle the cards";
+            reminder = "Cards clear"; //reminder message: there is no card any more
+            warning = "Reshuffle the cards"; //warning message: only thing the player can do is reshuffle
 
-            Block();
+            Show(); //show warning message and shuffle btn
         }
+        //if the play pick a valid number of cards
         else if (numberOfCards < leftCardsNum)
         {
-            Pick();
+            Pick(); //pick cards
 
-            reminder = leftCardsNum + " cards left";
-            warning = "Choose less cards or shuffle the cards";
+            reminder = leftCardsNum + " cards left"; //reminder message: show the number of left cards
+            warning = "Choose less cards or reshuffle the cards"; //warning message: two options for reference
         }
-        else{
-            Block();
+        //if there is not enough cards for picking
+        else
+        {
+            Show(); //show warning message and shuffle btn
+
+            //do nothing
         }
 
     }
 
+    //onclick event of reshuffle btn
+    /*** FUNCTION: Reshuffle ***
+    input: none
+    output: none
+    > initialize the cards
+    ***/
+    void Reshuffle()
+    {
+        CardPicker.initializeCards(); //reset
+
+        pickedCards = new string[0]; //clear pickedCards
+
+        leftCardsNum = 52; //reset leftCardsNum
+        numberOfCards = 5; //reset numberOfCards
+
+        showWarning = "none"; //hidden warning message
+        showReshuffleBtn = "none"; //hidden reshuffle btn
+
+        reminder = "Reshuffled!  " + leftCardsNum + " cards left"; //reminder message: reshuffled
+    }
+
+    /*** FUNCTION: Pick ***
+    input: none
+    output: none
+    > call the methods in CardPicker class to pick cards
+    ***/
     void Pick()
     {
         //Use method "PickSomeCards" in class "CardPicker" to pick cards
         //and pass to pickedCards
         pickedCards = CardPicker.PickSomeCards(numberOfCards);
-        leftCardsNum = CardPicker.LeftCardsNum();
+        //get number of left cards
+        leftCardsNum = CardPicker.GetLeftCardsNum();
     }
 
-    void Reset()
-    {
-        CardPicker.initializeCards();
-
-        pickedCards = new string[0];
-
-        leftCardsNum = 52;
-        numberOfCards = 5;
-
-        showWarning = "none";
-        showResetBtn = "none";
-
-        reminder = "Reset!  " + leftCardsNum + " cards left";
-    }
-
-    void Block()
+    /*** FUNCTION: Show ***
+    input: none
+    output: none
+    > show the warning message and reshuffle btn
+    ***/
+    void Show()
     {
 
-        showWarning = "block";
-        showResetBtn = "block";
+        showWarning = "block"; //show warning message
+        showReshuffleBtn = "block"; //show reshuffle btn 
     }
 }
 

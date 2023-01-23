@@ -5,32 +5,38 @@ namespace anna_hw2_PickAUniqueCardBlazor
 {
     public class CardPicker
     {
+        //declare
         static Random random = new Random();
-        static string[] cards = new string[52];
-        static int leftCardsNum = 52;
+        static string[] cards = new string[52]; //card candidaters array
+        static int leftCardsNum = 52; //number of left cards
 
         static CardPicker()
         {
-
-
-
-            initializeCards();
+            initializeCards(); //initialize
 
             // This just tests that we are getting all of our cards
-            for (var i = 0; i < 52; i++)
+            /*for (var i = 0; i < 52; i++)
             {
                 //Console.WriteLine(cards[i]);
-            }
-
+            }*/
         }
 
+        /*** FUNCTION: initializeCards ***
+        input: none
+        output: noen
+        > initialize the cards
+        ***/
         public static void initializeCards()
         {
-            cards = new string[52];
-            string[] suits = { "Spades", "Hearts", "Clubs", "Diamonds" };
-            int cardCounter = 0;
-            leftCardsNum = 52;
+            //declare
+            string[] suits = { "Spades", "Hearts", "Clubs", "Diamonds" }; //kinds of suits
+            int cardCounter = 0; //counter
 
+            //reset
+            cards = new string[52]; //reset cards
+            leftCardsNum = 52; //reset leftCardsNumber
+
+            //generate all the cards
             for (int cardVal = 1; cardVal <= 13; cardVal++)
             {
                 foreach (string cardSuit in suits)
@@ -55,26 +61,31 @@ namespace anna_hw2_PickAUniqueCardBlazor
                             break;
                     }
 
-                    cards[cardCounter] = cardName + " of " + cardSuit;
-                    cardCounter++;
+                    cards[cardCounter] = cardName + " of " + cardSuit; //pass the card with current suit and number to cards array
+                    cardCounter++; //counter + 1 and pass back to itself
                 }
             }
 
-
-            Console.WriteLine("reset");
         }
 
+        /*** FUNCTION: PickSomeCards ***
+        input: int numberOfCards
+        output: string[] pickedCards
+        > pick some random cards
+        ***/
         public static string[] PickSomeCards(int numberOfCards)
         {
-            string[] pickedCards = new string[numberOfCards];
+            //declare
+            string[] pickedCards = new string[numberOfCards]; //picked cards array
 
+            //pick cards based on the number that the player set
             for (int i = 0; i < numberOfCards; i++)
             {
                 // pickedCards[i] = RandomValue() + " of " + RandomSuit();
-                pickedCards[i] = RandomCard();
+                pickedCards[i] = RandomCard(); //random card and pass to pickedCard
             }
             
-            return pickedCards;
+            return pickedCards; //return the array of pickedCards
         }
 
         private static string RandomSuit()
@@ -96,22 +107,33 @@ namespace anna_hw2_PickAUniqueCardBlazor
             return value.ToString();
         }
 
+        /*** FUNCTION: RandomCard ***
+        input: none
+        output: string picked
+        > random and pick a card, remove it from the card candidater array, return picked one
+        ***/
         private static string RandomCard()
         {
-            int cardNum = random.Next(0, cards.Length);
-            string picked = cards[cardNum];
+            int cardNum = random.Next(0, cards.Length); //random number (min:0, max:the legth of cards array) and pass to cardNum
+            string picked = cards[cardNum]; //pass the card to picked according to the index 
             cards = cards.Where(e => e != picked).ToArray(); //filter, remove the one is picked
-            leftCardsNum = cards.Length;
+            leftCardsNum = cards.Length; //pass length of cards to leftCardsnum
 
-            return picked;
+            return picked; //return picked
         }
 
-        public static int LeftCardsNum()
+        /*** FUNCTION: GetLeftCardsNum ***
+        input: none
+        output: int leftCardsNum
+        > return the current leftCardsNum
+        ***/
+        public static int GetLeftCardsNum()
         {
-            return leftCardsNum;
+            return leftCardsNum; //return leftCardsNum
         }
     }
 }
 
+//error message:
 //line 86 : string picked = cards[cardNum];
 //Index was outside the bounds of the array.
