@@ -115,7 +115,10 @@ namespace anna_hw2_PickAUniqueCardBlazor
         private static string RandomCard()
         {
             int cardNum = random.Next(0, cards.Length); //random number (min:0, max:the legth of cards array) and pass to cardNum
-            string picked = cards[cardNum]; //pass the card to picked according to the index 
+            string picked = cards[cardNum]; //pass the card to picked according to the index
+
+            //C# where method
+            //https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.where?view=net-7.0
             cards = cards.Where(e => e != picked).ToArray(); //filter, remove the one is picked
             leftCardsNum = cards.Length; //pass length of cards to leftCardsnum
 
@@ -137,3 +140,4 @@ namespace anna_hw2_PickAUniqueCardBlazor
 //error message:
 //line 86 : string picked = cards[cardNum];
 //Index was outside the bounds of the array.
+
