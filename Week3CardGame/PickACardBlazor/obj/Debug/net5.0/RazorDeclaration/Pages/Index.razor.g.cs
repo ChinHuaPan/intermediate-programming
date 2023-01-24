@@ -91,13 +91,18 @@ using PickACardBlazor.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 28 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/Week3CardGame/PickACardBlazor/Pages/Index.razor"
+#line 38 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/Week3CardGame/PickACardBlazor/Pages/Index.razor"
        
     int numberOfCards = 5;
     string[] pickedCards = new string[0];
     void UpdateCards()
     {
-        pickedCards = CardPicker.PickSomeCards(numberOfCards);
+         pickedCards = CardPicker.PickSomeCards(numberOfCards);
+    }
+
+    void ShuffleDeck()
+    {
+        CardPicker.BuildDeck();
     }
 
 #line default

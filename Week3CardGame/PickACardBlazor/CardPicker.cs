@@ -10,7 +10,15 @@ namespace PickACardBlazor // need to change this to match project
 
         static CardPicker()
         {
-            string[] suits = { "Spades", "Hearts", "Clubs", "Diamonds" };
+
+            BuildDeck();
+        }
+
+        public static void BuildDeck()
+        {
+            cards = new string[52];
+
+            string[] suits = { "spades", "hearts", "clubs", "diamonds" };
             int cardCounter = 0;
 
             for (int cardVal = 1; cardVal <= 13; cardVal++)
@@ -21,62 +29,46 @@ namespace PickACardBlazor // need to change this to match project
                     switch (cardVal)
                     {
                         case 1:
-                            cardName = "Ace";
+                            cardName = "A";
                             break;
                         case 11:
-                            cardName = "Jack";
+                            cardName = "J";
                             break;
                         case 12:
-                            cardName = "Queen";
+                            cardName = "Q";
                             break;
                         case 13:
-                            cardName = "King";
+                            cardName = "K";
                             break;
                         default:
-                            cardName = cardVal.ToString();
+                            cardName = cardVal.ToString().PadLeft(2, '0');
                             break;
                     }
-                            
-                    cards[cardCounter] = cardName + " of " + cardSuit;
+
+                    cards[cardCounter] = "card_" + cardSuit + "_" + cardName + ".png";
                     cardCounter++;
                 }
             }
-
-            // This just tests that we are getting all of our cards
-            for (var i = 0; i < 52; i++)
-            {
-                Console.WriteLine(cards[i]);
-            }
-
         }
+
         public static string[] PickSomeCards(int numberOfCards)
         {
             string[] pickedCards = new string[numberOfCards];
-            for (int i = 0; i < numberOfCards; i++)
+
+            if(numberOfCards <= cards.Length)
             {
-                // pickedCards[i] = RandomValue() + " of " + RandomSuit();
-                pickedCards[i] = RandomCard();
+                for (int i = 0; i < numberOfCards; i++)
+                {
+                    // pickedCards[i] = RandomValue() + " of " + RandomSuit();
+                    pickedCards[i] = RandomCard();
+                }   
+                return pickedCards;
             }
-            return pickedCards;
-        }
-
-        private static string RandomSuit()
-        {
-            int value = random.Next(1, 5);
-            if (value == 1) return "Spades";
-            if (value == 2) return "Hearts";
-            if (value == 3) return "Clubs";
-            return "Diamonds";
-        }
-
-        private static string RandomValue()
-        {
-            int value = random.Next(1, 14);
-            if (value == 1) return "Ace";
-            if (value == 11) return "Jack";
-            if (value == 12) return "Queen";
-            if (value == 13) return "King";
-            return value.ToString();
+            else
+            {
+                return null;
+            }
+                   
         }
 
         private static string RandomCard()

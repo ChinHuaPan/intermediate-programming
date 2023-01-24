@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{87CD7478-91A6-45CA-A416-BA90680FF1A3}|Default">
   <MonoDevelop.Ide.ItemProperties.PickACardBlazor PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PickACardBlazor/CardPicker.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PickACardBlazor/Pages/Index.razor">
     <Files>
-      <File FileName="PickACardBlazor/CardPicker.cs" Line="4" Column="66" />
-      <File FileName="PickACardBlazor/Pages/Index.razor" />
+      <File FileName="PickACardBlazor/CardPicker.cs" Line="26" Column="33" />
+      <File FileName="PickACardBlazor/Pages/Index.razor" Line="1" Column="1" />
       <File FileName="PickACardBlazor/Program.cs" />
     </Files>
     <Pads>
@@ -11,9 +11,10 @@
         <State name="__root__">
           <Node name="PickACardBlazor" expanded="True">
             <Node name="PickACardBlazor" expanded="True">
-              <Node name="Pages" expanded="True" />
+              <Node name="Pages" expanded="True">
+                <Node name="Index.razor" selected="True" />
+              </Node>
               <Node name="Properties" expanded="True" />
-              <Node name="CardPicker.cs" selected="True" />
             </Node>
           </Node>
         </State>

@@ -1,0 +1,24 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="anna_hw2_PickAUniqueCardBlazor/Pages/Index.razor">
+    <Files>
+      <File FileName="anna_hw2_PickAUniqueCardBlazor/Pages/Index.razor" Line="40" Column="24" />
+      <File FileName="anna_hw2_PickAUniqueCardBlazor/CardPicker.cs" Line="123" Column="25" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="anna_hw2_PickAUniqueCardBlazor" expanded="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <DisabledProjects>
+    <String>anna_hw2_PickAUniqueCardBlazor/anna_hw2_PickAUniqueCardBlazor.csproj</String>
+  </DisabledProjects>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
