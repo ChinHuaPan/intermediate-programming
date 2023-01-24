@@ -1,0 +1,16 @@
+/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/obj/Debug/net5.0/anna_hw1_FINAL.csproj.AssemblyReference.cache
+/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/obj/Debug/net5.0/anna_hw1_FINAL.GeneratedMSBuildEditorConfig.editorconfig
+/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/obj/Debug/net5.0/anna_hw1_FINAL.AssemblyInfoInputs.cache
+/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/obj/Debug/net5.0/anna_hw1_FINAL.AssemblyInfo.cs
+/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/obj/Debug/net5.0/anna_hw1_FINAL.csproj.CoreCompileInputs.cache
+/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/obj/Debug/net5.0/anna_hw1_FINAL.MvcApplicationPartsAssemblyInfo.cache
+/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/obj/Debug/net5.0/anna_hw1_FINAL.RazorComponent.input.cache
+/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/obj/Debug/net5.0/RazorDeclaration/App.razor.g.cs
+/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/obj/Debug/net5.0/RazorDeclaration/Pages/Counter.razor.g.cs
+/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/obj/Debug/net5.0/RazorDeclaration/Pages/FetchData.razor.g.cs
+/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/obj/Debug/net5.0/RazorDeclaration/Pages/Index.razor.g.cs
+/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/obj/Debug/net5.0/RazorDeclaration/Shared/SurveyPrompt.razor.g.cs
+/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/obj/Debug/net5.0/RazorDeclaration/_Imports.razor.g.cs
+/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/obj/Debug/net5.0/RazorDeclaration/Shared/MainLayout.razor.g.cs
+/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs
+/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/obj/Debug/net5.0/anna_hw1_FINAL.RazorComponent.output.cache
