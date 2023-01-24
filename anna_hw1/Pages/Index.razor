@@ -40,8 +40,15 @@
 
 
 
-<!--anima board-->
+<!--animal board-->
 <div class="container">
+
+    <!--highest score-->
+    <div class="row center">
+        <h2>Highest Score: @score</h2>
+    </div>
+
+
     <div class="row">
         <!--for loop: count from 0 to the amount of animal emojis-->
         @for (var animalNumber = 0; animalNumber < shuffledAnimals.Count; animalNumber++)
@@ -63,14 +70,14 @@
         }
     </div>
 
-    <!--matches count-->
+    <!--score-->
     <div class="row center">
-        <h2>Score: @score</h2>
+        <h2>Your Score: @score</h2>
     </div>
 
     <!--timer-->
     <div class="row center">
-        <h2>Time: @timeDisplay</h2>
+        <h2>Your Time: @timeDisplay</h2>
     </div>
 
     <!--when the game ends, play-again btn will show-->
@@ -92,9 +99,6 @@
 
         </div>}
 </div>
-
-
-
 
 @code{
 

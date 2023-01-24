@@ -104,7 +104,7 @@ using System.Collections.Generic;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 99 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/Pages/Index.razor"
+#line 97 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/Pages/Index.razor"
       
 
     //declare animals
@@ -122,7 +122,7 @@ using System.Collections.Generic;
 
     //declare variables
     List<string> shuffledAnimals = new List<string>(); //a list to store sheffled animals
-    List<string> showAnimals; // create a list to store the status (show/hidden) of animals
+    List<string> showAnimals; // create a list to store the animals currently shown on the screen
     int matchesFound = 0; //amount of matches the player found
     Timer timer; // timer to show how much time passes
     int tenthsOfSecondElapsed = 0; //how many 1/10 seconds elapsed
@@ -144,7 +144,11 @@ using System.Collections.Generic;
     int lastTimeMatched = 0; //note the timing of last successful match
     int timeBetweenMatches = 0; //calculate the length of time period between two successful match
 
-
+    /*** FUNCTION: SetUpGame ***/
+    /***
+    input: none
+    output: none
+    ***/
     //initial the game
     private void SetUpGame()
     {
@@ -164,12 +168,16 @@ using System.Collections.Generic;
         lastIndex = -1; //reset last index
 
         timeDisplay = "Ready?";//reset time display
-        chosenIndex = new int[2] { -1, -1 }; //reset 
+        chosenIndex = new int[2] { -1, -1 }; //reset
         lastTimeMatched = 0; //reset time
         score = 0; //reset score
     }
 
-
+    /*** FUNCTION: ButtonClick ***/
+    /***
+    input: string animal, int indexAnimal
+    output: none
+    ***/
     private void ButtonClick(string animal, int indexAnimal)
     {
 
@@ -242,7 +250,7 @@ using System.Collections.Generic;
 
     }
 
-    /*** show ***/
+    /*** FUNCTION: show ***/
     /***
     input: int index
     output: none
@@ -256,7 +264,7 @@ using System.Collections.Generic;
 
     }
 
-    /*** hiddenUnmateched ***/
+    /*** FUNCTION: hiddenUnmateched ***/
     /***
     input: int index, int lastIndex
     output: none
@@ -267,7 +275,7 @@ using System.Collections.Generic;
         showAnimals[lastIndex] = "?";
     }
 
-    /*** ButtonPlayAgainClick ***/
+    /*** FUNCTION: ButtonPlayAgainClick ***/
     /***
     input: none
     output: none
@@ -280,7 +288,7 @@ using System.Collections.Generic;
     }
 
 
-    /*** Timer_Tick ***/
+    /*** FUNCTION: Timer_Tick ***/
     /***
     input: none
     output: none
@@ -301,7 +309,7 @@ using System.Collections.Generic;
     }
 
 
-    /*** calScore ***/
+    /*** FUNCTION: calScore ***/
     /***
     input: none
     output: (score depends on timeBetweenMatches)
@@ -317,30 +325,60 @@ using System.Collections.Generic;
         if (timeBetweenMatches <= 5)
         {
             return 1500;
-        }else if(timeBetweenMatches <= 10)
+        }
+        else if (timeBetweenMatches <= 10)
         {
             return 1200;
-        }else if (timeBetweenMatches <= 20)
+        }
+        else if (timeBetweenMatches <= 20)
         {
             return 1000;
-        }else if(timeBetweenMatches <= 30)
+        }
+        else if (timeBetweenMatches <= 30)
         {
             return 800;
-        }else if(timeBetweenMatches <= 50)
+        }
+        else if (timeBetweenMatches <= 50)
         {
             return 500;
-        }else if(timeBetweenMatches <= 70)
+        }
+        else if (timeBetweenMatches <= 70)
         {
             return 300;
-        }else if(timeBetweenMatches <= 100)
+        }
+        else if (timeBetweenMatches <= 100)
         {
             return 200;
-        }else
+        }
+        else
         {
             return 100;
         }
     }
 
+    /**************************************************************************************/
+    /***
+    1. Hidden instead of clear
+       Hide all animals at first and show the ones that the player matches successfully until the game ends.
+         > (A) List<string> showAnimals // create a list to store the status (show/hidden) of animals
+         > (A) int lastIndex; //note the index of last animal
+         > (A) int[] chosenIndex; //note last chosen 2 indexes (last and last one, last one)
+         > (C) Hidden the emoji at first and show all successful matches in the end
+
+    2. The "play-again" button
+       Show a "play-again" button instead of just words when the game ends, and it allows the player to play a new game by clicking it.
+         > (B) "Good job!" h2 tag
+         > (B) "play-again" button
+         > (C) Allow the players to play again by clicking the button
+
+    3. Players can score higher if they match faster
+       Calculate the time period between 2 successful matches
+         > (A) int score = 0; //note the score
+         > (A) int lastTimeMatched = 0; //note the timing of last successful match
+         > (A) int timeBetweenMatches = 0; //calculate the length of time period between two successful match
+         > (C) Build a scoring system and score the players depending on how fast they match successfully
+    ***/
+    /**************************************************************************************/
 
 #line default
 #line hidden
