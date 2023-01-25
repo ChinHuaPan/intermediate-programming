@@ -246,10 +246,15 @@ using System.Collections.Generic;
         {
             timer.Stop(); // timer stops
 
+            //if the player break the record and it's not the first time
             if (compareRecord(score, tenthsOfSecondElapsed) && (highestScore != 0))
             {
-                message = "You just broke the record!";
-            }
+                message = "Congratulations! You just broke the record!"; //change message to 
+                }
+                else
+                {
+                    message = "Good job!";
+                }
 
 
             return;
