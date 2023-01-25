@@ -12,84 +12,84 @@ namespace anna_hw1.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/_Imports.razor"
+#line 1 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1_FINAL/anna_hw1/_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/_Imports.razor"
+#line 2 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1_FINAL/anna_hw1/_Imports.razor"
 using System.Net.Http.Json;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/_Imports.razor"
+#line 3 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1_FINAL/anna_hw1/_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/_Imports.razor"
+#line 4 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1_FINAL/anna_hw1/_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/_Imports.razor"
+#line 5 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1_FINAL/anna_hw1/_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/_Imports.razor"
+#line 6 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1_FINAL/anna_hw1/_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/_Imports.razor"
+#line 7 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1_FINAL/anna_hw1/_Imports.razor"
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/_Imports.razor"
+#line 8 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1_FINAL/anna_hw1/_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/_Imports.razor"
+#line 9 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1_FINAL/anna_hw1/_Imports.razor"
 using anna_hw1;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/_Imports.razor"
+#line 10 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1_FINAL/anna_hw1/_Imports.razor"
 using anna_hw1.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/Pages/Index.razor"
+#line 2 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1_FINAL/anna_hw1/Pages/Index.razor"
 using System.Timers;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/Pages/Index.razor"
+#line 3 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1_FINAL/anna_hw1/Pages/Index.razor"
 using System.Collections.Generic;
 
 #line default
@@ -104,11 +104,11 @@ using System.Collections.Generic;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 103 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1/Pages/Index.razor"
+#line 106 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/anna_hw1_FINAL/anna_hw1/Pages/Index.razor"
       
 
-    //declare animals
-    List<string> animalEmoji = new List<string>()
+        //declare animals
+        List<string> animalEmoji = new List<string>()
 {
         "🦊","🦊",
         "🐷","🐷",
@@ -120,13 +120,13 @@ using System.Collections.Generic;
         "🐿","🐿",
     };
 
-    //declare variables
-    List<string> shuffledAnimals = new List<string>(); //a list to store sheffled animals
-    List<string> showAnimals; // create a list to store the animals currently shown on the screen
-    int matchesFound = 0; //amount of matches the player found
-    Timer timer; // timer to show how much time passes
-    int tenthsOfSecondElapsed = 0; //how many 1/10 seconds elapsed
-    string timeDisplay = "Ready?"; //time to display
+        //declare variables
+        List<string> shuffledAnimals = new List<string>(); //a list to store sheffled animals
+        List<string> showAnimals; // create a list to store the animals currently shown on the screen
+        int matchesFound = 0; //amount of matches the player found
+        Timer timer; // timer to show how much time passes
+        int tenthsOfSecondElapsed = 0; //how many 1/10 seconds elapsed
+        string timeDisplay = "Ready?"; //time to display
 
     // override OnInitalized function
     protected override void OnInitialized()
@@ -245,7 +245,15 @@ using System.Collections.Generic;
         if (matchesFound == 8)
         {
             timer.Stop(); // timer stops
+
+            if (compareRecord(score, tenthsOfSecondElapsed) && (highestScore != 0))
+            {
+                message = "You just broke the record!";
+            }
+
+
             return;
+
         }
 
     }
@@ -283,6 +291,11 @@ using System.Collections.Generic;
     //onclick event of play again button
     private void ButtonPlayAgainClick()
     {
+        if (compareRecord(score, tenthsOfSecondElapsed))
+        {
+            refreshRecord();
+        }
+
         SetUpGame();// reset the game
 
     }
@@ -354,6 +367,36 @@ using System.Collections.Generic;
         {
             return 100;
         }
+    }
+
+    //declare
+    int highestScore = 0;
+    int shortestTime = int.MaxValue;
+    string shortestTimeDisplay;
+    string message = "Good job!";
+
+    private bool compareRecord(int currentScore, int currentTime)
+    {
+
+        if(currentScore >= highestScore && currentTime <= shortestTime)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+    private void refreshRecord()
+    {
+
+        highestScore = score;
+        shortestTime = tenthsOfSecondElapsed;
+        shortestTimeDisplay = (tenthsOfSecondElapsed / 10F).ToString("0.0s");
+
+
     }
 
     /**************************************************************************************/

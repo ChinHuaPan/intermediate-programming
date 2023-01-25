@@ -43,11 +43,14 @@
 <!--animal board-->
 <div class="container">
 
-    <!--highest score
-    <div class="row center">
-        <h2>Highest Score: @score</h2>
-    </div>-->
-
+    <!--highest score-->
+    @if(highestScore != 0)
+    {
+        <div class="row center">
+            <h2>The best record:</h2>
+            <h2>@highestScore , @shortestTimeDisplay</h2>
+        </div>
+    }
 
     <div class="row">
         <!--for loop: count from 0 to the amount of animal emojis-->
@@ -89,7 +92,7 @@
     @if (matchesFound == 8)
     {
         <div class="row center">
-            <h2>Good Job!</h2>
+            <h2>@message</h2>
         </div>
         <div class="row center">
             <button @onclick="@(() => ButtonPlayAgainClick())" type="button" class="btn btn-outline-dark btn-play" id="btnPlay">
@@ -102,8 +105,8 @@
 
 @code{
 
-    //declare animals
-    List<string> animalEmoji = new List<string>()
+        //declare animals
+        List<string> animalEmoji = new List<string>()
 {
         "🦊","🦊",
         "🐷","🐷",
@@ -115,13 +118,13 @@
         "🐿","🐿",
     };
 
-    //declare variables
-    List<string> shuffledAnimals = new List<string>(); //a list to store sheffled animals
-    List<string> showAnimals; // create a list to store the animals currently shown on the screen
-    int matchesFound = 0; //amount of matches the player found
-    Timer timer; // timer to show how much time passes
-    int tenthsOfSecondElapsed = 0; //how many 1/10 seconds elapsed
-    string timeDisplay = "Ready?"; //time to display
+        //declare variables
+        List<string> shuffledAnimals = new List<string>(); //a list to store sheffled animals
+        List<string> showAnimals; // create a list to store the animals currently shown on the screen
+        int matchesFound = 0; //amount of matches the player found
+        Timer timer; // timer to show how much time passes
+        int tenthsOfSecondElapsed = 0; //how many 1/10 seconds elapsed
+        string timeDisplay = "Ready?"; //time to display
 
     // override OnInitalized function
     protected override void OnInitialized()
@@ -240,7 +243,15 @@
         if (matchesFound == 8)
         {
             timer.Stop(); // timer stops
+
+            if (compareRecord(score, tenthsOfSecondElapsed) && (highestScore != 0))
+            {
+                message = "You just broke the record!";
+            }
+
+
             return;
+
         }
 
     }
@@ -278,6 +289,11 @@
     //onclick event of play again button
     private void ButtonPlayAgainClick()
     {
+        if (compareRecord(score, tenthsOfSecondElapsed))
+        {
+            refreshRecord();
+        }
+
         SetUpGame();// reset the game
 
     }
@@ -349,6 +365,36 @@
         {
             return 100;
         }
+    }
+
+    //declare
+    int highestScore = 0;
+    int shortestTime = int.MaxValue;
+    string shortestTimeDisplay;
+    string message = "Good job!";
+
+    private bool compareRecord(int currentScore, int currentTime)
+    {
+
+        if(currentScore >= highestScore && currentTime <= shortestTime)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+    private void refreshRecord()
+    {
+
+        highestScore = score;
+        shortestTime = tenthsOfSecondElapsed;
+        shortestTimeDisplay = (tenthsOfSecondElapsed / 10F).ToString("0.0s");
+
+
     }
 
     /**************************************************************************************/
