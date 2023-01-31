@@ -18,19 +18,26 @@ namespace RaceTo21
             nextTask = "GetNumberOfPlayers";
         }
 
-        /* Adds a player to the current game
-         * Called by DoNextTask() method
-         */
+
+        /*** AddPlayer() ***
+		 * Adds a player to the current game
+		 * Called by: DoNextTask() method
+		 * INPUT: string n --> number of players
+		 * Call object: None
+		 * OUTPUT: None
+		 * ***/
         public void AddPlayer(string n)
         {
             players.Add(new Player(n));
         }
 
-        /* Figures out what task to do next in game
-         * as represented by field nextTask
-         * Calls methods required to complete task
-         * then sets nextTask.
-         */
+        /*** DoNextTask() ***
+		 * Figures out what task to do next in game, then sets nextTask.
+		 * Called by: as represented by field nextTask
+		 * INPUT: string n --> number of players
+		 * Call object: Calls methods required to complete task
+		 * OUTPUT: None
+		 * ***/
         public void DoNextTask()
         {
             if (nextTask == "GetNumberOfPlayers")
@@ -55,6 +62,57 @@ namespace RaceTo21
                 nextTask = "GameOver";
             }
         }
+
+
+        /*** GetPlayersName() ***
+		 * Get names of the players
+		 * Called by: None
+		 * INPUT: None
+		 * Call object: None
+		 * OUTPUT: List<Player> players
+		 * ***/
+        public List<Player> GetPlayersName()
+        {
+
+            return players;
+        }
+
+        /*** TurnNextPlayer() ***
+		 * Turn to the next player
+		 * Called by: None
+		 * INPUT: None
+		 * Call object: None
+		 * OUTPUT: None
+		 * ***/
+        public void TurnNextPlayer()
+        {
+
+        }
+
+        /*** CheckWinOrBurst() ***
+		 * Check whether any player bursts of wins
+		 * Called by: None
+		 * INPUT: None
+		 * Call object: None
+		 * OUTPUT: None
+		 * ***/
+        public void CheckWinOrBurst()
+        {
+
+        }
+
+        /*** CheckGameOver() ***
+		 * Check whether the game is over or not and final scoring
+		 * Called by: None
+		 * INPUT: None
+		 * Call object: CheckWinOrBurst()
+		 * OUTPUT: None
+		 * ***/
+        public void CheckGameOver()
+        {
+
+        }
+
     }
 
 }

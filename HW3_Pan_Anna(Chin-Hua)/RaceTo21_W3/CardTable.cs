@@ -10,11 +10,13 @@ namespace RaceTo21
             Console.WriteLine("Setting Up Table...");
         }
 
-        /* Shows the name of each player.
-         * Is called by Game object.
-         * Game object provides list of players.
-         * Calls Introduce method on each player object.
-         */
+        /*** ShowPlayers() ***
+		 * hows the name of each player
+		 * Called by: Game object, Game object provides list of players
+		 * INPUT: List<Player> p --> 
+		 * Call object: Player object, calls Introduce method on each player object
+		 * OUTPUT: None
+		 * ***/
         public void ShowPlayers(List<Player> p)
         {
             foreach (var player in p)
@@ -23,10 +25,13 @@ namespace RaceTo21
             }
         }
 
-        /* Gets the user input for number of players.
-         * Is called by Game object.
-         * Returns number of players to Game object.
-         */
+        /*** GetNumberOfPlayers() ***
+		 * Gets the user input for number of players
+		 * Called by: Game object
+		 * INPUT:  None
+		 * Call object: None
+		 * OUTPUT: int numberOfPlayers --> Returns number of players to Game object
+		 * ***/
         public int GetNumberOfPlayers()
         {
             Console.Write("How many players? ");
@@ -42,11 +47,13 @@ namespace RaceTo21
             return numberOfPlayers;
         }
 
-        /* Gets the name of a player
-         * Is called by Game object
-         * Game object provides player number
-         * Returns name of a player to Game object
-         */
+        /*** GetPlayerName() ***
+         * Gets the name of a player
+         * Called by: Game object, Game object provides player number
+         * INPUT:  None
+         * Call object: None
+         * OUTPUT: string response --> Returns name of a player to Game object
+         * ***/
         public string GetPlayerName(int playerNum)
         {
             Console.Write("What is the name of player# " + playerNum + "? ");
@@ -58,6 +65,47 @@ namespace RaceTo21
                 response = Console.ReadLine();
             }
             return response;
+        }
+
+        /*** ShowWinner() ***
+         * Campare the value and show the winner
+         * Called by: Game object
+         * INPUT:  List<int> valuesOfEachPlayers --> the values of each players
+         * Call object: None
+         * OUTPUT: string winner --> return the name of the winner
+         * ***/
+        public string ShowWinner(List<int> valuesOfEachPlayers)
+        {
+            string winner = string.Empty;
+
+
+            return winner;
+        }
+
+        /*** DrawCard() ***
+         * Campare the value and show the winner
+         * Called by: Player object. requestCard()
+         * INPUT: None
+         * Call object: Deck object, takeTopCard()
+         * OUTPUT: None
+         * ***/
+        public string DrawCard()
+        {
+            string topCard = string.Empty;
+
+            return topCard;
+        }
+
+        /*** DisplayPlayersCards() ***
+         * Display all players' cards
+         * Called by: None
+         * INPUT: List<Player> p --> all players
+         * Call object: Player abject
+         * OUTPUT: None
+         * ***/
+        public void DisplayPlayersCards(List<Player> p)
+        {
+
         }
     }
 }
