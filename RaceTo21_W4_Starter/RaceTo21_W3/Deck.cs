@@ -90,7 +90,7 @@ namespace RaceTo21
 
         public Card DealTopCard()
         {
-            Card card = cards[1].id;
+            Card card = cards[cards.Count - 1];
             cards.RemoveAt(cards.Count - 1);
             // Console.WriteLine("I'm giving you " + card);
             return card;

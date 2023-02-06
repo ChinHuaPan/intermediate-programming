@@ -11,7 +11,7 @@ namespace RaceTo21
         Deck deck = new Deck(); // deck of cards
         int currentPlayer = 0; // current player on list
         public Task nextTask; // keeps track of game state
-        private bool cheating = false; // lets you cheat for testing purposes if true
+        private bool cheating = true; // lets you cheat for testing purposes if true
 
         public Game(CardTable c)
         {
@@ -74,6 +74,7 @@ namespace RaceTo21
                         else if (player.score == 21)
                         {
                             player.status = PlayerStatus.win;
+                            nextTask = Task.CheckForEnd;
                         }
                     }
                     else
@@ -150,7 +151,7 @@ namespace RaceTo21
         {
             foreach (var player in players)
             {
-                if (player.status == PlayerStatus.active)
+                if (player.status == PlayerStatus.active && player.status != PlayerStatus.win)
                 {
                     return true; // at least one player is still going!
                 }

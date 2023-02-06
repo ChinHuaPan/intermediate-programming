@@ -86,11 +86,23 @@ namespace RaceTo21
             if (player.cards.Count > 0)
             {
                 Console.Write(player.name + " has: ");
+
+                //if it's the first one, we won't give it a comma
+                //I figured out this way and was inspired by this solution: https://stackoverflow.com/questions/43021/how-do-you-get-the-index-of-the-current-iteration-of-a-foreach-loop
+                var isFirst = true;
                 foreach (Card card in player.cards)
                 {
-                    Console.Write(card + " ");
+                    if (isFirst)
+                    {
+                        Console.Write(card.displayName);
+                        isFirst = false;
+                    }
+                    else
+                    {
+                        Console.Write(" ," + card.displayName);
+                    }
                 }
-                Console.Write("=" + player.score + "/21 ");
+                Console.Write(" = " + player.score + "/21 ");
                 if (player.status != PlayerStatus.active)
                 {
                     Console.Write("(" + player.status.ToString().ToUpper() + ")");

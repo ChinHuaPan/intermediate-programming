@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week4/RaceTo21_W4_Starter/RaceTo21_W3/RaceTo21.csproj": {}
+    "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/RaceTo21_W4_Starter/RaceTo21_W3/RaceTo21.csproj": {}
   },
   "projects": {
-    "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week4/RaceTo21_W4_Starter/RaceTo21_W3/RaceTo21.csproj": {
+    "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/RaceTo21_W4_Starter/RaceTo21_W3/RaceTo21.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week4/RaceTo21_W4_Starter/RaceTo21_W3/RaceTo21.csproj",
+        "projectUniqueName": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/RaceTo21_W4_Starter/RaceTo21_W3/RaceTo21.csproj",
         "projectName": "RaceTo21_W3",
-        "projectPath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week4/RaceTo21_W4_Starter/RaceTo21_W3/RaceTo21.csproj",
+        "projectPath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/RaceTo21_W4_Starter/RaceTo21_W3/RaceTo21.csproj",
         "packagesPath": "/Users/chin-huapan/.nuget/packages/",
-        "outputPath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week4/RaceTo21_W4_Starter/RaceTo21_W3/obj/",
+        "outputPath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/RaceTo21_W4_Starter/RaceTo21_W3/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/chin-huapan/.config/NuGet/NuGet.Config"
