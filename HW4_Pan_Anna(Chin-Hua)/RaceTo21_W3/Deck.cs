@@ -11,7 +11,7 @@ namespace RaceTo21
         public Deck()
         {
             Console.WriteLine("*********** Building deck...");
-            string[] suits = { "Spades", "Heart", "Clubs", "Diamonds" };
+            string[] suits = { "Spades", "Hearts", "Clubs", "Diamonds" };
 
             for (int cardVal = 1; cardVal <= 13; cardVal++)
             {
@@ -94,6 +94,16 @@ namespace RaceTo21
             cards.RemoveAt(cards.Count - 1);
             // Console.WriteLine("I'm giving you " + card);
             return card;
+        }
+
+        public void initializeGame()
+        {
+            CardTable cardTable = new CardTable();
+            Game game = new Game(cardTable);
+            while (game.nextTask != Task.GameOver)
+            {
+                game.DoNextTask();
+            }
         }
     }
 }

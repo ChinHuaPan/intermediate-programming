@@ -143,14 +143,11 @@ namespace RaceTo21
 
                 string response = Console.ReadLine();
                 if (response.ToUpper().StartsWith("Y"))
-                    {
-                    CardTable cardTable = new CardTable();
-                    Game game = new Game(cardTable);
-                    while (game.nextTask != Task.GameOver)
-                    {
-                        game.DoNextTask();
-                    }
-                }
+                {
+                        Deck deck = new Deck();
+
+                        deck.initializeGame();
+                 }
                 else if (response.ToUpper().StartsWith("N"))
                 {
                     return;

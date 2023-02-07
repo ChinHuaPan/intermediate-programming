@@ -6,12 +6,11 @@ namespace RaceTo21
     {
         static void Main(string[] args)
         {
-            CardTable cardTable = new CardTable();
-            Game game = new Game(cardTable);
-            while (game.nextTask != Task.GameOver)
-            {
-                game.DoNextTask();
-            }
+            //CardTable cardTable = new CardTable();
+            //Game game = new Game(cardTable);
+            Deck deck = new Deck();
+
+            deck.initializeGame();
         }
     }
 }
