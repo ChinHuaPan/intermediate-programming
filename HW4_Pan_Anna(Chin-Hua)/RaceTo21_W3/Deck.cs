@@ -7,6 +7,7 @@ namespace RaceTo21
     public class Deck
     {
         List<Card> cards = new List<Card>();
+        Dictionary<string, string> cardsFileName = new Dictionary<string, string>();
 
         public Deck()
         {
@@ -43,6 +44,7 @@ namespace RaceTo21
                             break;
                     }
                     cards.Add(new Card(cardName + cardSuit.First<char>(), cardLongName + " of " +cardSuit));
+                    cardsFileName.Add(cardName + cardSuit.First<char>(), "card_" + cardSuit.ToLower() + "_" + cardName + ".png");
                 }
             }
         }
@@ -65,6 +67,11 @@ namespace RaceTo21
                 cards[i] = cards[swapindex];
                 cards[swapindex] = tmp;
             }
+
+            //private static readonly Random random = new Random();
+
+            //Card card = new Card((Values)random.Next(1, 14), (Suits)random.Next(4));
+            //Console.WriteLine(card.Name);
         }
 
         /* Maybe we can make a variation on this that's more useful,
@@ -96,14 +103,30 @@ namespace RaceTo21
             return card;
         }
 
-        public void initializeGame()
+        public void initializeGame(List<Player> players)
         {
             CardTable cardTable = new CardTable();
-            Game game = new Game(cardTable);
+            Game game = new Game(cardTable, players);
+
             while (game.nextTask != Task.GameOver)
             {
                 game.DoNextTask();
             }
+        }
+
+        public List<Player> shufflePlayers(List<Player> players)
+        {
+            Random rng = new Random();
+
+            for (int i = 0; i < players.Count; i++)
+            {
+                Player tmp = players[i];
+                int swapindex = rng.Next(players.Count);
+                players[i] = players[swapindex];
+                players[swapindex] = tmp;
+            }
+
+            return players;
         }
     }
 }

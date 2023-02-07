@@ -6,16 +6,27 @@ namespace RaceTo21
     public class Game
     {
         int numberOfPlayers; // number of players in current game
-        List<Player> players = new List<Player>(); // list of objects containing player data
+        List<Player> players; // list of objects containing player data
         CardTable cardTable; // object in charge of displaying game information
         Deck deck = new Deck(); // deck of cards
         int currentPlayer = 0; // current player on list
         static public bool everyOneIsStay = true;
         public Task nextTask; // keeps track of game state
         private bool cheating = true; // lets you cheat for testing purposes if true
+        Player lastWinner;
 
-        public Game(CardTable c)
+        public Game(CardTable c, List<Player> playersTemp)
         {
+            // make changes to deal with the case of players as one of the inputs
+
+            if (playersTemp.Count==1) {
+                lastWinner= playersTemp[0];
+                players = new List<Player>();
+            }
+            else
+            {
+                players = playersTemp;
+            }
             cardTable = c;
             deck.Shuffle();
             deck.ShowAllCards();
@@ -25,9 +36,9 @@ namespace RaceTo21
         /* Adds a player to the current game
          * Called by DoNextTask() method
          */
-        public void AddPlayer(string n)
+        public void AddPlayer(string name)
         {
-            players.Add(new Player(n));
+            players.Add(new Player(name));
         }
 
         /* Figures out what task to do next in game
@@ -49,6 +60,11 @@ namespace RaceTo21
                 {
                     var name = cardTable.GetPlayerName(count);
                     AddPlayer(name); // NOTE: player list will start from 0 index even though we use 1 for our count here to make the player numbering more human-friendly
+                }
+                deck.shufflePlayers(players);
+                if (lastWinner != null)
+                {
+                    players.Add(lastWinner);
                 }
                 nextTask = Task.IntroducePlayers;
             }
@@ -213,6 +229,29 @@ namespace RaceTo21
         {
             Player winner = DoFinalScoring();
             cardTable.AnnounceWinner(winner);
+            if (cardTable.AskPlayAgain())
+            {
+                List<Player> playersTemp = new List<Player>();
+
+                for (var count = 0; count < numberOfPlayers; count++)
+                {
+                    if (cardTable.AskKeepPlaying(players[count].name))
+                    {
+                        playersTemp.Add(new Player(players[count].name));
+                    }
+                }
+
+                if (playersTemp.Count == 1)
+                {
+                    cardTable.AnnounceWinner(playersTemp[0]);
+
+                }
+                Console.WriteLine(playersTemp[0].name + " joins the next round!");
+                Deck deck = new Deck();
+                deck.initializeGame(playersTemp);
+
+
+            }
             nextTask = Task.GameOver;
         }
     }

@@ -29,14 +29,14 @@ namespace RaceTo21
          */
         public int GetNumberOfPlayers()
         {
-            Console.Write("How many players? ");
+            Console.Write("How many players want to join? ");
             string response = Console.ReadLine();
             int numberOfPlayers;
             while (int.TryParse(response, out numberOfPlayers) == false
                 || numberOfPlayers < 2 || numberOfPlayers > 8)
             {
                 Console.WriteLine("Invalid number of players.");
-                Console.Write("How many players?");
+                Console.Write("How many players want to join?");
                 response = Console.ReadLine();
             }
             return numberOfPlayers;
@@ -49,12 +49,12 @@ namespace RaceTo21
          */
         public string GetPlayerName(int playerNum)
         {
-            Console.Write("What is the name of player# " + playerNum + "? ");
+            Console.Write("What is the name of joining player #" + playerNum + "? ");
             string response = Console.ReadLine();
             while (response.Length < 1)
             {
                 Console.WriteLine("Invalid name.");
-                Console.Write("What is the name of player# " + playerNum + "? ");
+                Console.Write("What is the name of joining player #" + playerNum + "? ");
                 response = Console.ReadLine();
             }
             return response;
@@ -138,20 +138,6 @@ namespace RaceTo21
             {
                 Console.WriteLine("Everyone busted!");
             }
-            Console.Write("Play again...? (Y/N)");
-            //while (Console.ReadKey().Key != ConsoleKey.Enter) {
-
-                string response = Console.ReadLine();
-                if (response.ToUpper().StartsWith("Y"))
-                {
-                        Deck deck = new Deck();
-
-                        deck.initializeGame();
-                 }
-                else if (response.ToUpper().StartsWith("N"))
-                {
-                    return;
-                }
             
         }
 
@@ -178,6 +164,56 @@ namespace RaceTo21
             }
 
             return Game.everyOneIsStay;
+        }
+
+        public bool AskPlayAgain()
+        {
+            Console.Write("Play again...? (Y/N)");
+            while (true) {
+
+                string response = Console.ReadLine();
+
+                if (response.ToUpper().StartsWith("Y"))
+                {
+                    return true;
+
+                }
+                else if (response.ToUpper().StartsWith("N"))
+                {
+                    return false;
+                }
+                else
+                {
+                    Console.WriteLine("Please answer Y(es) or N(o)!");
+                }
+            }
+
+        }
+
+        public bool AskKeepPlaying(string playerName)
+        {
+            Console.Write("Hey, " + playerName + "! Do you want to keep playing? (Y/N)");
+            string response = Console.ReadLine();
+
+            while (true) {
+                if (response.ToUpper().StartsWith("Y"))
+                {
+                    Console.WriteLine("That's great!");
+                    return true;
+
+                }
+                else if (response.ToUpper().StartsWith("N"))
+                {
+                    Console.WriteLine("What a pity!");
+                    return false;
+
+                }
+                else
+                {
+                    Console.WriteLine("Please answer Y(es) or N(o)!");
+                }
+            }
+
         }
     }
 }

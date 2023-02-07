@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace RaceTo21
 {
     public class Card
     {
         public string id;
         public string displayName;
+        public string fileName;
 
         public Card(string shortCardName, string longCardName)
         {
@@ -12,9 +15,23 @@ namespace RaceTo21
             displayName = longCardName;
         }
 
+        /////
+        public Values Value { get; private set; }
+        public Suits Suit { get; private set; }
+        //public Card(Values value, Suits suit)
+        //{
+        //    this.Suit = suit;
+        //    this.Value = value;
+        //}
+        //public string Name
+        //{
+        //    get { return $" {Value} of {Suit}"; }
+        //}
+
+
     }
 
-    public enum Suit
+    public enum Suits
     {
         Spades,
         Hearts,
@@ -22,7 +39,7 @@ namespace RaceTo21
         Clubs
     }
 
-    public enum Value
+    public enum Values
     {
         Ace = 1,
         Two = 2,
@@ -38,4 +55,10 @@ namespace RaceTo21
         Queen = 12,
         King = 13
     }
+
+
+
+   
+
+
 }

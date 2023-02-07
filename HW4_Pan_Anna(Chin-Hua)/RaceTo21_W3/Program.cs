@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace RaceTo21
 {
@@ -9,8 +10,9 @@ namespace RaceTo21
             //CardTable cardTable = new CardTable();
             //Game game = new Game(cardTable);
             Deck deck = new Deck();
+            List<Player> players = new List<Player>();
 
-            deck.initializeGame();
+            deck.initializeGame(players);
         }
     }
 }
