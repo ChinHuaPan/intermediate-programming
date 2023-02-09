@@ -145,7 +145,7 @@ namespace RaceTo21
             }
         }
 
-        /* Calculate the score player currently has
+        /* Calculate the score player currently has in hand
          * Called by DoNextTask() method
          */
         public int ScoreHand(Player player)
