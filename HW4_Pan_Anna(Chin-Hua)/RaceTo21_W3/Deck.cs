@@ -6,14 +6,15 @@ namespace RaceTo21
 {
     public class Deck
     {
-        List<Card> cards = new List<Card>();
-        Dictionary<string, string> cardsFileName = new Dictionary<string, string>();
+        List<Card> cards = new List<Card>(); // creat list of card
+        Dictionary<string, string> cardsFileName = new Dictionary<string, string>(); // create a dictionary for cardsFileName
 
         public Deck()
         {
             Console.WriteLine("*********** Building deck...");
             string[] suits = { "Spades", "Hearts", "Clubs", "Diamonds" };
 
+            // create cards with 13 numbers and 4 suits
             for (int cardVal = 1; cardVal <= 13; cardVal++)
             {
                 foreach (string cardSuit in suits)
@@ -43,17 +44,22 @@ namespace RaceTo21
                             cardLongName = cardVal.ToString();
                             break;
                     }
+                    // add the created card to the list
                     cards.Add(new Card(cardName + cardSuit.First<char>(), cardLongName + " of " +cardSuit));
+                    // store the file name of card to the cardsFileName dictionary
                     cardsFileName.Add(cardName + cardSuit.First<char>(), "card_" + cardSuit.ToLower() + "_" + cardName + ".png");
                 }
             }
         }
 
+        /* Shuffle cards
+         * Called by Game object
+         */
         public void Shuffle()
         {
             Console.WriteLine("Shuffling Cards...");
 
-            Random rng = new Random();
+            Random rng = new Random(); // create a random
 
             // one-line method that uses Linq:
             // cards = cards.OrderBy(a => rng.Next()).ToList();
@@ -80,11 +86,14 @@ namespace RaceTo21
          * table to do all of the displaying, don't we?!
          */
 
+        // Show all cards for reference
+        // Called by Game object
         public void ShowAllCards()
         {
-            for (int i=0; i<cards.Count; i++)
+            for (int i=0; i<cards.Count; i++) // show every card
             {
                 Console.Write(i+":"+cards[i].displayName); // a list property can look like an Array!
+
                 if (i < cards.Count -1)
                 {
                     Console.Write(" ");
@@ -95,6 +104,8 @@ namespace RaceTo21
             }
         }
 
+        // Deal the top card
+        // Called by Game object
         public Card DealTopCard()
         {
             Card card = cards[cards.Count - 1];
@@ -103,27 +114,31 @@ namespace RaceTo21
             return card;
         }
 
+        // Initialize the game
+        // Called by Game object
         public void initializeGame(List<Player> players)
         {
-            CardTable cardTable = new CardTable();
-            Game game = new Game(cardTable, players);
+            CardTable cardTable = new CardTable(); // create a new cardTable
+            Game game = new Game(cardTable, players); // create a new game
 
-            while (game.nextTask != Task.GameOver)
+            while (game.nextTask != Task.GameOver) // when game is not over
             {
-                game.DoNextTask();
+                game.DoNextTask(); // do the next task
             }
         }
 
+        // Shuffle the players
+        // Called by Game object
         public List<Player> shufflePlayers(List<Player> players)
         {
-            Random rng = new Random();
+            Random rng = new Random(); // create a rendom
 
-            for (int i = 0; i < players.Count; i++)
+            for (int i = 0; i < players.Count; i++) // check every player
             {
-                Player tmp = players[i];
-                int swapindex = rng.Next(players.Count);
-                players[i] = players[swapindex];
-                players[swapindex] = tmp;
+                Player tmp = players[i]; // pass the current play to temp player
+                int swapindex = rng.Next(players.Count); // store swapindex
+                players[i] = players[swapindex]; // pass it to the current player
+                players[swapindex] = tmp; // pass temp player to the other one
             }
 
             return players;

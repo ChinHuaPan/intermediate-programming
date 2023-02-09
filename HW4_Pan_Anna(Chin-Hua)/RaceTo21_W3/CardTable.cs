@@ -60,6 +60,8 @@ namespace RaceTo21
             return response;
         }
 
+        // Offer a card when a player request
+        // Called by Game object
         public bool OfferACard(Player player)
         {
             while (true)
@@ -81,6 +83,8 @@ namespace RaceTo21
             }
         }
 
+        // Show a card or status
+        // Called by ShowHands method
         public void ShowHand(Player player)
         {
             
@@ -93,61 +97,71 @@ namespace RaceTo21
                 var isFirst = true;
                 foreach (Card card in player.cards)
                 {
-                    if (isFirst)
+                    if (isFirst) // it's the first one
                     {
-                        Console.Write(card.displayName);
-                        isFirst = false;
+                        Console.Write(card.displayName); // show the name directly
+                        isFirst = false; // change isFirst to false
                     }
                     else
                     {
-                        Console.Write(", " + card.displayName);
+                        Console.Write(", " + card.displayName); // show the name with a comma
                     }
                 }
-                Console.Write(" = " + player.score + "/21 ");
-                if (player.status != PlayerStatus.active)
+                Console.Write(" = " + player.score + "/21 "); // show score
+
+                if (player.status != PlayerStatus.active) // if the player's status is not active
                 {
-                    Console.Write("(" + player.status.ToString().ToUpper() + ")");
+                    Console.Write("(" + player.status.ToString().ToUpper() + ")"); // show the player's status
                 }
                 Console.WriteLine();
             }
         }
 
+        // Show all the cards the player has
+        // Called by Game object
         public void ShowHands(List<Player> players)
         {
             foreach (Player player in players)
             {
-                ShowHand(player);
+                ShowHand(player); // show card or status
             }
 
                 Console.WriteLine("-----");
             
         }
 
-
+        // Announce the winner
+        // Called by Game object
         public void AnnounceWinner(Player player)
         {
-            if (player != null)
+            if (player != null) // if there is abviously a winner
             {
                 Console.WriteLine(player.name + " wins!");
             }
-            else if (Game.everyOneIsStay)
+            else if (Game.everyoneIsStay) // if everyone is stay
             {
                 Console.WriteLine("Come on, everyone...please be agressive!");
             }
-            else
+            else // if everyone is bust
             {
                 Console.WriteLine("Everyone busted!");
             }
             
         }
 
-        public bool CheckBust(List<Player> players, int current)
+        //check others are bust or not
+        //called by Game object
+        public bool CheckOthersBust(List<Player> players, int current)
         {
             bool otherAreBust = true;
+
             for(int i=0; i < players.Count; i++)
             {
                 if(i != current)
                 {
+                    // default value of otherAreBust is TRUE
+                    // thus, if there is any FALSE to && otherAreBust will be FALSE
+                    // if (players[i].status == PlayerStatus.bust) is FALSE, that means the one is not bust
                     otherAreBust = otherAreBust && (players[i].status == PlayerStatus.bust);
                 }
             }
@@ -155,54 +169,63 @@ namespace RaceTo21
             return otherAreBust;
         }
 
-        public bool CheckStay(List<Player> players)
+        //check whether everyone is stay or not
+        //called by Game object
+        public bool CheckEveryoneStay(List<Player> players)
         {
 
-            foreach (Player player in players)
+            foreach (Player player in players) // check every players
             {
-                    Game.everyOneIsStay = Game.everyOneIsStay && (player.status == PlayerStatus.stay);
+                // default value of everyoneIsStay is TRUE
+                // thus, if there is any FALSE to && everyoneIsStay will be FALSE
+                // if (player.status == PlayerStatus.stay) is FALSE, that means the one is not stay
+                Game.everyoneIsStay = Game.everyoneIsStay && (player.status == PlayerStatus.stay); 
             }
 
-            return Game.everyOneIsStay;
+            return Game.everyoneIsStay;
         }
 
+        // Ask the players whether to play again or not
+        // Called by Game object
         public bool AskPlayAgain()
         {
             Console.Write("Play again...? (Y/N)");
-            while (true) {
 
+            while (true) {
                 string response = Console.ReadLine();
 
-                if (response.ToUpper().StartsWith("Y"))
+                if (response.ToUpper().StartsWith("Y")) // if the player says yes
                 {
                     return true;
 
                 }
-                else if (response.ToUpper().StartsWith("N"))
+                else if (response.ToUpper().StartsWith("N")) // if the player says no
                 {
                     return false;
                 }
                 else
                 {
-                    Console.WriteLine("Please answer Y(es) or N(o)!");
+                    Console.WriteLine("Please answer Y(es) or N(o)!"); // if the player respond invalid answer
                 }
             }
 
         }
 
+        // Ask the player whether to keep playing or not
+        // Called by Game object
         public bool AskKeepPlaying(string playerName)
         {
             Console.Write("Hey, " + playerName + "! Do you want to keep playing? (Y/N)");
             string response = Console.ReadLine();
 
             while (true) {
-                if (response.ToUpper().StartsWith("Y"))
+                if (response.ToUpper().StartsWith("Y")) // if the player says yes
                 {
                     Console.WriteLine("That's great!");
                     return true;
 
                 }
-                else if (response.ToUpper().StartsWith("N"))
+                else if (response.ToUpper().StartsWith("N")) // if the player says no
                 {
                     Console.WriteLine("What a pity!");
                     return false;
@@ -210,7 +233,7 @@ namespace RaceTo21
                 }
                 else
                 {
-                    Console.WriteLine("Please answer Y(es) or N(o)!");
+                    Console.WriteLine("Please answer Y(es) or N(o)!"); // if the player respond invalid answer
                 }
             }
 
