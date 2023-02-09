@@ -7,7 +7,6 @@ namespace RaceTo21
     {
         public string id;
         public string displayName;
-        public string fileName;
 
         public Card(string shortCardName, string longCardName)
         {
