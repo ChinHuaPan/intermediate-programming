@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/HW4_Pan_Anna(Chin-Hua)/RaceTo21_W3/RaceTo21.csproj",
+      "projectUniqueName": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/HW5_Pan_Anna(Chin-Hua)/RaceTo21_W3/RaceTo21.csproj",
       "projectName": "RaceTo21_W3",
-      "projectPath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/HW4_Pan_Anna(Chin-Hua)/RaceTo21_W3/RaceTo21.csproj",
+      "projectPath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/HW5_Pan_Anna(Chin-Hua)/RaceTo21_W3/RaceTo21.csproj",
       "packagesPath": "/Users/chin-huapan/.nuget/packages/",
-      "outputPath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/HW4_Pan_Anna(Chin-Hua)/RaceTo21_W3/obj/",
+      "outputPath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/HW5_Pan_Anna(Chin-Hua)/RaceTo21_W3/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/chin-huapan/.config/NuGet/NuGet.Config"
