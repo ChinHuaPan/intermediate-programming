@@ -136,7 +136,22 @@ namespace RaceTo21
         {
             if (player != null) // if there is abviously a winner
             {
-                Console.WriteLine(player.name + " wins!");
+                if (player.score == 21)
+                {
+                    Console.WriteLine(player.name + " hits 21!");
+                }else if (player.cards.Count >= 5)
+                {
+                    Console.WriteLine(player.name + " has 5 cards and haven't bustted yet!");
+                }
+                else if (Game.everyoneIsStay)
+                {
+                    Console.WriteLine(player.name + " has the highest score and others have stayed!");
+                }
+                else
+                {
+                    Console.WriteLine(player.name + " has the highest score and others have bustted!");
+                }
+               
             }
             else if (Game.everyoneIsStay) // if everyone is stay
             {
