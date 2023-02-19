@@ -20,15 +20,17 @@ namespace RaceTo21
 
 /****************************************************************************************************
  * >>> LEVEL 1 ✅
- * Players only enter Y or N once, so discussion of continuing happens outside the game. 
- * If players choose to keep going, a new deck is built and shuffled. 
- * In addition, player list is shuffled, to ensure the same person doesn’t always win a tiebreaker.
+ * When game ends, ask the players whether would like to play again or not. 
+ * If yes, initialize the game.
+ * 
+ * >>> LEVEL 1 ✅
+ * The player list will be shuffled at first to make this game always is fair
+ * 
+ * >>> LEVEL 1 ✅
+ * Add one more win condition: If someone get 5 cards and doesn't bust, the player wins.
  * 
  * >>> LEVEL 2 ✅
- * At end of round, each player is asked if they want to keep playing. 
- * If a player says no, they are removed from the player list. 
- * If only 1 player remains, that player is the winner 
- * (equivalent to everyone else “folding” in a card game).
+ * If a game ends and everyone decide to play again, they can add or remove any players from the list
  * 
  * ▶ ▶ ▶ IN PROCESSS:
  * 1. Deal with the duplicated "*********** Building deck..."
