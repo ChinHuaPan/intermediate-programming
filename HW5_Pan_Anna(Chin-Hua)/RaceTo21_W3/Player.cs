@@ -15,8 +15,11 @@ namespace RaceTo21
 			name = n;
         }
 
-		/* Introduces player by name
+		/* ********* Introduce() **********
+		 * Introduces player by name
 		 * Called by CardTable object
+		 * INPUT: int playerNum ---> the order of players
+		 * OUTPUT: none
 		 */
 		public void Introduce(int playerNum)
 		{

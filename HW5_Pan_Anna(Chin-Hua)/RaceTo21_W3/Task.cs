@@ -3,9 +3,7 @@ namespace RaceTo21
 {
     public enum Task
     {
-        //GetNumberOfPlayers,
-        //GetNames,
-        GetPlayerList,//
+        GetPlayerList,
         IntroducePlayers,
         PlayerTurn,
         CheckForEnd,

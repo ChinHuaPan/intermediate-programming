@@ -5,24 +5,23 @@ namespace RaceTo21
 {
     public class Game
     {
-        int numberOfPlayers; // number of players in current game
         List<Player> players; // list of objects containing player data
         CardTable cardTable; // object in charge of displaying game information
         Deck deck = new Deck(); // deck of cards
         int currentPlayer = 0; // current player on list
         static public bool everyoneIsStay = true;  // is everyone stay?
         public Task nextTask; // keeps track of game state
-        private bool cheating = false; // lets you cheat for testing purposes if true
-        Player previousWinner; // the previous winner
 
         public Game(CardTable c, List<Player> playersTemp) //add one more signature to pass the previous players who keeps playing
         {
             players = playersTemp; // overwrite the players
 
             cardTable = c; 
-            deck.Shuffle(); 
-            deck.ShowAllCards();
+            deck.Shuffle(); // shuffle the cards
 
+            /* If it is the first round, go to get the player list,
+             * if not, introduce the players directly
+             * ***/
             if(playersTemp.Count == 0)
             {
                 nextTask = Task.GetPlayerList;
@@ -34,52 +33,43 @@ namespace RaceTo21
             
         }
 
-        /* Adds a player to the current game
+        /* ******** AddPlayer() **********
+         * Adds a player to the current game
          * Called by DoNextTask() method
+         * INPUT: string name ---> the player we would like to add into the player list
+         * OUTPUT: none
          */
         public void AddPlayer(string name)
         {
             players.Add(new Player(name));
         }
 
-        /* Figures out what task to do next in game
-         * as represented by field nextTask
-         * Calls methods required to complete task
-         * then sets nextTask.
+        /* ********* DoNextTask() **********
+         * Run the game in different stages with tasks
+         * Called by initializedGame() method
+         * INPUT: none
+         * OUTPUT: none
          */
         public void DoNextTask()
         {
-            Console.WriteLine("================================"); // this line should be elsewhere right? Um...I haven't figure out yet.
+            Console.WriteLine("================================");
 
-            if (nextTask == Task.GetPlayerList) // do the task: get number of players
+            /* ******************************************************************
+             * We use this condition to check the current task status
+             * ******************************************************************/
+
+            if (nextTask == Task.GetPlayerList) // do the task: get the player list from console
             {
-                players = cardTable.GetPlayers();
-                nextTask = Task.IntroducePlayers;
+                players = cardTable.GetPlayers(); // get player list
+                nextTask = Task.IntroducePlayers; // change next task to introduce players
             }
-            //else if (nextTask == Task.GetNames) // do the task: get names of players
-            //{
-            //    for (var count = 1; count <= numberOfPlayers; count++)
-            //    {
-            //        var name = cardTable.GetPlayerName(count);
-            //        AddPlayer(name); // NOTE: player list will start from 0 index even though we use 1 for our count here to make the player numbering more human-friendly
-            //    }
-
-            //    deck.shufflePlayers(players); // shuffle the players (to ensure the same person doesn’t always win a tiebreaker)
-
-            //    if (previousWinner != null) // if there is a previous winner
-            //    {
-            //        players.Add(previousWinner); // add previous winner to the player list (become "dealer")
-            //    }
-
-            //    nextTask = Task.IntroducePlayers; // change next task to introduce layers
-            //}
             else if (nextTask == Task.IntroducePlayers) // introduce players
             {
                 deck.shufflePlayers(players); // shuffle the players (to ensure the same person doesn’t always win a tiebreaker)
-                cardTable.ShowPlayers(players);
+                cardTable.ShowPlayers(players); // show all players
                 nextTask = Task.PlayerTurn; // change next task to player turns
             }
-            else if (cardTable.CheckOthersBust(players, currentPlayer)) // if there is only one player isn't bust
+            else if (cardTable.CheckOthersBust(players, currentPlayer)) // if there is only one player doesn't bust
             {
                 OverGame(); // game is over
             }
@@ -100,7 +90,7 @@ namespace RaceTo21
                         {
                             player.status = PlayerStatus.bust; // change the player's status to bust
                         }
-                        else if (player.score == 21 || player.cards.Count >= 5) // if score exactly hits 21
+                        else if (player.score == 21 || player.cards.Count == 5) // if score exactly hits 21 or the player already has 5 cards
                         {
                             player.status = PlayerStatus.win; // change the player's status to win
                             nextTask = Task.CheckForEnd;  // change next task to CheckForEnd
@@ -146,50 +136,44 @@ namespace RaceTo21
             }
         }
 
-        /* Calculate the score player currently has in hand
+        /* ********* ScoreHand() **********
+         * Calculate the score player currently has in hand
          * Called by DoNextTask() method
+         * INPUT: Player player --> the player whose cards we would like to calculate 
+         * OUTPUT: int score ---> return the player's current total score
          */
         public int ScoreHand(Player player)
         {
             int score = 0;
 
-            if (cheating == true && player.status == PlayerStatus.active) // if in cheat mode
+            foreach (Card card in player.cards) // check every card the player has one by one
             {
-                string response = null;
-                while (int.TryParse(response, out score) == false)
-                {
-                    Console.Write("OK, what should player " + player.name + "'s score be?");
-                    response = Console.ReadLine();
-                }
-                return score;
-            }
-            else //normal mode
-            {
-                foreach (Card card in player.cards) // check every card the player has one by one
-                {
-                    int faceValue = card.CardValue; // calculate "numbers"
+                int faceValue = card.CardValue; // calculate "numbers"
 
-                    switch (faceValue) //calculate "special numbers"
-                    {
-                        case 13:
-                        case 12:
-                        case 11:
-                            score = score + 10;
-                            break;
-                        case 1:
-                            score = score + 1;
-                            break;
-                        default:
-                            score = score + faceValue;
-                            break;
-                    }
+                switch (faceValue) //calculate "special numbers"
+                {
+                    case 13:
+                    case 12:
+                    case 11:
+                        score = score + 10;
+                        break;
+                    case 1:
+                        score = score + 1;
+                        break;
+                    default:
+                        score = score + faceValue;
+                        break;
                 }
             }
+           
             return score;
         }
 
-        /* Check whether there is any player is active
+        /* ********* CheckActivePlayers() **********
+         * Check whether there is any player is active
          * Called by DoNextTask() method
+         * INPUT: none
+         * OUTPUT: bool --> if it's true, means that there is at least one active player
          */
         public bool CheckActivePlayers()
         {
@@ -204,8 +188,11 @@ namespace RaceTo21
             return false; // everyone has stayed or busted, or someone won!
         }
 
-        /* determine who is the winner
+        /* ********* DoFinalScoring() **********
+         * determine who is the winner
          * Called by DoNextTask() method
+         * INPUT: none
+         * OUTOUT: Player player ---> return the winner player
          */
         public Player DoFinalScoring()
         {
@@ -215,22 +202,21 @@ namespace RaceTo21
             {
                 cardTable.ShowHand(player);
 
-                if (player.status == PlayerStatus.win) // someone hit 21
+                if (player.status == PlayerStatus.win) // someone hits 21
                 {
                     return player;
                 }
                 if (player.status == PlayerStatus.stay) // still could win...
                 {
+                    //find out the highest score
                     if (player.score > highScore)
                     {
                         highScore = player.score;
                     }
                 }
-                
-                // if busted don't bother checking!
             }
 
-            if (cardTable.CheckOthersBust(players, currentPlayer)) // check whether are bust or not
+            if (cardTable.CheckOthersBust(players, currentPlayer)) // check whether bust or not
             {
                 highScore = players[currentPlayer].score; // pass current player's score to highScore
                 return players[currentPlayer]; // current player is the winner
@@ -245,68 +231,30 @@ namespace RaceTo21
             return null; // everyone must have busted because nobody won!
         }
 
-        /* Process the following things when a game is over
+        /* ********* OverGame() **********
+         * Process the following things when a game is over
          * Called by DoNextTask() method
+         * INPUT: none
+         * OUTPUT: noen
          */
         public void OverGame()
         {
             Player winner = DoFinalScoring(); // pass the winner
             cardTable.AnnounceWinner(winner); // announce the winner
+            List<Player> playersTemp; // create a new list of player named playersTemp
 
             if (cardTable.AskPlayAgain()) // if the players would like to play again
             {
-                List<Player> playersTemp = new List<Player>(); // create a new list of player named playersTemp
 
-                // ask every player to keep playing or not
-                //for (var count = 0; count < numberOfPlayers; count++)
-                //{
-                //    if (cardTable.AskKeepPlaying(players[count].name)) // if the player agrees to keep playing
-                //    {
-                //        playersTemp.Add(new Player(players[count].name)); // add to the new playerTemp list
-                //    }
-                //}
-
+                // This loop show the current players
                 Console.WriteLine("The current players:");
                 for (var count = 0; count < players.Count; count++)
                 {
                     Console.Write(players[count].name + " "); 
                 }
-                Console.WriteLine("\nIf you want to modify, just input your new player list:");
 
-                string response;
-                string[] playerNames;
-
-                while (true)
-                {
-                    response = Console.ReadLine();
-                    //Reference: https://stackoverflow.com/questions/3381952/how-to-remove-all-white-space-from-the-beginning-or-end-of-a-string
-                    playerNames = response.TrimStart().TrimEnd().Split(" ");
-
-                    if (response != string.Empty && (playerNames.Length <= 1 || playerNames.Length > 8))
-                    {
-                        Console.WriteLine("Please just input 2 to 8 player names!");
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-
-                if (response != string.Empty)
-                {
-                    for (int i = 0; i < playerNames.Length; i++)
-                    {
-                        playersTemp.Add(new Player(playerNames[i]));
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < players.Count; i++)
-                    {
-                        playersTemp.Add(new Player(players[i].name));
-                    }
-                }
-
+                // ask the players whether they would like to modify the player list
+                playersTemp = cardTable.AskModifyPlayerList(players); 
 
                 for (var index = 0; index < playersTemp.Count; index++) // show the players who keep playing
                 {

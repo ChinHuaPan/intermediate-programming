@@ -13,9 +13,11 @@ namespace RaceTo21
         {
             Console.WriteLine("*********** Building deck...");
 
+            /*************************************************
+             * Use these two foreach loops to build all cards
+             * ***********************************************/
             foreach (Values cardVal in Enum.GetValues(typeof(Values)))
             {
-
                 foreach (Suits cardSuit in Enum.GetValues(typeof(Suits)))
                 {
 
@@ -42,16 +44,19 @@ namespace RaceTo21
 
                     Card card = new Card(cardVal, cardSuit);
 
-                    cards.Add(card);
+                    cards.Add(card); // build the card
 
                     // store the file name of card to the cardsFileName dictionary
-                    //cardsFileName.Add(card.Id, "card_" + cardSuit.ToString().ToLower() + "_" + cardFileVal + ".png"); ;
+                    cardsFileName.Add(card.Id, "card_" + cardSuit.ToString().ToLower() + "_" + cardFileVal + ".png"); ;
                 }
             }
         }
 
-        /* Shuffle cards
+        /* ********* Shuffle() **********
+         * Shuffle cards
          * Called by Game object
+         * INPUT: none
+         * OUTPUT: none
          */
         public void Shuffle()
         {
@@ -59,11 +64,7 @@ namespace RaceTo21
 
             Random rng = new Random(); // create a random
 
-            // one-line method that uses Linq:
-            // cards = cards.OrderBy(a => rng.Next()).ToList();
-
-            // multi-line method that uses Array notation on a list!
-            // (this should be easier to understand)
+            // use this loop to switch the positions of cards
             for (int i=0; i<cards.Count; i++)
             {
                 Card tmp = cards[i];
@@ -71,49 +72,28 @@ namespace RaceTo21
                 cards[i] = cards[swapindex];
                 cards[swapindex] = tmp;
             }
-
-            //private static readonly Random random = new Random();
-
-            //Card card = new Card((Values)random.Next(1, 14), (Suits)random.Next(4));
-            //Console.WriteLine(card.Name);
         }
 
-        /* Maybe we can make a variation on this that's more useful,
-         * but at the moment it's just really to confirm that our 
-         * shuffling method(s) worked! And normally we want our card 
-         * table to do all of the displaying, don't we?!
+        /* ********* Shuffle() **********
+         * Take the card from top and remove it from the cards
+         * Called by Game object
+         * INPUT: none
+         * OUTPUT: Card card --> return the top card
          */
-
-        // Show all cards for reference
-        // Called by Game object
-        public void ShowAllCards()
-        {
-            for (int i=0; i<cards.Count; i++) // show every card
-            {
-                Console.Write(i + ":" + cards[i].Name); // a list property can look like an Array!
-
-                if (i < cards.Count -1)
-                {
-                    Console.Write(" ");
-                } else
-                {
-                    Console.WriteLine("");
-                }
-            }
-        }
-
-        // Deal the top card
-        // Called by Game object
         public Card DealTopCard()
         {
             Card card = cards[cards.Count - 1];
             cards.RemoveAt(cards.Count - 1);
-            // Console.WriteLine("I'm giving you " + card);
+
             return card;
         }
 
-        // Initialize the game
-        // Called by Game object
+        /* ********* initializeGame() **********
+         * Initialize the game
+         * Called by Game object
+         * INPUT: List<Player> players --> the player list
+         * OUTPUT: none
+         * */
         public void initializeGame(List<Player> players)
         {
             CardTable cardTable = new CardTable(); // create a new cardTable
@@ -125,8 +105,12 @@ namespace RaceTo21
             }
         }
 
-        // Shuffle the players
-        // Called by Game object
+        /* ********* shufflePlayers() **********
+         * Shuffle the players
+         * Called by Game object
+         * INPUT: List<Player> players ---> the current players
+         * OUTPUT: List<Player> players ---> the shuffled players
+         * **/
         public List<Player> shufflePlayers(List<Player> players)
         {
             Random rng = new Random(); // create a rendom
