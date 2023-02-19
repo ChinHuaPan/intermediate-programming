@@ -17,21 +17,21 @@ namespace RaceTo21
 
         public Game(CardTable c, List<Player> playersTemp) //add one more signature to pass the previous players who keeps playing
         {
-            // if there is only one previous player
-            if (playersTemp.Count == 1)
-            {
-                previousWinner = playersTemp[0]; // pass the one to previousWinner
-                players = new List<Player>(); // create a new List of Player
-            }
-            else // there are more than one previous player would like to keep playing
-            {
-                players = playersTemp; // overwrite the players
-            }
+            players = playersTemp; // overwrite the players
 
             cardTable = c; 
             deck.Shuffle(); 
-            deck.ShowAllCards(); 
-            nextTask = Task.GetNumberOfPlayers;
+            deck.ShowAllCards();
+
+            if(playersTemp.Count == 0)
+            {
+                nextTask = Task.GetPlayerList;
+            }
+            else
+            {
+                nextTask = Task.IntroducePlayers;
+            }
+            
         }
 
         /* Adds a player to the current game
@@ -51,30 +51,31 @@ namespace RaceTo21
         {
             Console.WriteLine("================================"); // this line should be elsewhere right? Um...I haven't figure out yet.
 
-            if (nextTask == Task.GetNumberOfPlayers) // do the task: get number of players
+            if (nextTask == Task.GetPlayerList) // do the task: get number of players
             {
-                numberOfPlayers = cardTable.GetNumberOfPlayers();
-                nextTask = Task.GetNames;
+                players = cardTable.GetPlayers();
+                nextTask = Task.IntroducePlayers;
             }
-            else if (nextTask == Task.GetNames) // do the task: get names of players
-            {
-                for (var count = 1; count <= numberOfPlayers; count++)
-                {
-                    var name = cardTable.GetPlayerName(count);
-                    AddPlayer(name); // NOTE: player list will start from 0 index even though we use 1 for our count here to make the player numbering more human-friendly
-                }
+            //else if (nextTask == Task.GetNames) // do the task: get names of players
+            //{
+            //    for (var count = 1; count <= numberOfPlayers; count++)
+            //    {
+            //        var name = cardTable.GetPlayerName(count);
+            //        AddPlayer(name); // NOTE: player list will start from 0 index even though we use 1 for our count here to make the player numbering more human-friendly
+            //    }
 
-                deck.shufflePlayers(players); // shuffle the players (to ensure the same person doesn’t always win a tiebreaker)
+            //    deck.shufflePlayers(players); // shuffle the players (to ensure the same person doesn’t always win a tiebreaker)
 
-                if (previousWinner != null) // if there is a previous winner
-                {
-                    players.Add(previousWinner); // add previous winner to the player list (become "dealer")
-                }
+            //    if (previousWinner != null) // if there is a previous winner
+            //    {
+            //        players.Add(previousWinner); // add previous winner to the player list (become "dealer")
+            //    }
 
-                nextTask = Task.IntroducePlayers; // change next task to introduce layers
-            }
+            //    nextTask = Task.IntroducePlayers; // change next task to introduce layers
+            //}
             else if (nextTask == Task.IntroducePlayers) // introduce players
             {
+                deck.shufflePlayers(players); // shuffle the players (to ensure the same person doesn’t always win a tiebreaker)
                 cardTable.ShowPlayers(players);
                 nextTask = Task.PlayerTurn; // change next task to player turns
             }
@@ -99,7 +100,7 @@ namespace RaceTo21
                         {
                             player.status = PlayerStatus.bust; // change the player's status to bust
                         }
-                        else if (player.score == 21) // if score exactly hits 21
+                        else if (player.score == 21 || player.cards.Count >= 5) // if score exactly hits 21
                         {
                             player.status = PlayerStatus.win; // change the player's status to win
                             nextTask = Task.CheckForEnd;  // change next task to CheckForEnd
@@ -257,28 +258,64 @@ namespace RaceTo21
                 List<Player> playersTemp = new List<Player>(); // create a new list of player named playersTemp
 
                 // ask every player to keep playing or not
-                for (var count = 0; count < numberOfPlayers; count++)
+                //for (var count = 0; count < numberOfPlayers; count++)
+                //{
+                //    if (cardTable.AskKeepPlaying(players[count].name)) // if the player agrees to keep playing
+                //    {
+                //        playersTemp.Add(new Player(players[count].name)); // add to the new playerTemp list
+                //    }
+                //}
+
+                Console.WriteLine("The current players:");
+                for (var count = 0; count < players.Count; count++)
                 {
-                    if (cardTable.AskKeepPlaying(players[count].name)) // if the player agrees to keep playing
+                    Console.Write(players[count].name + " "); 
+                }
+                Console.WriteLine("\nIf you want to modify, just input your new player list:");
+
+                string response;
+                string[] playerNames;
+
+                while (true)
+                {
+                    response = Console.ReadLine();
+                    //Reference: https://stackoverflow.com/questions/3381952/how-to-remove-all-white-space-from-the-beginning-or-end-of-a-string
+                    playerNames = response.TrimStart().TrimEnd().Split(" ");
+
+                    if (response != string.Empty && (playerNames.Length <= 1 || playerNames.Length > 8))
                     {
-                        playersTemp.Add(new Player(players[count].name)); // add to the new playerTemp list
+                        Console.WriteLine("Please just input 2 to 8 player names!");
+                    }
+                    else
+                    {
+                        break;
                     }
                 }
 
-                if (playersTemp.Count == 1) // if there is only one player would like to keep playing
+                if (response != string.Empty)
                 {
-                    cardTable.AnnounceWinner(playersTemp[0]); // the player wins immediately
-
+                    for (int i = 0; i < playerNames.Length; i++)
+                    {
+                        playersTemp.Add(new Player(playerNames[i]));
+                    }
                 }
+                else
+                {
+                    for (int i = 0; i < players.Count; i++)
+                    {
+                        playersTemp.Add(new Player(players[i].name));
+                    }
+                }
+
 
                 for (var index = 0; index < playersTemp.Count; index++) // show the players who keep playing
                 {
-                    Console.WriteLine(playersTemp[index].name + " joins the next round!");
+                    Console.Write(playersTemp[index].name + ",");
                 }
+                    Console.Write(" join the next round!");
 
                 Deck deck = new Deck(); // creat a deck
                 deck.initializeGame(playersTemp); //initialize the game
-
 
             }
             nextTask = Task.GameOver; // change the next task to game over

@@ -30,12 +30,9 @@ namespace RaceTo21
  * If only 1 player remains, that player is the winner 
  * (equivalent to everyone else “folding” in a card game).
  * 
- * >>> LEVEL 3 ✅
- * The previous round’s winner becomes the “dealer” (so they will go last in the new round), 
- * but other players are still shuffled so that turn order changes.
- * 
  * ▶ ▶ ▶ IN PROCESSS:
  * 1. Deal with the duplicated "*********** Building deck..."
  * 2. Create methods for the process of "check play agin or not" and "check keep playing" 
- * 
+ * 3. What is "CheckForEnd"
+ * $. Input player names with multiple spaces in between
  ****************************************************************************************************/

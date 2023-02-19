@@ -45,7 +45,7 @@ namespace RaceTo21
                     cards.Add(card);
 
                     // store the file name of card to the cardsFileName dictionary
-                    cardsFileName.Add(card.Id, "card_" + cardSuit.ToString().ToLower() + "_" + cardFileVal + ".png"); ;
+                    //cardsFileName.Add(card.Id, "card_" + cardSuit.ToString().ToLower() + "_" + cardFileVal + ".png"); ;
                 }
             }
         }

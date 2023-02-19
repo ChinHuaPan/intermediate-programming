@@ -73,8 +73,4 @@ namespace RaceTo21
         King = 13
     }
 
-
-    
-
-
 }

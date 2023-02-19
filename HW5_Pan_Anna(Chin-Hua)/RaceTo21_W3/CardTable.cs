@@ -27,19 +27,49 @@ namespace RaceTo21
          * Is called by Game object.
          * Returns number of players to Game object.
          */
-        public int GetNumberOfPlayers()
+        //public int GetNumberOfPlayers()
+        //{
+        //    Console.Write("How many players want to join? ");
+        //    string response = Console.ReadLine();
+        //    int numberOfPlayers;
+        //    while (int.TryParse(response, out numberOfPlayers) == false
+        //        || numberOfPlayers < 2 || numberOfPlayers > 8)
+        //    {
+        //        Console.WriteLine("Invalid number of players.");
+        //        Console.Write("How many players want to join?");
+        //        response = Console.ReadLine();
+        //    }
+        //    return numberOfPlayers;
+        //}
+
+        public List<Player> GetPlayers()
         {
-            Console.Write("How many players want to join? ");
-            string response = Console.ReadLine();
-            int numberOfPlayers;
-            while (int.TryParse(response, out numberOfPlayers) == false
-                || numberOfPlayers < 2 || numberOfPlayers > 8)
-            {
-                Console.WriteLine("Invalid number of players.");
-                Console.Write("How many players want to join?");
-                response = Console.ReadLine();
+            Console.WriteLine("Please input player names: \n (2 to 8 names, separate with space) \n * We will shuffle your orders in the game");
+
+            List<Player> inputPlayers = new List<Player>();
+            string[] playerNames;
+
+            while (true) {
+                string response = Console.ReadLine();
+                //Reference: https://stackoverflow.com/questions/3381952/how-to-remove-all-white-space-from-the-beginning-or-end-of-a-string
+                playerNames = response.TrimStart().TrimEnd().Split(" ");
+
+                if (playerNames.Length <= 1 || playerNames.Length > 8)
+                {
+                    Console.WriteLine("Please just input 2 to 8 player names!");
+                }
+                else
+                {
+                    break;
+                }
             }
-            return numberOfPlayers;
+
+            for( int i=0; i < playerNames.Length; i++)
+            {
+                inputPlayers.Add(new Player (playerNames[i]));
+            }
+ 
+            return inputPlayers;
         }
 
         /* Gets the name of a player
@@ -47,18 +77,18 @@ namespace RaceTo21
          * Game object provides player number
          * Returns name of a player to Game object
          */
-        public string GetPlayerName(int playerNum)
-        {
-            Console.Write("What is the name of joining player #" + playerNum + "? ");
-            string response = Console.ReadLine();
-            while (response.Length < 1)
-            {
-                Console.WriteLine("Invalid name.");
-                Console.Write("What is the name of joining player #" + playerNum + "? ");
-                response = Console.ReadLine();
-            }
-            return response;
-        }
+        //public string GetPlayerName(int playerNum)
+        //{
+        //    Console.Write("What is the name of joining player #" + playerNum + "? ");
+        //    string response = Console.ReadLine();
+        //    while (response.Length < 1)
+        //    {
+        //        Console.WriteLine("Invalid name.");
+        //        Console.Write("What is the name of joining player #" + playerNum + "? ");
+        //        response = Console.ReadLine();
+        //    }
+        //    return response;
+        //}
 
         // Offer a card when a player request
         // Called by Game object
