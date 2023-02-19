@@ -5,28 +5,46 @@ namespace RaceTo21
 {
     public class Card
     {
-        public string id;
-        public string displayName;
+        //public string id;
+        //public string displayName;
 
-        public Card(string shortCardName, string longCardName)
-        {
-            id = shortCardName;
-            displayName = longCardName;
-        }
+        //public Card(string shortCardName, string longCardName)
+        //{
+        //    id = shortCardName;
+        //    displayName = longCardName;
+        //}
 
         /////
-        public Values Value { get; private set; }
-        public Suits Suit { get; private set; }
-        //public Card(Values value, Suits suit)
-        //{
-        //    this.Suit = suit;
-        //    this.Value = value;
-        //}
-        //public string Name
-        //{
-        //    get { return $" {Value} of {Suit}"; }
-        //}
+        private Values Value { get; set; }
+        private Suits Suit { get; set; }
 
+        public Card(Values value, Suits suit)
+        {
+            this.Suit = suit;
+            this.Value = value;
+        }
+
+        public string Name
+        {
+            get { return $"{(int)Value} of {Suit}"; }
+        }
+
+        public int CardValue
+        {
+            get { return (int)Value; }
+        }
+
+        public string CardSuit
+        {
+            get { return $"{Suit}"; }
+        }
+
+        public string Id
+        {
+            get {
+
+                return $"{ (int)Value}{Suit.ToString().Substring(0,1)}"; }
+        }
 
     }
 
@@ -56,8 +74,7 @@ namespace RaceTo21
     }
 
 
-
-   
+    
 
 
 }

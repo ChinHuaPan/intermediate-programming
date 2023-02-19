@@ -12,42 +12,40 @@ namespace RaceTo21
         public Deck()
         {
             Console.WriteLine("*********** Building deck...");
-            string[] suits = { "Spades", "Hearts", "Clubs", "Diamonds" };
 
-            // create cards with 13 numbers and 4 suits
-            for (int cardVal = 1; cardVal <= 13; cardVal++)
+            foreach (Values cardVal in Enum.GetValues(typeof(Values)))
             {
-                foreach (string cardSuit in suits)
+
+                foreach (Suits cardSuit in Enum.GetValues(typeof(Suits)))
                 {
-                    string cardName;
-                    string cardLongName;
-                    switch (cardVal)
+
+                    string cardFileVal;
+
+                    switch ((int)cardVal)
                     {
                         case 1:
-                            cardName = "A";
-                            cardLongName = "Ace";
+                            cardFileVal = "A";
                             break;
                         case 11:
-                            cardName = "J";
-                            cardLongName = "Jack";
+                            cardFileVal = "J";
                             break;
                         case 12:
-                            cardName = "Q";
-                            cardLongName = "Queen";
+                            cardFileVal = "Q";
                             break;
                         case 13:
-                            cardName = "K";
-                            cardLongName = "King";
+                            cardFileVal = "K";
                             break;
                         default:
-                            cardName = cardVal.ToString();
-                            cardLongName = cardVal.ToString();
+                            cardFileVal = ((int)cardVal).ToString().PadLeft(2, '0');
                             break;
                     }
-                    // add the created card to the list
-                    cards.Add(new Card(cardName + cardSuit.First<char>(), cardLongName + " of " +cardSuit));
+
+                    Card card = new Card(cardVal, cardSuit);
+
+                    cards.Add(card);
+
                     // store the file name of card to the cardsFileName dictionary
-                    cardsFileName.Add(cardName + cardSuit.First<char>(), "card_" + cardSuit.ToLower() + "_" + cardName + ".png");
+                    cardsFileName.Add(card.Id, "card_" + cardSuit.ToString().ToLower() + "_" + cardFileVal + ".png"); ;
                 }
             }
         }
@@ -92,7 +90,7 @@ namespace RaceTo21
         {
             for (int i=0; i<cards.Count; i++) // show every card
             {
-                Console.Write(i+":"+cards[i].displayName); // a list property can look like an Array!
+                Console.Write(i + ":" + cards[i].Name); // a list property can look like an Array!
 
                 if (i < cards.Count -1)
                 {

@@ -12,7 +12,7 @@ namespace RaceTo21
         int currentPlayer = 0; // current player on list
         static public bool everyoneIsStay = true;  // is everyone stay?
         public Task nextTask; // keeps track of game state
-        private bool cheating = true; // lets you cheat for testing purposes if true
+        private bool cheating = false; // lets you cheat for testing purposes if true
         Player previousWinner; // the previous winner
 
         public Game(CardTable c, List<Player> playersTemp) //add one more signature to pass the previous players who keeps playing
@@ -166,20 +166,20 @@ namespace RaceTo21
             {
                 foreach (Card card in player.cards) // check every card the player has one by one
                 {
-                    string faceValue = card.id.Remove(card.id.Length-1); // calculate "numbers"
+                    int faceValue = card.CardValue; // calculate "numbers"
 
                     switch (faceValue) //calculate "special numbers"
                     {
-                        case "K":
-                        case "Q":
-                        case "J":
+                        case 13:
+                        case 12:
+                        case 11:
                             score = score + 10;
                             break;
-                        case "A":
+                        case 1:
                             score = score + 1;
                             break;
                         default:
-                            score = score + int.Parse(faceValue);
+                            score = score + faceValue;
                             break;
                     }
                 }

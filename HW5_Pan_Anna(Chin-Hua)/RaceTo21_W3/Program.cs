@@ -19,10 +19,10 @@ namespace RaceTo21
 
 
 /****************************************************************************************************
+ * >>> LEVEL 1 ✅
  * Players only enter Y or N once, so discussion of continuing happens outside the game. 
  * If players choose to keep going, a new deck is built and shuffled. 
  * In addition, player list is shuffled, to ensure the same person doesn’t always win a tiebreaker.
- * 
  * 
  * >>> LEVEL 2 ✅
  * At end of round, each player is asked if they want to keep playing. 

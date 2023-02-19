@@ -99,12 +99,12 @@ namespace RaceTo21
                 {
                     if (isFirst) // it's the first one
                     {
-                        Console.Write(card.displayName); // show the name directly
+                        Console.Write(card.Name); // show the name directly
                         isFirst = false; // change isFirst to false
                     }
                     else
                     {
-                        Console.Write(", " + card.displayName); // show the name with a comma
+                        Console.Write(", " + card.Name); // show the name with a comma
                     }
                 }
                 Console.Write(" = " + player.score + "/21 "); // show score
