@@ -19,18 +19,24 @@ namespace RaceTo21
 
 
 /****************************************************************************************************
+ * >>> LEVEL 2 ✅
+ * Allow the players to input all player names directly
+ * 
  * >>> LEVEL 1 ✅
  * When game ends, ask the players whether would like to play again or not. 
  * If yes, initialize the game.
  * 
  * >>> LEVEL 1 ✅
- * The player list will be shuffled at first to make this game always is fair
+ * The player list will be shuffled at first to make this game always fair
  * 
  * >>> LEVEL 1 ✅
- * Add one more win condition: If someone get 5 cards and doesn't bust, the player wins.
+ * Add one more win condition: If someone gets 5 cards and doesn't bust, the player wins.
+ * 
+ * >>> LEVEL 1 ✅
+ * Add win reason in the announcement
  * 
  * >>> LEVEL 2 ✅
- * If a game ends and everyone decide to play again, they can add or remove any players from the list
+ * If a game ends and everyone decides to play again, they can add or remove any players from the list
  * 
  * ▶ ▶ ▶ IN PROCESSS:
  * 1. Deal with the duplicated "*********** Building deck..."
