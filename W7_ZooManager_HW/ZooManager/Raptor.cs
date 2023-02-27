@@ -26,23 +26,30 @@ namespace ZooManager
          * cat also has a predator to avoid, since the cat may not want to run in
          * to a square that sets it up to be attacked!
          */
+        string[] prey = { "cat", "mouse" };
         public void Hunt()
         {
-            if (Animal.Seek(location.x, location.y, Direction.up, "cat"))
+            for(int i = 0; i < prey.Length; i++)
             {
-                Animal.Attack(this, Direction.up);
-            }
-            else if (Animal.Seek(location.x, location.y, Direction.down, "cat"))
-            {
-                Animal.Attack(this, Direction.down);
-            }
-            else if (Animal.Seek(location.x, location.y, Direction.left, "cat"))
-            {
-                Animal.Attack(this, Direction.left);
-            }
-            else if (Animal.Seek(location.x, location.y, Direction.right, "cat"))
-            {
-                Animal.Attack(this, Direction.right);
+
+            
+                if (Animal.Seek(location.x, location.y, Direction.up, prey[i]))
+                {
+                    Animal.Attack(this, Direction.up);
+                }
+                else if (Animal.Seek(location.x, location.y, Direction.down, prey[i]))
+                {
+                    Animal.Attack(this, Direction.down);
+                }
+                else if (Animal.Seek(location.x, location.y, Direction.left, prey[i]))
+                {
+                    Animal.Attack(this, Direction.left);
+                }
+                else if (Animal.Seek(location.x, location.y, Direction.right, prey[i]))
+                {
+                    Animal.Attack(this, Direction.right);
+                }
+
             }
         }
     }
