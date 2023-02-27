@@ -12,11 +12,56 @@ namespace ZooManager
             reactionTime = new Random().Next(1, 6); // reaction time 1 (fast) to 5 (medium)
         }
 
+        bool goHunt;
         public override void Activate()
         {
             base.Activate();
             Console.WriteLine("I am a cat. Meow.");
-            Hunt();
+            goHunt = true;
+
+            Flee();
+
+            if (goHunt)
+            {
+                Hunt();
+            }
+
+        }
+
+        public void Flee()
+        {
+            if (Animal.Seek(location.x, location.y, Direction.up, "raptor"))
+            {
+                if (Animal.Retreat(this, Direction.down))
+                {
+                    goHunt = false;
+                    return;
+                }
+            }
+            if (Animal.Seek(location.x, location.y, Direction.down, "raptor"))
+            {
+                if (Animal.Retreat(this, Direction.up))
+                {
+                    goHunt = false;
+                    return;
+                }
+            }
+            if (Animal.Seek(location.x, location.y, Direction.left, "raptor"))
+            {
+                if (Animal.Retreat(this, Direction.right))
+                {
+                    goHunt = false;
+                    return;
+                }
+            }
+            if (Animal.Seek(location.x, location.y, Direction.right, "raptor"))
+            {
+                if (Animal.Retreat(this, Direction.left))
+                {
+                    goHunt = false;
+                    return;
+                }
+            }
         }
 
         /* Note that our cat is currently not very clever about its hunting.
@@ -27,23 +72,28 @@ namespace ZooManager
          * cat also has a predator to avoid, since the cat may not want to run in
          * to a square that sets it up to be attacked!
          */
+
+        string[] prey = { "mouse", "chick" };
         public void Hunt()
         {
-            if (Animal.Seek(location.x, location.y, Direction.up, "mouse"))
+            for (int i = 0; i < prey.Length; i++)
             {
-                Animal.Attack(this, Direction.up);
-            }
-            else if (Animal.Seek(location.x, location.y, Direction.down, "mouse"))
-            {
-                Animal.Attack(this, Direction.down);
-            }
-            else if (Animal.Seek(location.x, location.y, Direction.left, "mouse"))
-            {
-                Animal.Attack(this, Direction.left);
-            }
-            else if (Animal.Seek(location.x, location.y, Direction.right, "mouse"))
-            {
-                Animal.Attack(this, Direction.right);
+                if (Animal.Seek(location.x, location.y, Direction.up, prey[i]))
+                {
+                    Animal.Attack(this, Direction.up);
+                }
+                else if (Animal.Seek(location.x, location.y, Direction.down, prey[i]))
+                {
+                    Animal.Attack(this, Direction.down);
+                }
+                else if (Animal.Seek(location.x, location.y, Direction.left, prey[i]))
+                {
+                    Animal.Attack(this, Direction.left);
+                }
+                else if (Animal.Seek(location.x, location.y, Direction.right, prey[i]))
+                {
+                    Animal.Attack(this, Direction.right);
+                }
             }
         }
     }
