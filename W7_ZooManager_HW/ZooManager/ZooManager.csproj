@@ -10,4 +10,16 @@
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\Raptor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Raptor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Raptor.cs">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

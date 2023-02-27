@@ -1,27 +1,35 @@
 ﻿<Properties StartupConfiguration="{DEF5AF9A-50F8-4FED-BC52-14C220FCA982}|Default">
-  <MonoDevelop.Ide.ItemProperties.ZooManager PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ZooManager/Cat.cs">
+  <MonoDevelop.Ide.ItemProperties.ZooManager PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ZooManager/Bird.cs">
     <Files>
-      <File FileName="ZooManager/Pages/Index.razor" Line="1" Column="1" />
-      <File FileName="ZooManager/Zone.cs" />
-      <File FileName="ZooManager/Cat.cs" Line="28" Column="55" />
-      <File FileName="ZooManager/Mouse.cs" />
-      <File FileName="ZooManager/Animal.cs" />
-      <File FileName="ZooManager/Game.cs" />
-      <File FileName="ZooManager/Point.cs" />
-      <File FileName="ZooManager/Program.cs" />
+      <File FileName="ZooManager/Pages/Index.razor" Line="62" Column="44" />
+      <File FileName="ZooManager/Zone.cs" Line="12" Column="41" />
+      <File FileName="ZooManager/Cat.cs" Line="48" Column="10" />
+      <File FileName="ZooManager/Mouse.cs" Line="14" Column="16" />
+      <File FileName="ZooManager/Animal.cs" Line="120" Column="22" />
+      <File FileName="ZooManager/Game.cs" Line="10" Column="1" />
+      <File FileName="ZooManager/Point.cs" Line="1" Column="1" />
+      <File FileName="ZooManager/Program.cs" Line="1" Column="1" />
+      <File FileName="ZooManager/Raptor.cs" Line="43" Column="10" />
+      <File FileName="ZooManager/Bird.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ZooManager" expanded="True">
             <Node name="ZooManager" expanded="True">
-              <Node name="Pages" expanded="True" />
-              <Node name="Properties" expanded="True" />
-              <Node name="Shared" expanded="True">
-                <Node name="MainLayout.razor" expanded="True" />
+              <Node name="Raptor.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State name="__root__">
+          <Node name="ZooManager" expanded="True">
+            <Node name="ZooManager" expanded="True" selected="True">
+              <Node name="ZooManager" expanded="True">
+                <Node name="ZooManager.Animal" expanded="True" />
               </Node>
-              <Node name="Cat.cs" selected="True" />
             </Node>
           </Node>
         </State>
