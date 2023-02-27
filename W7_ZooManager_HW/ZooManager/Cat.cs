@@ -29,21 +29,21 @@ namespace ZooManager
          */
         public void Hunt()
         {
-            if (Game.Seek(location.x, location.y, Direction.up, "mouse"))
+            if (Animal.Seek(location.x, location.y, Direction.up, "mouse"))
             {
-                Game.Attack(this, Direction.up);
+                Animal.Attack(this, Direction.up);
             }
-            else if (Game.Seek(location.x, location.y, Direction.down, "mouse"))
+            else if (Animal.Seek(location.x, location.y, Direction.down, "mouse"))
             {
-                Game.Attack(this, Direction.down);
+                Animal.Attack(this, Direction.down);
             }
-            else if (Game.Seek(location.x, location.y, Direction.left, "mouse"))
+            else if (Animal.Seek(location.x, location.y, Direction.left, "mouse"))
             {
-                Game.Attack(this, Direction.left);
+                Animal.Attack(this, Direction.left);
             }
-            else if (Game.Seek(location.x, location.y, Direction.right, "mouse"))
+            else if (Animal.Seek(location.x, location.y, Direction.right, "mouse"))
             {
-                Game.Attack(this, Direction.right);
+                Animal.Attack(this, Direction.right);
             }
         }
     }
