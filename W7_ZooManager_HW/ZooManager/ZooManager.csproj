@@ -13,13 +13,4 @@
   <ItemGroup>
     <Content Remove="wwwroot\Raptor.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Raptor.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Raptor.cs">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
 </Project>

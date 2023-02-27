@@ -42,5 +42,7 @@ namespace ZooManager
 
             occupant = animal;
         }
+
+        Animal a = new Raptor();
     }
 }
