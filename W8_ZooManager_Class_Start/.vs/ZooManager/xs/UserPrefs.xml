@@ -1,0 +1,50 @@
+﻿<Properties StartupConfiguration="{DEF5AF9A-50F8-4FED-BC52-14C220FCA982}|Default">
+  <MonoDevelop.Ide.ItemProperties.ZooManager PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ZooManager/Game.cs">
+    <Files>
+      <File FileName="ZooManager/Pages/Index.razor" Line="20" Column="9" />
+      <File FileName="ZooManager/Zone.cs" />
+      <File FileName="ZooManager/Cat.cs" />
+      <File FileName="ZooManager/Mouse.cs" />
+      <File FileName="ZooManager/Elephant.cs" />
+      <File FileName="ZooManager/Animal.cs" />
+      <File FileName="ZooManager/Game.cs" Line="138" Column="54" />
+      <File FileName="ZooManager/Point.cs" />
+      <File FileName="ZooManager/Program.cs" />
+      <File FileName="ZooManager/App.razor" />
+      <File FileName="ZooManager/Direction.cs" />
+      <File FileName="ZooManager/_Imports.razor" />
+      <File FileName="ZooManager/Occupant.cs" />
+      <File FileName="ZooManager/Boulder.cs" />
+      <File FileName="ZooManager/Grass.cs" />
+      <File FileName="ZooManager/Landscape.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ZooManager" expanded="True">
+            <Node name="ZooManager" expanded="True">
+              <Node name="Pages" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="Shared" expanded="True">
+                <Node name="MainLayout.razor" expanded="True" />
+              </Node>
+              <Node name="Game.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State name="__root__">
+          <Node name="ZooManager" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
