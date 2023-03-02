@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "P7B9rw9Xa+3dGakepDF9vZ031oIeXhIeOlpg3fIBCU3OoD5Sw5lRva8NUKnMCy1tRyq+YRCFs0ZwlCngOYNi7g==",
+  "dgSpecHash": "D3zB8uE7gTuUe7GJFyUejjtdPsclIzoRPJVT8qSYpv3AB7/ySWtrFt6IU+mJyMZTrPYQmb+Rgg0k0+YIDmXSFw==",
   "success": true,
-  "projectFilePath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week8/W8_ZooManager_Class_Start/ZooManager/ZooManager.csproj",
+  "projectFilePath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W8_ZooManager_Class_Start/ZooManager/ZooManager.csproj",
   "expectedPackageFiles": [
     "/Users/chin-huapan/.nuget/packages/microsoft.aspnetcore.authorization/5.0.17/microsoft.aspnetcore.authorization.5.0.17.nupkg.sha512",
     "/Users/chin-huapan/.nuget/packages/microsoft.aspnetcore.components/5.0.17/microsoft.aspnetcore.components.5.0.17.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week8/W8_ZooManager_Class_Start/ZooManager/ZooManager.csproj": {}
+    "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W8_ZooManager_Class_Start/ZooManager/ZooManager.csproj": {}
   },
   "projects": {
-    "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week8/W8_ZooManager_Class_Start/ZooManager/ZooManager.csproj": {
+    "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W8_ZooManager_Class_Start/ZooManager/ZooManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week8/W8_ZooManager_Class_Start/ZooManager/ZooManager.csproj",
+        "projectUniqueName": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W8_ZooManager_Class_Start/ZooManager/ZooManager.csproj",
         "projectName": "ZooManager",
-        "projectPath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week8/W8_ZooManager_Class_Start/ZooManager/ZooManager.csproj",
+        "projectPath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W8_ZooManager_Class_Start/ZooManager/ZooManager.csproj",
         "packagesPath": "/Users/chin-huapan/.nuget/packages/",
-        "outputPath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/Week8/W8_ZooManager_Class_Start/ZooManager/obj/",
+        "outputPath": "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W8_ZooManager_Class_Start/ZooManager/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/chin-huapan/.config/NuGet/NuGet.Config"
