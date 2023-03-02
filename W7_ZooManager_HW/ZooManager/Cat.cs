@@ -12,12 +12,10 @@ namespace ZooManager
             reactionTime = new Random().Next(1, 6); // reaction time 1 (fast) to 5 (medium)
         }
 
-        bool goHunt;
         public override void Activate()
         {
             base.Activate();
             Console.WriteLine("I am a cat. Meow.");
-            goHunt = true;
 
             if(Flee()) return;
             Hunt();
@@ -26,28 +24,28 @@ namespace ZooManager
 
         public bool Flee()
         {
-            if (Animal.Seek(location.x, location.y, Direction.up, "raptor"))
+            if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.up, "raptor")))
             {
                 if (Animal.Retreat(this, Direction.down))
                 {
                     return true;
                 }
             }
-            if (Animal.Seek(location.x, location.y, Direction.down, "raptor"))
+            if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.down, "raptor")))
             {
                 if (Animal.Retreat(this, Direction.up))
                 {
                     return true;
                 }
             }
-            if (Animal.Seek(location.x, location.y, Direction.left, "raptor"))
+            if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.left, "raptor")))
             {
                 if (Animal.Retreat(this, Direction.right))
                 {
                     return true;
                 }
             }
-            if (Animal.Seek(location.x, location.y, Direction.right, "raptor"))
+            if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.right, "raptor")))
             {
                 if (Animal.Retreat(this, Direction.left))
                 {
@@ -72,19 +70,19 @@ namespace ZooManager
         {
             for (int i = 0; i < prey.Length; i++)
             {
-                if (Animal.Seek(location.x, location.y, Direction.up, prey[i]))
+                if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.up, prey[i])))
                 {
                     Animal.Attack(this, Direction.up);
                 }
-                else if (Animal.Seek(location.x, location.y, Direction.down, prey[i]))
+                else if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.down, prey[i])))
                 {
                     Animal.Attack(this, Direction.down);
                 }
-                else if (Animal.Seek(location.x, location.y, Direction.left, prey[i]))
+                else if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.left, prey[i])))
                 {
                     Animal.Attack(this, Direction.left);
                 }
-                else if (Animal.Seek(location.x, location.y, Direction.right, prey[i]))
+                else if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.right, prey[i])))
                 {
                     Animal.Attack(this, Direction.right);
                 }

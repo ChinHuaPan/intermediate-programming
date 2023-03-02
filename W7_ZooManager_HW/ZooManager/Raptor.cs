@@ -33,19 +33,19 @@ namespace ZooManager
             {
 
             
-                if (Animal.Seek(location.x, location.y, Direction.up, prey[i]))
+                if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.up, prey[i])))
                 {
                     Animal.Attack(this, Direction.up);
                 }
-                else if (Animal.Seek(location.x, location.y, Direction.down, prey[i]))
+                else if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.down, prey[i])))
                 {
                     Animal.Attack(this, Direction.down);
                 }
-                else if (Animal.Seek(location.x, location.y, Direction.left, prey[i]))
+                else if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.left, prey[i])))
                 {
                     Animal.Attack(this, Direction.left);
                 }
-                else if (Animal.Seek(location.x, location.y, Direction.right, prey[i]))
+                else if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.right, prey[i])))
                 {
                     Animal.Attack(this, Direction.right);
                 }

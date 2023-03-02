@@ -7,6 +7,7 @@ namespace ZooManager
         public string species;
         public string name;
         public int reactionTime = 5; // default reaction time for animals (1 - 10)
+        public int distance;
         
         public Point location;
 
@@ -20,30 +21,35 @@ namespace ZooManager
             Console.WriteLine($"Animal {name} at {location.x},{location.y} activated");
         }
 
-        static public bool Seek(int x, int y, Direction d, string target)
+        static public int Seek(int x, int y, Direction direction, string target, int distance=1)
         {
-            switch (d)
+            for (int currentDistance = 0; currentDistance < distance; currentDistance++)
             {
-                case Direction.up:
-                    y--;
-                    break;
-                case Direction.down:
-                    y++;
-                    break;
-                case Direction.left:
-                    x--;
-                    break;
-                case Direction.right:
-                    x++;
-                    break;
+                switch (direction)
+                {
+                    case Direction.up:
+                        y--;
+                        break;
+                    case Direction.down:
+                        y++;
+                        break;
+                    case Direction.left:
+                        x--;
+                        break;
+                    case Direction.right:
+                        x++;
+                        break;
+                }
+            
+                if (y < 0 || x < 0 || y > Game.numCellsY - 1 || x > Game.numCellsX - 1) return 0;
+                //if (Game.animalZones[y][x].occupant == null) return 0;
+                if (Game.animalZones[y][x].occupant.species == target)
+                {
+                    return currentDistance;
+                }
             }
-            if (y < 0 || x < 0 || y > Game.numCellsY - 1 || x > Game.numCellsX - 1) return false;
-            if (Game.animalZones[y][x].occupant == null) return false;
-            if (Game.animalZones[y][x].occupant.species == target)
-            {
-                return true;
-            }
-            return false;
+            return 0;
+            
         }
 
 
