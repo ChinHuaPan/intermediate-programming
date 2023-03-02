@@ -3,17 +3,17 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="ZooManager/Cat.cs">
     <Files>
       <File FileName="ZooManager/Pages/Index.razor" Line="62" Column="44" />
-      <File FileName="ZooManager/Zone.cs" Line="40" Column="28" />
+      <File FileName="ZooManager/Zone.cs" />
       <File FileName="ZooManager/Cat.cs" Line="80" Column="14" />
-      <File FileName="ZooManager/Mouse.cs" Line="52" Column="10" />
-      <File FileName="ZooManager/Animal.cs" Line="23" Column="50" />
-      <File FileName="ZooManager/Game.cs" Line="10" Column="1" />
-      <File FileName="ZooManager/Point.cs" Line="1" Column="1" />
-      <File FileName="ZooManager/Program.cs" Line="1" Column="1" />
-      <File FileName="ZooManager/Bird.cs" Line="13" Column="1" />
-      <File FileName="ZooManager/Raptor.cs" Line="33" Column="14" />
-      <File FileName="ZooManager/Chick.cs" Line="19" Column="20" />
-      <File FileName="ZooManager/Direction.cs" Line="1" Column="1" />
+      <File FileName="ZooManager/Mouse.cs" />
+      <File FileName="ZooManager/Animal.cs" />
+      <File FileName="ZooManager/Game.cs" />
+      <File FileName="ZooManager/Point.cs" />
+      <File FileName="ZooManager/Program.cs" />
+      <File FileName="ZooManager/Bird.cs" />
+      <File FileName="ZooManager/Raptor.cs" />
+      <File FileName="ZooManager/Chick.cs" />
+      <File FileName="ZooManager/Direction.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -21,17 +21,6 @@
           <Node name="ZooManager" expanded="True">
             <Node name="ZooManager" expanded="True">
               <Node name="Cat.cs" selected="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="ClassPad">
-        <State name="__root__">
-          <Node name="ZooManager" expanded="True">
-            <Node name="ZooManager" expanded="True" selected="True">
-              <Node name="ZooManager" expanded="True">
-                <Node name="ZooManager.Animal" expanded="True" />
-              </Node>
             </Node>
           </Node>
         </State>

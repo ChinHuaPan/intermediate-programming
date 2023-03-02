@@ -19,49 +19,43 @@ namespace ZooManager
             Console.WriteLine("I am a cat. Meow.");
             goHunt = true;
 
-            Flee();
-
-            if (goHunt)
-            {
-                Hunt();
-            }
+            if(Flee()) return;
+            Hunt();
 
         }
 
-        public void Flee()
+        public bool Flee()
         {
             if (Animal.Seek(location.x, location.y, Direction.up, "raptor"))
             {
                 if (Animal.Retreat(this, Direction.down))
                 {
-                    goHunt = false;
-                    return;
+                    return true;
                 }
             }
             if (Animal.Seek(location.x, location.y, Direction.down, "raptor"))
             {
                 if (Animal.Retreat(this, Direction.up))
                 {
-                    goHunt = false;
-                    return;
+                    return true;
                 }
             }
             if (Animal.Seek(location.x, location.y, Direction.left, "raptor"))
             {
                 if (Animal.Retreat(this, Direction.right))
                 {
-                    goHunt = false;
-                    return;
+                    return true;
                 }
             }
             if (Animal.Seek(location.x, location.y, Direction.right, "raptor"))
             {
                 if (Animal.Retreat(this, Direction.left))
                 {
-                    goHunt = false;
-                    return;
+                    return true;
                 }
             }
+
+            return false;
         }
 
         /* Note that our cat is currently not very clever about its hunting.
