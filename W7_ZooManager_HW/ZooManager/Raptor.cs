@@ -3,7 +3,7 @@ namespace ZooManager
 {
     public class Raptor : Bird
     {
-        public Raptor()
+        public Raptor(string name)
         {
             emoji = "🦅";
             species = "raptor";
@@ -14,7 +14,7 @@ namespace ZooManager
         public override void Activate()
         {
             base.Activate();
-            Console.WriteLine("I am a cat. Meow.");
+            Console.WriteLine("I am a raptor.");
             Hunt();
         }
 

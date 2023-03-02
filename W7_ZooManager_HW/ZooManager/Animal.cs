@@ -42,9 +42,10 @@ namespace ZooManager
                 }
             
                 if (y < 0 || x < 0 || y > Game.numCellsY - 1 || x > Game.numCellsX - 1) return 0;
-                //if (Game.animalZones[y][x].occupant == null) return 0;
+                if (Game.animalZones[y][x].occupant == null) return 0;
                 if (Game.animalZones[y][x].occupant.species == target)
                 {
+                    Console.WriteLine("gocha");
                     return currentDistance;
                 }
             }
