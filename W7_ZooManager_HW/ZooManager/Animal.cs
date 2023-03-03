@@ -11,17 +11,40 @@ namespace ZooManager
         
         public Point location;
 
+
+        /*********** ReportLocation() *************
+         * Report the current location
+         * Called by Game class
+         * INPUT: none
+         * OUTPUT: none
+         * **/
         public void ReportLocation()
         {
             Console.WriteLine($"I am at {location.x},{location.y}");
         }
 
+        /*********** Activate() *************
+         * Act a movement and return whether it has movement or not
+         * Called by Game class
+         * INPUT: none
+         * OUTPUT: bool --> has movement or not
+         * **/
         virtual public bool Activate()
         {
             Console.WriteLine($"Animal {name} at {location.x},{location.y} activated");
             return false;
         }
 
+        /*********** Seek() *************
+         * Seek a particular target animal by checking direction in order
+         * Called by each animal classes
+         * INPUT: int x --> x of location
+         *        int y --> y of location
+         *        Direction direction --> the direction it would like to search
+         *        string target --> target animal
+         *        int distance --> search distance
+         * OUTPUT: int --> return the distance that it finds out a target animal, 0 means no result
+         * **/
         static public int Seek(int x, int y, Direction direction, string target, int distance=1)
         {
             for (int currentDistance = 1; currentDistance <= distance; currentDistance++)
@@ -46,7 +69,6 @@ namespace ZooManager
                 if (Game.animalZones[y][x].occupant == null) return 0;
                 if (Game.animalZones[y][x].occupant.species == target)
                 {
-                    Console.WriteLine("gocha, d=" + currentDistance);
                     return currentDistance;
                 }
             }
@@ -55,12 +77,13 @@ namespace ZooManager
         }
 
 
-        /* This method currently assumes that the attacker has determined there is prey
-         * in the target direction. In addition to bug-proofing our program, can you think
-         * of creative ways that NOT just assuming the attack is on the correct target (or
-         * successful for that matter) could be used?
-         */
-
+        /*********** Attack() *************
+        * Attack an target animal, replace it by attacker
+        * Called by Hunt() method
+        * INPUT: Animal attacker --> attacker animal
+        *        Direction d --> attack direction
+        * OUTPUT: bool --> return whether attack or not
+        * **/
         static public bool Attack(Animal attacker, Direction d)
         {
             Console.WriteLine($"{attacker.name} is attacking {d.ToString()}");
@@ -87,6 +110,13 @@ namespace ZooManager
             return false;
         }
 
+        /*********** Retreat() *************
+        * Retreat from an target animal
+        * Called by Flee() method
+        * INPUT: Animal runner --> runner animal
+        *        Direction d --> retreat direction
+        * OUTPUT: bool --> return whether retreat or not
+        * **/
         static public bool Retreat(Animal runner, Direction d)
         {
             Console.WriteLine($"{runner.name} is retreating {d.ToString()}");
@@ -96,12 +126,6 @@ namespace ZooManager
             switch (d)
             {
                 case Direction.up:
-                    /* The logic below uses the "short circuit" property of Boolean &&.
-                     * If we were to check our list using an out-of-range index, we would
-                     * get an error, but since we first check if the direction that we're modifying is
-                     * within the ranges of our lists, if that check is false, then the second half of
-                     * the && is not evaluated, thus saving us from any exceptions being thrown.
-                     */
                     if (y > 0 && Game.animalZones[y - 1][x].occupant == null)
                     {
                         Game.animalZones[y - 1][x].occupant = runner;
@@ -109,14 +133,6 @@ namespace ZooManager
                         return true; // retreat was successful
                     }
                     return false; // retreat was not successful
-                /* Note that in these four cases, in our conditional logic we check
-                 * for the animal having one square between itself and the edge that it is
-                 * trying to run to. For example,in the above case, we check that y is greater
-                 * than 0, even though 0 is a valid spot on the list. This is because when moving
-                 * up, the animal would need to go from row 1 to row 0. Attempting to go from row 0
-                 * to row -1 would cause a runtime error. This is a slightly different way of testing
-                 * if 
-                 */
                 case Direction.down:
                     if (y < Game.numCellsY - 1 && Game.animalZones[y + 1][x].occupant == null)
                     {

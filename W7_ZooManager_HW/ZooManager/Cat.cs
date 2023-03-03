@@ -12,6 +12,12 @@ namespace ZooManager
             reactionTime = new Random().Next(1, 6); // reaction time 1 (fast) to 5 (medium)
         }
 
+        /*********** Activate() *************
+         * Find out something to hunt, flee or do nothing
+         * Called by Game class
+         * INPUT: none
+         * OUTPUT: bool --> whether it has movement
+         * **/
         public override bool Activate()
         {
             base.Activate();
@@ -23,6 +29,12 @@ namespace ZooManager
 
         }
 
+        /*********** Flee() *************
+         * Find out raptor to flee
+         * Called by: none
+         * INPUT: none
+         * OUTPUT: bool --> whether it has movement
+         * **/
         public bool Flee()
         {
             if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.up, "raptor")))
@@ -57,15 +69,12 @@ namespace ZooManager
             return false;
         }
 
-        /* Note that our cat is currently not very clever about its hunting.
-         * It will always try to attack "up" and will only seek "down" if there
-         * is no mouse above it. This does not affect the cat's effectiveness
-         * very much, since the overall logic here is "look around for a mouse and
-         * attack the first one you see." This logic might be less sound once the
-         * cat also has a predator to avoid, since the cat may not want to run in
-         * to a square that sets it up to be attacked!
-         */
-
+        /*********** Hunt() *************
+         * Find out mouse and chick to hunt
+         * Called by: none
+         * INPUT: none
+         * OUTPUT: bool --> whether it has movement
+         * **/
         string[] prey = { "mouse", "chick" };
         public bool Hunt()
         {

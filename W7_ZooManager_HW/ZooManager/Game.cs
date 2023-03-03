@@ -15,6 +15,12 @@ namespace ZooManager
         static public List<List<Zone>> animalZones = new List<List<Zone>>();
         static public Zone holdingPen = new Zone(-1, -1, null);
 
+        /*********** SetUpGame() *************
+         * Set up the game
+         * Called by Index.razor
+         * INPUT: none
+         * OUTPUT: none
+         * **/
         static public void SetUpGame()
         {
             for (var y = 0; y < numCellsY; y++)
@@ -26,6 +32,12 @@ namespace ZooManager
             }
         }
 
+        /*********** AddZones() *************
+         * Add a row or a column from left or down
+         * Called by Index.razor
+         * INPUT: Direction d --> the direction that the players would like to add row or column
+         * OUTPUT: none
+         * **/
         static public void AddZones(Direction d)
         {
             if (d == Direction.down || d == Direction.up)
@@ -53,6 +65,12 @@ namespace ZooManager
             }
         }
 
+        /*********** ZoneClick() *************
+         * Click any zone
+         * Called by Index.razor
+         * INPUT: Zone clickedZone --> which zone the player clicks
+         * OUTPUT: none
+         * **/
         static public void ZoneClick(Zone clickedZone)
         {
             Console.Write("Got animal ");
@@ -87,6 +105,12 @@ namespace ZooManager
             }
         }
 
+        /*********** AddAnimalToHolding() *************
+         * Add the animal that the player clicks to holding
+         * Called by Index.razor
+         * INPUT: string animalType --> the animal type
+         * OUTPUT: none
+         * **/
         static public void AddAnimalToHolding(string animalType)
         {
             if (holdingPen.occupant != null) return;
@@ -98,6 +122,12 @@ namespace ZooManager
             ActivateAnimals();
         }
 
+        /*********** ActivateAnimals() *************
+         * Make every animal activate based on its own conditions
+         * Called by Game class
+         * INPUT: none
+         * OUTPUT: none
+         * **/
         static private void ActivateAnimals()
         {
             for (var r = 1; r < 11; r++) // reaction times from 1 to 10

@@ -12,6 +12,12 @@ namespace ZooManager
 
         }
 
+        /*********** Activate() *************
+         * Find out something to flee or do nothing
+         * Called by Game class
+         * INPUT: none
+         * OUTPUT: bool --> whether it has movement
+         * **/
         public override bool Activate()
         {
             base.Activate();
@@ -20,6 +26,12 @@ namespace ZooManager
             return false;
         }
 
+        /*********** Flee() *************
+         * Find out cat to flee
+         * Called by: none
+         * INPUT: none
+         * OUTPUT: bool --> whether it has movement
+         * **/
         public bool Flee()
         {
             if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.up, "cat")))
