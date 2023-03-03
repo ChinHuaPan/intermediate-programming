@@ -1,6 +1,8 @@
-﻿using System;
+﻿/////////////// 👉 a:create a raptor /////////////////
+using System;
 namespace ZooManager
 {
+    /////////////// 👉 b:create Bird.cs and make Raptor.cs as its subclass /////////////////
     public class Raptor : Bird
     {
         public Raptor(string name)
@@ -11,8 +13,9 @@ namespace ZooManager
             reactionTime = 1; // reaction time 1 (fast) to 5 (medium)
         }
 
+        /////////////// 👉 o: fix multiple Activate()  /////////////////
         /*********** Activate() *************
-         * Find out something to hunt or do nothing
+         * Find out something to hunt or do nothing and return whether has a movement or not
          * Called by Game class
          * INPUT: none
          * OUTPUT: bool --> whether it has movement
@@ -25,6 +28,7 @@ namespace ZooManager
             return false;
         }
 
+        /////////////// 👉 d: raptor hunts cat and mouse /////////////////
         /*********** Hunt() *************
          * Find out cat or mouse to hunt or do nothing
          * Called by: none

@@ -1,4 +1,5 @@
-﻿using System;
+﻿/////////////// 👉 c: create a chick /////////////////
+using System;
 namespace ZooManager
 {
     public class Chick : Bird
@@ -12,8 +13,9 @@ namespace ZooManager
 
         }
 
+        /////////////// 👉 o: fix multiple Activate()  /////////////////
         /*********** Activate() *************
-         * Find out something to flee or do nothing
+         * Find out something to flee or do nothing, and return whether has a movement or not
          * Called by Game class
          * INPUT: none
          * OUTPUT: bool --> whether it has movement

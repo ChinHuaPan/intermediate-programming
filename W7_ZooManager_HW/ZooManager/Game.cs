@@ -122,6 +122,7 @@ namespace ZooManager
             ActivateAnimals();
         }
 
+        /////////////// 👉 o: fix multiple Activate()  /////////////////
         /*********** ActivateAnimals() *************
          * Make every animal activate based on its own conditions
          * Called by Game class

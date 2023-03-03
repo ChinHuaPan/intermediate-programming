@@ -23,6 +23,7 @@ namespace ZooManager
             Console.WriteLine($"I am at {location.x},{location.y}");
         }
 
+        /////////////// 👉 o: fix multiple Activate()  /////////////////
         /*********** Activate() *************
          * Act a movement and return whether it has movement or not
          * Called by Game class
@@ -35,6 +36,7 @@ namespace ZooManager
             return false;
         }
 
+        /////////////// 👉 f: modify seek method /////////////////
         /*********** Seek() *************
          * Seek a particular target animal by checking direction in order
          * Called by each animal classes

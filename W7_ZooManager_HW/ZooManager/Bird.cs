@@ -1,4 +1,6 @@
-﻿using System;
+﻿/////////////// 👉 b:create Bird.cs and make Raptor.cs as its subclass /////////////////
+
+using System;
 
 namespace ZooManager
 {
