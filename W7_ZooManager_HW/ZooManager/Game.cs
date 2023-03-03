@@ -133,6 +133,7 @@ namespace ZooManager
         {
             for (var r = 1; r < 11; r++) // reaction times from 1 to 10
             {
+                //go through every zones
                 for (var y = 0; y < numCellsY; y++)
                 {
                     for (var x = 0; x < numCellsX; x++)

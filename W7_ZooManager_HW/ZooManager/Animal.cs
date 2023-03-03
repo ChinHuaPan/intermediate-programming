@@ -47,8 +47,9 @@ namespace ZooManager
          *        int distance --> search distance
          * OUTPUT: int --> return the distance that it finds out a target animal, 0 means no result
          * **/
-        static public int Seek(int x, int y, Direction direction, string target, int distance=1)
+        static public int Seek(int x, int y, Direction direction, string target, int distance = 1) //give distance a temporary default value
         {
+            //go through every direction with distance
             for (int currentDistance = 1; currentDistance <= distance; currentDistance++)
             {
                 switch (direction)
@@ -92,8 +93,9 @@ namespace ZooManager
             int x = attacker.location.x;
             int y = attacker.location.y;
 
-            Game.animalZones[y][x].occupant = null;
+            Game.animalZones[y][x].occupant = null; //remove the attacker from the current location
 
+            //replace the animal which is hunted by attacker
             switch (d)
             {
                 case Direction.up:
