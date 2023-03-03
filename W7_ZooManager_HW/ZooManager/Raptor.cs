@@ -11,11 +11,12 @@ namespace ZooManager
             reactionTime = 1; // reaction time 1 (fast) to 5 (medium)
         }
 
-        public override void Activate()
+        public override bool Activate()
         {
             base.Activate();
             Console.WriteLine("I am a raptor.");
-            Hunt();
+            if (Hunt()) return true;
+            return false;
         }
 
         /* Note that our cat is currently not very clever about its hunting.
@@ -27,30 +28,41 @@ namespace ZooManager
          * to a square that sets it up to be attacked!
          */
         string[] prey = { "cat", "mouse" };
-        public void Hunt()
+        public bool Hunt()
         {
-            for(int i = 0; i < prey.Length; i++)
+            for (int i = 0; i < prey.Length; i++)
             {
-
-            
                 if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.up, prey[i])))
                 {
-                    Animal.Attack(this, Direction.up);
+                    if (Animal.Attack(this, Direction.up))
+                    {
+                        return true;
+                    }
                 }
                 else if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.down, prey[i])))
                 {
-                    Animal.Attack(this, Direction.down);
+                    if (Animal.Attack(this, Direction.down))
+                    {
+                        return true;
+                    }
                 }
                 else if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.left, prey[i])))
                 {
-                    Animal.Attack(this, Direction.left);
+                    if (Animal.Attack(this, Direction.left))
+                    {
+                        return true;
+                    }
                 }
                 else if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.right, prey[i])))
                 {
-                    Animal.Attack(this, Direction.right);
+                    if (Animal.Attack(this, Direction.right))
+                    {
+                        return true;
+                    }
                 }
-
+                return false;
             }
+            return false;
         }
     }
 }

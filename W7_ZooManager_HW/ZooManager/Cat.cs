@@ -12,13 +12,14 @@ namespace ZooManager
             reactionTime = new Random().Next(1, 6); // reaction time 1 (fast) to 5 (medium)
         }
 
-        public override void Activate()
+        public override bool Activate()
         {
             base.Activate();
             Console.WriteLine("I am a cat. Meow.");
 
-            if(Flee()) return;
-            Hunt();
+            if(Flee()) return true;
+            if(Hunt()) return true;
+            return false;
 
         }
 
@@ -66,27 +67,41 @@ namespace ZooManager
          */
 
         string[] prey = { "mouse", "chick" };
-        public void Hunt()
+        public bool Hunt()
         {
             for (int i = 0; i < prey.Length; i++)
             {
                 if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.up, prey[i])))
                 {
-                    Animal.Attack(this, Direction.up);
+                    if(Animal.Attack(this, Direction.up))
+                    {
+                        return true;
+                    }
                 }
                 else if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.down, prey[i])))
                 {
-                    Animal.Attack(this, Direction.down);
+                    if(Animal.Attack(this, Direction.down))
+                    {
+                        return true;
+                    }
                 }
                 else if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.left, prey[i])))
                 {
-                    Animal.Attack(this, Direction.left);
+                    if(Animal.Attack(this, Direction.left))
+                    {
+                        return true;
+                    }
                 }
                 else if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.right, prey[i])))
                 {
-                    Animal.Attack(this, Direction.right);
+                    if (Animal.Attack(this, Direction.right))
+                    {
+                        return true;
+                    }
                 }
+                return false;
             }
+            return false;
         }
     }
 }

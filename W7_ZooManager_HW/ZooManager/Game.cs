@@ -109,7 +109,7 @@ namespace ZooManager
                         var zone = animalZones[y][x];
                         if (zone.occupant != null && zone.occupant.reactionTime == r)
                         {
-                            zone.occupant.Activate();
+                            if(zone.occupant.Activate()) return;
                         }
                     }
                 }

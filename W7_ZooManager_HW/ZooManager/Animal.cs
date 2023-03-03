@@ -16,14 +16,15 @@ namespace ZooManager
             Console.WriteLine($"I am at {location.x},{location.y}");
         }
 
-        virtual public void Activate()
+        virtual public bool Activate()
         {
             Console.WriteLine($"Animal {name} at {location.x},{location.y} activated");
+            return false;
         }
 
         static public int Seek(int x, int y, Direction direction, string target, int distance=1)
         {
-            for (int currentDistance = 0; currentDistance < distance; currentDistance++)
+            for (int currentDistance = 1; currentDistance <= distance; currentDistance++)
             {
                 switch (direction)
                 {
@@ -45,7 +46,7 @@ namespace ZooManager
                 if (Game.animalZones[y][x].occupant == null) return 0;
                 if (Game.animalZones[y][x].occupant.species == target)
                 {
-                    Console.WriteLine("gocha");
+                    Console.WriteLine("gocha, d=" + currentDistance);
                     return currentDistance;
                 }
             }
@@ -60,28 +61,30 @@ namespace ZooManager
          * successful for that matter) could be used?
          */
 
-        static public void Attack(Animal attacker, Direction d)
+        static public bool Attack(Animal attacker, Direction d)
         {
             Console.WriteLine($"{attacker.name} is attacking {d.ToString()}");
             int x = attacker.location.x;
             int y = attacker.location.y;
 
+            Game.animalZones[y][x].occupant = null;
+
             switch (d)
             {
                 case Direction.up:
                     Game.animalZones[y - 1][x].occupant = attacker;
-                    break;
+                    return true;
                 case Direction.down:
                     Game.animalZones[y + 1][x].occupant = attacker;
-                    break;
+                    return true;
                 case Direction.left:
                     Game.animalZones[y][x - 1].occupant = attacker;
-                    break;
+                    return true;
                 case Direction.right:
                     Game.animalZones[y][x + 1].occupant = attacker;
-                    break;
+                    return true;
             }
-            Game.animalZones[y][x].occupant = null;
+            return false;
         }
 
         static public bool Retreat(Animal runner, Direction d)

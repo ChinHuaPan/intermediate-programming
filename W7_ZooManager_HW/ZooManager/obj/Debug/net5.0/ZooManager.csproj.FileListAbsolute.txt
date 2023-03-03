@@ -5410,7 +5410,6 @@
 /Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W7_ZooManager_HW/ZooManager/bin/Debug/net5.0/wwwroot/_framework/icudt_EFIGS.dat
 /Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W7_ZooManager_HW/ZooManager/bin/Debug/net5.0/wwwroot/_framework/icudt_no_CJK.dat
 /Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W7_ZooManager_HW/ZooManager/bin/Debug/net5.0/wwwroot/_framework/dotnet.5.0.17.js
-/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W7_ZooManager_HW/ZooManager/obj/Debug/net5.0/ZooManager.csproj.AssemblyReference.cache
 /Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W7_ZooManager_HW/ZooManager/obj/Debug/net5.0/ZooManager.GeneratedMSBuildEditorConfig.editorconfig
 /Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W7_ZooManager_HW/ZooManager/obj/Debug/net5.0/ZooManager.AssemblyInfoInputs.cache
 /Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W7_ZooManager_HW/ZooManager/obj/Debug/net5.0/ZooManager.AssemblyInfo.cs

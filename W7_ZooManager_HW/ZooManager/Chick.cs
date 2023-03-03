@@ -12,31 +12,33 @@ namespace ZooManager
 
         }
 
-        public override void Activate()
+        public override bool Activate()
         {
             base.Activate();
             Console.WriteLine("I am a chick. Cluck.");
-            Flee();
+            if(Flee()) return true;
+            return false;
         }
 
-        public void Flee()
+        public bool Flee()
         {
             if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.up, "cat")))
             {
-                if (Animal.Retreat(this, Direction.down)) return;
+                if (Animal.Retreat(this, Direction.down)) return true;
             }
             if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.down, "cat")))
             {
-                if (Animal.Retreat(this, Direction.up)) return;
+                if (Animal.Retreat(this, Direction.up)) return true;
             }
             if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.left, "cat")))
             {
-                if (Animal.Retreat(this, Direction.right)) return;
+                if (Animal.Retreat(this, Direction.right)) return true;
             }
             if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.right, "cat")))
             {
-                if (Animal.Retreat(this, Direction.left)) return;
+                if (Animal.Retreat(this, Direction.left)) return true;
             }
+            return false;
         }
 
     }

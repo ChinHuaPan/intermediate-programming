@@ -1,18 +1,19 @@
 ﻿<Properties StartupConfiguration="{DEF5AF9A-50F8-4FED-BC52-14C220FCA982}|Default">
   <MonoDevelop.Ide.ItemProperties.ZooManager PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ZooManager/Chick.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ZooManager/Direction.cs">
     <Files>
+      <File FileName="ZooManager/Direction.cs" Line="13" Column="1" IsPinned="True" />
+      <File FileName="ZooManager/Program.cs" Line="1" Column="1" IsPinned="True" />
       <File FileName="ZooManager/Pages/Index.razor" Line="115" Column="1" />
       <File FileName="ZooManager/Zone.cs" Line="30" Column="10" />
-      <File FileName="ZooManager/Cat.cs" Line="75" Column="55" />
-      <File FileName="ZooManager/Animal.cs" Line="49" Column="1" />
-      <File FileName="ZooManager/Game.cs" Line="71" Column="27" />
+      <File FileName="ZooManager/Animal.cs" Line="22" Column="13" />
+      <File FileName="ZooManager/Game.cs" Line="112" Column="54" />
       <File FileName="ZooManager/Point.cs" Line="1" Column="1" />
-      <File FileName="ZooManager/Program.cs" Line="1" Column="1" />
       <File FileName="ZooManager/Bird.cs" Line="13" Column="1" />
-      <File FileName="ZooManager/Raptor.cs" Line="18" Column="20" />
-      <File FileName="ZooManager/Chick.cs" Line="16" Column="10" />
-      <File FileName="ZooManager/Direction.cs" Line="13" Column="1" />
+      <File FileName="ZooManager/Raptor.cs" Line="26" Column="48" />
+      <File FileName="ZooManager/Chick.cs" Line="24" Column="17" />
+      <File FileName="ZooManager/Cat.cs" Line="15" Column="33" />
+      <File FileName="ZooManager/Mouse.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -20,7 +21,7 @@
           <Node name="ZooManager" expanded="True">
             <Node name="ZooManager" expanded="True">
               <Node name="Pages" expanded="True" />
-              <Node name="Chick.cs" selected="True" />
+              <Node name="Direction.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -42,11 +43,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W7_ZooManager_HW/ZooManager/Cat.cs" relfile="ZooManager/Cat.cs" line="75" column="1" />
-      <Breakpoint file="/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W7_ZooManager_HW/ZooManager/Cat.cs" relfile="ZooManager/Cat.cs" line="79" column="1" />
-      <Breakpoint file="/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W7_ZooManager_HW/ZooManager/Cat.cs" relfile="ZooManager/Cat.cs" line="83" column="1" />
-      <Breakpoint file="/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W7_ZooManager_HW/ZooManager/Cat.cs" relfile="ZooManager/Cat.cs" line="87" column="1" />
-      <Breakpoint file="/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W7_ZooManager_HW/ZooManager/Animal.cs" relfile="ZooManager/Animal.cs" line="49" column="1" />
+      <Breakpoint file="/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W7_ZooManager_HW/ZooManager/Cat.cs" relfile="ZooManager/Cat.cs" line="85" column="1" />
+      <Breakpoint file="/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W7_ZooManager_HW/ZooManager/Cat.cs" relfile="ZooManager/Cat.cs" line="78" column="1" />
+      <Breakpoint file="/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W7_ZooManager_HW/ZooManager/Cat.cs" relfile="ZooManager/Cat.cs" line="92" column="1" />
+      <Breakpoint file="/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W7_ZooManager_HW/ZooManager/Cat.cs" relfile="ZooManager/Cat.cs" line="99" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
