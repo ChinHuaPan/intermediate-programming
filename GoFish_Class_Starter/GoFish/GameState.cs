@@ -91,14 +91,19 @@ namespace GoFish
         /// <returns>A string with the winners, an empty string if there are no winners</returns>
         public string CheckForWinner()
         {
-            throw new NotImplementedException(); // delete this line once TO DOs completed.
+            //throw new NotImplementedException(); // delete this line once TO DOs completed.
             var playerCards = Players.Select(player => player.Hand.Count()).Sum();
             if (playerCards > 0) return "";
-            GameOver = true;
-            var winningBookCount = 0;
+            GameOver = true;            
+           
+            // USE: Players list of players in use, Bookds list of "books" each player has
+
             // TO DO: Determine highest number of books collected, put in var winningBookCount
+            var winningBookCount = Players.Select(player => player.Books.Count()).Max();
+
             // TO DO: Detemine which player or players scored the highest number of books, put in var winners
-            var winners = "";
+            var winners = Players.Where(player => player.Books.Count() == winningBookCount);
+            
             if (winners.Count() == 1) return $"The winner is {winners.First().Name}";
             return $"The winners are {string.Join(" and ", winners)}";
         }

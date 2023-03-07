@@ -57,7 +57,10 @@ namespace GoFish
         /// <param name="stock">Stock to get the next hand from</param>
         public void GetNextHand(Deck stock)
         {
-            throw new NotImplementedException();
+            while(hand.Count < 5 && stock.Count > 0)
+            {
+                hand.Add(stock.Deal(0));//take the top card
+            }
         }
 
         /// <summary>
@@ -69,7 +72,40 @@ namespace GoFish
         /// <returns>The cards that were pulled out of the other player's hand</returns>
         public IEnumerable<Card> DoYouHaveAny(Values value, Deck deck)
         {
-            throw new NotImplementedException();
+            //TO DO: Search your hand to see if you have requested value.
+            //If so, put cards with the requested value into matchingCards
+
+            //List<Card> matchingCards = new List<Card>();
+            
+            //for(int i=0; i < hand.Count; i++)
+            //{
+            //    if (hand[i].Value == value)
+            //    {
+            //        matchingCards.Add(hand[i]);
+            //        hand.RemoveAt(i);
+            //    }
+            //}
+
+            //TO DO: Search your hand to see if you have requested value.
+            //If so, put cards with the requested value into matchingCards
+            //Step 1:Find cards in your hand that match value
+            var matchingCards = hand.Where(card => card.Value == value).OrderBy(Card => Card.Suit);
+
+            //Step 2:Remove cards from your hand that match value
+            //*** remember to convert the type to List
+            hand = hand.Where(card => card.Value != value).ToList();
+
+            ReplenishHand(deck);
+
+            return matchingCards;
+        }
+
+        private void ReplenishHand( Deck deck)
+        {
+            if (hand.Count == 0)
+            {
+                GetNextHand(deck);
+            }
         }
 
         /// <summary>

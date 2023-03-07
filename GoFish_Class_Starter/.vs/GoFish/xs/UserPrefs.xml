@@ -1,5 +1,27 @@
 ﻿<Properties StartupConfiguration="{020F0ACB-5241-4310-853A-E871F1616CA1}|Default">
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="GoFish/GameState.cs">
+    <Files>
+      <File FileName="GoFish/Suits.cs" Line="1" Column="1" />
+      <File FileName="GoFish/Player.cs" Line="98" Column="33" />
+      <File FileName="GoFish/GameState.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="GoFish" expanded="True">
+            <Node name="GoFish" expanded="True">
+              <Node name="GameState.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.GoFish PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
 </Properties>
