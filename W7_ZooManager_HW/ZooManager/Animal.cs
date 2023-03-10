@@ -174,82 +174,64 @@ namespace ZooManager
         *        int distance --> move distance
         * OUTPUT: int --> return the move distance
         * **/
-        static public int Move(Animal mover, Direction dir, int distance=1)
+        static public int Move(Animal mover, Direction direction, int distance=1)
         {
-            Console.WriteLine($"{mover.name} is moving {dir.ToString()}");
+            Console.WriteLine($"{mover.name} is moving {direction.ToString()}");
             int x = mover.location.x;
             int y = mover.location.y;
-            bool IsNoBlock = true;
 
-            switch (dir)
+            for (int currentDistance = 1; currentDistance <= distance; currentDistance++)
             {
-                case Direction.up:
-
-                    for(int i=1; i <= distance; i++)
-                    {
-                        IsNoBlock = IsNoBlock && (Game.animalZones[y - i][x].occupant == null);
-
-                        if (y > 0 && IsNoBlock)
-                            {
-                                Game.animalZones[y - distance][x].occupant = mover;
-                                Game.animalZones[y][x].occupant = null;
-                                return distance; // move was successful
-                            }
-                        }
-
-                    
-                    return 0; // move was not successful
-
-                case Direction.down:
-
-                    for (int i = 1; i <= distance; i++)
-                    {
-                        IsNoBlock = IsNoBlock && (Game.animalZones[y + i][x].occupant == null);
-
-                        if (y < Game.numCellsY - 1 && IsNoBlock)
+                switch (direction)
+                {
+                    case Direction.up:
+                        if (y > 0 && Game.animalZones[y - currentDistance][x].occupant == null)
                         {
-                            Game.animalZones[y + distance][x].occupant = mover;
+                            Game.animalZones[y - currentDistance][x].occupant = mover;
                             Game.animalZones[y][x].occupant = null;
-                            return distance;
                         }
-                    }
-
-                    
-                    return 0;
-
-                case Direction.left:
-
-                     for (int i = 1; i <= distance; i++)
-                    {
-                        IsNoBlock = IsNoBlock && (Game.animalZones[y][x - i].occupant == null);
-
-                        if (x > 0 && IsNoBlock)
+                        else
                         {
-                            Game.animalZones[y][x - distance].occupant = mover;
-                            Game.animalZones[y][x].occupant = null;
-                            return distance;
+                            return currentDistance - 1;
                         }
-                    }
 
-                    
-                    return 0;
-
-                case Direction.right:
-
-                    for (int i = 1; i <= distance; i++)
-                    {
-                        IsNoBlock = IsNoBlock && (Game.animalZones[y][x + i].occupant == null);
-
-                        if (x < Game.numCellsX - 1 && IsNoBlock)
+                        break;
+                    case Direction.down:
+                        if (y < Game.numCellsY - 1 && Game.animalZones[y + currentDistance][x].occupant == null)
                         {
-                            Game.animalZones[y][x + distance].occupant = mover;
+                            Game.animalZones[y + currentDistance][x].occupant = mover;
                             Game.animalZones[y][x].occupant = null;
-                            return distance;
                         }
-                    }
+                        else
+                        {
+                            return currentDistance - 1;
+                        }
+                        break;
+                    case Direction.left:
+                        if (x > 0 && Game.animalZones[y][x - currentDistance].occupant == null)
+                        {
+                            Game.animalZones[y][x - currentDistance].occupant = mover;
+                            Game.animalZones[y][x].occupant = null;
+                        }
+                        else
+                        {
+                            return currentDistance - 1;
+                        }
+                        break;
+                    case Direction.right:
+                        if (x < Game.numCellsX - 1 && Game.animalZones[y][x + currentDistance].occupant == null)
+                        {
+                            Game.animalZones[y][x + currentDistance].occupant = mover;
+                            Game.animalZones[y][x].occupant = null;
+                        }
+                        else
+                        {
+                            return currentDistance - 1;
+                        }
+                        break;
+                }
 
-                    
-                    return 0;
+
             }
             return 0; // fallback
         }

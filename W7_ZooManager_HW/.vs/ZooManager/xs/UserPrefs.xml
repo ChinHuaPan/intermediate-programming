@@ -1,15 +1,15 @@
 ﻿<Properties StartupConfiguration="{DEF5AF9A-50F8-4FED-BC52-14C220FCA982}|Default">
   <MonoDevelop.Ide.ItemProperties.ZooManager PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ZooManager/Direction.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ZooManager/Mouse.cs">
     <Files>
       <File FileName="ZooManager/Zone.cs" Line="19" Column="1" />
-      <File FileName="ZooManager/Pages/Index.razor" Line="115" Column="1" />
-      <File FileName="ZooManager/Animal.cs" Line="198" Column="41" />
+      <File FileName="ZooManager/Pages/Index.razor" Line="115" Column="31" />
+      <File FileName="ZooManager/Animal.cs" Line="228" Column="26" />
       <File FileName="ZooManager/Game.cs" Line="16" Column="64" />
       <File FileName="ZooManager/Raptor.cs" />
       <File FileName="ZooManager/Chick.cs" Line="15" Column="1" />
-      <File FileName="ZooManager/Cat.cs" />
-      <File FileName="ZooManager/Mouse.cs" Line="56" Column="13" />
+      <File FileName="ZooManager/Cat.cs" Line="15" Column="73" />
+      <File FileName="ZooManager/Mouse.cs" Line="30" Column="73" />
       <File FileName="ZooManager/Bird.cs" />
       <File FileName="ZooManager/Direction.cs" Line="1" Column="1" />
     </Files>
@@ -19,7 +19,18 @@
           <Node name="ZooManager" expanded="True">
             <Node name="ZooManager" expanded="True">
               <Node name="Pages" expanded="True" />
-              <Node name="Direction.cs" selected="True" />
+              <Node name="Mouse.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State name="__root__">
+          <Node name="ZooManager" expanded="True">
+            <Node name="ZooManager" expanded="True" selected="True">
+              <Node name="ZooManager" expanded="True">
+                <Node name="ZooManager.Animal" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>
@@ -29,7 +40,9 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W7_ZooManager_HW/ZooManager/Mouse.cs" relfile="ZooManager/Mouse.cs" line="68" column="2" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>
