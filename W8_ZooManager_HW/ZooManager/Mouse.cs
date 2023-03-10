@@ -28,6 +28,7 @@ namespace ZooManager
         }
 
         /////////////// 👉 g/ create move method and modify mouse.flee()  /////////////////
+        /////////////// Goal 1: 👉 g/ create move method and modify mouse.flee()  /////////////////
         /*********** Flee() *************
          * Find out cat to flee
          * Called by: none
