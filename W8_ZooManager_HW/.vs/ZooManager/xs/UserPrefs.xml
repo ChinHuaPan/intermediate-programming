@@ -1,0 +1,37 @@
+﻿<Properties StartupConfiguration="{DEF5AF9A-50F8-4FED-BC52-14C220FCA982}|Default">
+  <MonoDevelop.Ide.ItemProperties.ZooManager PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ZooManager/Mouse.cs">
+    <Files>
+      <File FileName="ZooManager/Zone.cs" Line="19" Column="1" />
+      <File FileName="ZooManager/Pages/Index.razor" />
+      <File FileName="ZooManager/Animal.cs" />
+      <File FileName="ZooManager/Game.cs" />
+      <File FileName="ZooManager/Raptor.cs" />
+      <File FileName="ZooManager/Chick.cs" />
+      <File FileName="ZooManager/Cat.cs" />
+      <File FileName="ZooManager/Mouse.cs" Line="30" Column="73" />
+      <File FileName="ZooManager/Bird.cs" />
+      <File FileName="ZooManager/Direction.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ZooManager" expanded="True">
+            <Node name="ZooManager" expanded="True">
+              <Node name="Pages" expanded="True" />
+              <Node name="Mouse.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W8_ZooManager_HW/ZooManager/Mouse.cs" relfile="ZooManager/Mouse.cs" line="68" column="2" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
