@@ -1,7 +1,11 @@
 ﻿using System;
 namespace ZooManager
 {
-    public interface Predator
+    public interface IPredator
     {
+        public bool Hunt()
+        {
+            return true;
+        }
     }
 }

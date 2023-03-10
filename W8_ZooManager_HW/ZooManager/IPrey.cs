@@ -1,7 +1,11 @@
 ﻿using System;
 namespace ZooManager
 {
-    public interface Prey
+    public interface IPrey
     {
+        public bool Flee()
+        {
+            return true;
+        }
     }
 }

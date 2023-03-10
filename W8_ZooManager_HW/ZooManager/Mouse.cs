@@ -2,7 +2,7 @@
 
 namespace ZooManager
 {
-    public class Mouse : Animal
+    public class Mouse : Animal, IPrey
     {
         public Mouse(string name)
         {
@@ -27,7 +27,6 @@ namespace ZooManager
             return false;
         }
 
-        /////////////// 👉 g/ create move method and modify mouse.flee()  /////////////////
         /////////////// Goal 1: 👉 g/ create move method and modify mouse.flee()  /////////////////
         /*********** Flee() *************
          * Find out cat to flee

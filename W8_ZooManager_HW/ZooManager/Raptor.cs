@@ -3,7 +3,7 @@ using System;
 namespace ZooManager
 {
     /////////////// 👉 b:create Bird.cs and make Raptor.cs as its subclass /////////////////
-    public class Raptor : Bird
+    public class Raptor : Bird, IPredator
     {
         public Raptor(string name)
         {

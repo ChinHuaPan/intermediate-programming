@@ -2,7 +2,7 @@
 
 namespace ZooManager
 {
-    public class Cat : Animal
+    public class Cat : Animal, IPredator, IPrey
     {
         public Cat(string name)
         {

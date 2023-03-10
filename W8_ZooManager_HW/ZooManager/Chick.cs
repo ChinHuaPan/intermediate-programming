@@ -2,7 +2,7 @@
 using System;
 namespace ZooManager
 {
-    public class Chick : Bird
+    public class Chick : Bird, IPrey
     {
         public Chick(string name)
         {
