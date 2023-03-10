@@ -27,7 +27,7 @@ namespace ZooManager
             return false;
         }
 
-        /////////////// Goal 1: 👉 g/ create move method and modify mouse.flee()  /////////////////
+        /////////////// 👉 Goal 1: g/ create move method and modify mouse.flee()  /////////////////
         /*********** Flee() *************
          * Find out cat to flee
          * Called by: none
@@ -36,23 +36,6 @@ namespace ZooManager
          * **/
         public bool Flee()
         {
-            //if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.up, "cat")))
-            //{
-            //    if (Animal.Retreat(this, Direction.down)) return true;
-            //}
-            //if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.down, "cat")))
-            //{
-            //    if (Animal.Retreat(this, Direction.up)) return true;
-            //}
-            //if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.left, "cat")))
-            //{
-            //    if (Animal.Retreat(this, Direction.right)) return true;
-            //}
-            //if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.right, "cat")))
-            //{
-            //    if (Animal.Retreat(this, Direction.left)) return true;
-            //}
-            //return false;
 
             //https://stackoverflow.com/questions/105372/how-to-enumerate-an-enum
 

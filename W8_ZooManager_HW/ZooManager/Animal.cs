@@ -165,7 +165,7 @@ namespace ZooManager
             return false; // fallback
         }
 
-        /////////////// Goal 1: 👉 g/ create move method and modify mouse.flee()  /////////////////
+        /////////////// 👉 Goal 1: g/ create move method and modify mouse.flee()  /////////////////
         /*********** Move() *************
         * Move from an target animal
         * Called by flee method
