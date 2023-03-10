@@ -35,23 +35,43 @@ namespace ZooManager
          * **/
         public bool Flee()
         {
-            if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.up, "cat")))
+            //if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.up, "cat")))
+            //{
+            //    if (Animal.Retreat(this, Direction.down)) return true;
+            //}
+            //if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.down, "cat")))
+            //{
+            //    if (Animal.Retreat(this, Direction.up)) return true;
+            //}
+            //if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.left, "cat")))
+            //{
+            //    if (Animal.Retreat(this, Direction.right)) return true;
+            //}
+            //if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.right, "cat")))
+            //{
+            //    if (Animal.Retreat(this, Direction.left)) return true;
+            //}
+            //return false;
+
+            //https://stackoverflow.com/questions/105372/how-to-enumerate-an-enum
+
+            Random random = new Random();
+            Array values = Enum.GetValues(typeof(Direction));
+
+            foreach (Direction d in Enum.GetValues(typeof(Direction)))
             {
-                if (Animal.Retreat(this, Direction.down)) return true;
-            }
-            if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.down, "cat")))
-            {
-                if (Animal.Retreat(this, Direction.up)) return true;
-            }
-            if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.left, "cat")))
-            {
-                if (Animal.Retreat(this, Direction.right)) return true;
-            }
-            if (Convert.ToBoolean(Animal.Seek(location.x, location.y, Direction.right, "cat")))
-            {
-                if (Animal.Retreat(this, Direction.left)) return true;
+                if (Convert.ToBoolean(Animal.Seek(location.x, location.y, d, "cat")))
+                {
+                    //https://stackoverflow.com/questions/3132126/how-do-i-select-a-random-value-from-an-enumeration
+
+                    Move(this, (Direction)values.GetValue(random.Next(values.Length)), 2);
+
+                    return true;
+                }
+                return false;
             }
             return false;
+            
         }
     }
 }
