@@ -12,6 +12,7 @@ namespace ZooManager
         }
 
         //raptor's preys
+        //************** but it seems not work, need to check
         string[] preys = { "cat", "mouse" };
 
         /*********** Activate() *************
