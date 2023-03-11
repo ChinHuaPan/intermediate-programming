@@ -3,9 +3,6 @@ namespace ZooManager
 {
     public class Creature
     {
-        public Creature()
-        {
-        }
 
         public string emoji;
         public string species;
@@ -26,8 +23,6 @@ namespace ZooManager
             Console.WriteLine($"I am at {location.x},{location.y}");
         }
 
-
-        /////////////// 👉 o: fix multiple Activate()  /////////////////
         /*********** Activate() *************
          * Act a movement and return whether it has movement or not
          * Called by Game class

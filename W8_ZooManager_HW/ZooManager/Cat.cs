@@ -12,7 +12,6 @@ namespace ZooManager
             reactionTime = new Random().Next(1, 6); // reaction time 1 (fast) to 5 (medium)
         }
 
-        /////////////// 👉 o: fix multiple Activate()  /////////////////
         /*********** Activate() *************
          * Find out something to hunt, flee or do nothing, and return whether has a movement or not
          * Called by Game class
@@ -24,7 +23,6 @@ namespace ZooManager
             base.Activate();
             Console.WriteLine("I am a cat. Meow.");
 
-            /////////////// 👉 e: Modify the Cat hunts Mouse and Chick, avoids Raptor priority /////////////
             if (Flee()) return true;
             if(Hunt()) return true;
             return false;
@@ -71,7 +69,6 @@ namespace ZooManager
             return false;
         }
 
-        /////////////// 👉 e: Modify the Cat hunts Mouse and Chick, avoids Raptor priority /////////////////
         /*********** Hunt() *************
          * Find out mouse and chick to hunt
          * Called by: none

@@ -12,7 +12,6 @@ namespace ZooManager
             reactionTime = new Random().Next(1, 4); // reaction time of 1 (fast) to 3
         }
 
-        /////////////// 👉 o: fix multiple Activate()  /////////////////
         /*********** Activate() *************
          * Find out something to flee or do nothing, and return whether has a movement or not
          * Called by Game class

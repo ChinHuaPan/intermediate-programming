@@ -1,28 +1,28 @@
 ﻿<Properties StartupConfiguration="{DEF5AF9A-50F8-4FED-BC52-14C220FCA982}|Default">
   <MonoDevelop.Ide.ItemProperties.ZooManager PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ZooManager/Animal.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ZooManager/Bird.cs">
     <Files>
-      <File FileName="ZooManager/Zone.cs" Line="7" Column="31" />
+      <File FileName="ZooManager/Zone.cs" Line="7" Column="24" />
       <File FileName="ZooManager/Pages/Index.razor" Line="106" Column="22" />
-      <File FileName="ZooManager/Animal.cs" Line="54" Column="14" />
-      <File FileName="ZooManager/Game.cs" Line="121" Column="48" />
-      <File FileName="ZooManager/Raptor.cs" Line="13" Column="70" />
-      <File FileName="ZooManager/Chick.cs" Line="7" Column="33" />
-      <File FileName="ZooManager/Cat.cs" Line="32" Column="10" />
-      <File FileName="ZooManager/Mouse.cs" Line="34" Column="23" />
-      <File FileName="ZooManager/Bird.cs" Line="1" Column="1" />
-      <File FileName="ZooManager/Direction.cs" Line="1" Column="1" />
-      <File FileName="ZooManager/IPredator.cs" Line="13" Column="1" />
-      <File FileName="ZooManager/IPrey.cs" Line="4" Column="47" />
-      <File FileName="ZooManager/Alien.cs" Line="18" Column="18" />
-      <File FileName="ZooManager/Creature.cs" Line="1" Column="1" />
+      <File FileName="ZooManager/Animal.cs" Line="31" Column="9" />
+      <File FileName="ZooManager/Game.cs" Line="106" Column="10" />
+      <File FileName="ZooManager/Raptor.cs" Line="39" Column="9" />
+      <File FileName="ZooManager/Chick.cs" Line="15" Column="1" />
+      <File FileName="ZooManager/Cat.cs" Line="72" Column="40" />
+      <File FileName="ZooManager/Mouse.cs" Line="14" Column="1" />
+      <File FileName="ZooManager/Bird.cs" Line="15" Column="1" />
+      <File FileName="ZooManager/IPredator.cs" Line="5" Column="31" />
+      <File FileName="ZooManager/IPrey.cs" Line="4" Column="33" />
+      <File FileName="ZooManager/Alien.cs" Line="39" Column="9" />
+      <File FileName="ZooManager/Creature.cs" Line="133" Column="9" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ZooManager" expanded="True">
             <Node name="ZooManager" expanded="True">
-              <Node name="Animal.cs" selected="True" />
+              <Node name="Pages" expanded="True" />
+              <Node name="Bird.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -43,7 +43,9 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W8_ZooManager_HW/ZooManager/Mouse.cs" relfile="ZooManager/Mouse.cs" line="50" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

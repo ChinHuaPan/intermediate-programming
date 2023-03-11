@@ -1,7 +1,7 @@
 ﻿using System;
 namespace ZooManager
 {
-    /////////////// 👉 Goal 2: IPrey interface  /////////////////
+    /////////////// 👉 Goal 2: Create IPrey interface  /////////////////
     public interface IPrey
     {
         public bool Flee()

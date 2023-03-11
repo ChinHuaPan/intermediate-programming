@@ -13,7 +13,6 @@ namespace ZooManager
 
         }
 
-        /////////////// 👉 o: fix multiple Activate()  /////////////////
         /*********** Activate() *************
          * Find out something to flee or do nothing, and return whether has a movement or not
          * Called by Game class

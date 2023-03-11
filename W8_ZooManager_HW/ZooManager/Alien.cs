@@ -1,18 +1,16 @@
 ﻿using System;
 namespace ZooManager
 {
-    /////////////// 👉 Goal 3: create Alien  /////////////////
+    /////////////// 👉 Goal 3: create Alien class /////////////////
     public class Alien : Creature, IPredator
     {
         public Alien(string name)
         {
             emoji = "👽";
             name = "alien";
-            reactionTime = 1; // default reaction time for animals (1 - 10)
-                              //public int distance;
+            reactionTime = 1; //may change is the future
             
         }
-
 
         /*********** Activate() *************
         * Act a movement and return whether it has movement or not
@@ -64,7 +62,7 @@ namespace ZooManager
                 {
                     return 0;
                 }
-                //if it finds out anything not Alien
+                //if it finds out anything not Alien successfully
                 if(Game.animalZones[y][x].occupant.GetType() != typeof(Alien))
                 {
                     return currentDistance;
