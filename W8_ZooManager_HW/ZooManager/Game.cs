@@ -12,7 +12,7 @@ namespace ZooManager
         static private int maxCellsY = 10;
 
 
-        static public List<List<Zone>> animalZones = new List<List<Zone>>();
+        static public List<List<Zone>> creatureZones = new List<List<Zone>>();
         static public Zone holdingPen = new Zone(-1, -1, null);
 
         /*********** SetUpGame() *************
@@ -28,7 +28,7 @@ namespace ZooManager
                 List<Zone> rowList = new List<Zone>();
                 // Note one-line variation of for loop below!
                 for (var x = 0; x < numCellsX; x++) rowList.Add(new Zone(x, y, null));
-                animalZones.Add(rowList);
+                creatureZones.Add(rowList);
             }
         }
 
@@ -49,15 +49,15 @@ namespace ZooManager
                     rowList.Add(new Zone(x, numCellsY, null));
                 }
                 numCellsY++;
-                if (d == Direction.down) animalZones.Add(rowList);
-                // if (d == Direction.up) animalZones.Insert(0, rowList);
+                if (d == Direction.down) creatureZones.Add(rowList);
+                // if (d == Direction.up) creatureZones.Insert(0, rowList);
             }
             else // must be left or right...
             {
                 if (numCellsX >= maxCellsX) return; // hit maximum width!
                 for (var y = 0; y < numCellsY; y++)
                 {
-                    var rowList = animalZones[y];
+                    var rowList = creatureZones[y];
                     // if (d == Direction.left) rowList.Insert(0, new Zone(null));
                     if (d == Direction.right) rowList.Add(new Zone(numCellsX, y, null));
                 }
@@ -73,14 +73,14 @@ namespace ZooManager
          * **/
         static public void ZoneClick(Zone clickedZone)
         {
-            Console.Write("Got animal ");
+            Console.Write("Got creature ");
             Console.WriteLine(clickedZone.emoji == "" ? "none" : clickedZone.emoji);
-            Console.Write("Held animal is ");
+            Console.Write("Held creature is ");
             Console.WriteLine(holdingPen.emoji == "" ? "none" : holdingPen.emoji);
             if (clickedZone.occupant != null) clickedZone.occupant.ReportLocation();
             if (holdingPen.occupant == null && clickedZone.occupant != null)
             {
-                // take animal from zone to holding pen
+                // take creature from zone to holding pen
                 Console.WriteLine("Taking " + clickedZone.emoji);
                 holdingPen.occupant = clickedZone.occupant;
                 holdingPen.occupant.location.x = -1;
@@ -90,7 +90,7 @@ namespace ZooManager
             }
             else if (holdingPen.occupant != null && clickedZone.occupant == null)
             {
-                // put animal in zone from holding pen
+                // put creature in zone from holding pen
                 Console.WriteLine("Placing " + holdingPen.emoji);
                 clickedZone.occupant = holdingPen.occupant;
                 clickedZone.occupant.location = clickedZone.location;
@@ -100,32 +100,32 @@ namespace ZooManager
             }
             else if (holdingPen.occupant != null && clickedZone.occupant != null)
             {
-                Console.WriteLine("Could not place animal.");
-                // Don't activate animals since user didn't get to do anything
+                Console.WriteLine("Could not place creature.");
+                // Don't activate creatures since user didn't get to do anything
             }
         }
 
-        /*********** AddAnimalToHolding() *************
-         * Add the animal that the player clicks to holding
+        /*********** AddCreatureToHolding() *************
+         * Add the creature that the player clicks to holding
          * Called by Index.razor
-         * INPUT: string animalType --> the animal type
+         * INPUT: string creatureType --> the creature type
          * OUTPUT: none
          * **/
-        static public void AddAnimalToHolding(string animalType)
+        static public void AddCreatureToHolding(string creatureType)
         {
             if (holdingPen.occupant != null) return;
-            if (animalType == "cat") holdingPen.occupant = new Cat("Fluffy");
-            if (animalType == "mouse") holdingPen.occupant = new Mouse("Squeaky");
-            if (animalType == "raptor") holdingPen.occupant = new Raptor("Flashy");
-            if (animalType == "chick") holdingPen.occupant = new Chick("Clucky");
-            if (animalType == "alien") holdingPen.occupant = new Alien("Ety");
+            if (creatureType == "cat") holdingPen.occupant = new Cat("Fluffy");
+            if (creatureType == "mouse") holdingPen.occupant = new Mouse("Squeaky");
+            if (creatureType == "raptor") holdingPen.occupant = new Raptor("Flashy");
+            if (creatureType == "chick") holdingPen.occupant = new Chick("Clucky");
+            if (creatureType == "alien") holdingPen.occupant = new Alien("Ety");
             Console.WriteLine($"Holding pen occupant at {holdingPen.occupant.location.x},{holdingPen.occupant.location.y}");
             ActivateCreatures();
         }
 
         /////////////// 👉 o: fix multiple Activate()  /////////////////
-        /*********** ActivateAnimals() *************
-         * Make every animal activate based on its own conditions
+        /*********** ActivateCreatures() *************
+         * Make every creature activate based on its own conditions
          * Called by Game class
          * INPUT: none
          * OUTPUT: none
@@ -139,7 +139,7 @@ namespace ZooManager
                 {
                     for (var x = 0; x < numCellsX; x++)
                     {
-                        var zone = animalZones[y][x];
+                        var zone = creatureZones[y][x];
                         if (zone.occupant != null && zone.occupant.reactionTime == r)
                         {
                             if(zone.occupant.Activate()) return;

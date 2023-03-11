@@ -48,22 +48,22 @@ namespace ZooManager
             int x = attacker.location.x;
             int y = attacker.location.y;
 
-            Game.animalZones[y][x].occupant = null; //remove the attacker from the current location
+            Game.creatureZones[y][x].occupant = null; //remove the attacker from the current location
 
             //replace the animal which is hunted by attacker
             switch (d)
             {
                 case Direction.up:
-                    Game.animalZones[y - 1][x].occupant = attacker;
+                    Game.creatureZones[y - 1][x].occupant = attacker;
                     return true;
                 case Direction.down:
-                    Game.animalZones[y + 1][x].occupant = attacker;
+                    Game.creatureZones[y + 1][x].occupant = attacker;
                     return true;
                 case Direction.left:
-                    Game.animalZones[y][x - 1].occupant = attacker;
+                    Game.creatureZones[y][x - 1].occupant = attacker;
                     return true;
                 case Direction.right:
-                    Game.animalZones[y][x + 1].occupant = attacker;
+                    Game.creatureZones[y][x + 1].occupant = attacker;
                     return true;
             }
             return false;
@@ -85,34 +85,34 @@ namespace ZooManager
             switch (d)
             {
                 case Direction.up:
-                    if (y > 0 && Game.animalZones[y - 1][x].occupant == null)
+                    if (y > 0 && Game.creatureZones[y - 1][x].occupant == null)
                     {
-                        Game.animalZones[y - 1][x].occupant = runner;
-                        Game.animalZones[y][x].occupant = null;
+                        Game.creatureZones[y - 1][x].occupant = runner;
+                        Game.creatureZones[y][x].occupant = null;
                         return true; // retreat was successful
                     }
                     return false; // retreat was not successful
                 case Direction.down:
-                    if (y < Game.numCellsY - 1 && Game.animalZones[y + 1][x].occupant == null)
+                    if (y < Game.numCellsY - 1 && Game.creatureZones[y + 1][x].occupant == null)
                     {
-                        Game.animalZones[y + 1][x].occupant = runner;
-                        Game.animalZones[y][x].occupant = null;
+                        Game.creatureZones[y + 1][x].occupant = runner;
+                        Game.creatureZones[y][x].occupant = null;
                         return true;
                     }
                     return false;
                 case Direction.left:
-                    if (x > 0 && Game.animalZones[y][x - 1].occupant == null)
+                    if (x > 0 && Game.creatureZones[y][x - 1].occupant == null)
                     {
-                        Game.animalZones[y][x - 1].occupant = runner;
-                        Game.animalZones[y][x].occupant = null;
+                        Game.creatureZones[y][x - 1].occupant = runner;
+                        Game.creatureZones[y][x].occupant = null;
                         return true;
                     }
                     return false;
                 case Direction.right:
-                    if (x < Game.numCellsX - 1 && Game.animalZones[y][x + 1].occupant == null)
+                    if (x < Game.numCellsX - 1 && Game.creatureZones[y][x + 1].occupant == null)
                     {
-                        Game.animalZones[y][x + 1].occupant = runner;
-                        Game.animalZones[y][x].occupant = null;
+                        Game.creatureZones[y][x + 1].occupant = runner;
+                        Game.creatureZones[y][x].occupant = null;
                         return true;
                     }
                     return false;
@@ -141,10 +141,10 @@ namespace ZooManager
                 switch (direction)
                 {
                     case Direction.up:
-                        if (y > 0 && Game.animalZones[y - currentDistance][x].occupant == null)
+                        if (y > 0 && Game.creatureZones[y - currentDistance][x].occupant == null)
                         {
-                            Game.animalZones[y - currentDistance][x].occupant = mover;
-                            Game.animalZones[y - (currentDistance - 1)][x].occupant = null;
+                            Game.creatureZones[y - currentDistance][x].occupant = mover;
+                            Game.creatureZones[y - (currentDistance - 1)][x].occupant = null;
                         }
                         else
                         {
@@ -153,10 +153,10 @@ namespace ZooManager
 
                         break;
                     case Direction.down:
-                        if (y < Game.numCellsY - 1 && Game.animalZones[y + currentDistance][x].occupant == null)
+                        if (y < Game.numCellsY - 1 && Game.creatureZones[y + currentDistance][x].occupant == null)
                         {
-                            Game.animalZones[y + currentDistance][x].occupant = mover;
-                            Game.animalZones[y + (currentDistance - 1)][x].occupant = null;
+                            Game.creatureZones[y + currentDistance][x].occupant = mover;
+                            Game.creatureZones[y + (currentDistance - 1)][x].occupant = null;
                         }
                         else
                         {
@@ -164,10 +164,10 @@ namespace ZooManager
                         }
                         break;
                     case Direction.left:
-                        if (x > 0 && Game.animalZones[y][x - currentDistance].occupant == null)
+                        if (x > 0 && Game.creatureZones[y][x - currentDistance].occupant == null)
                         {
-                            Game.animalZones[y][x - currentDistance].occupant = mover;
-                            Game.animalZones[y][x - (currentDistance - 1)].occupant = null;
+                            Game.creatureZones[y][x - currentDistance].occupant = mover;
+                            Game.creatureZones[y][x - (currentDistance - 1)].occupant = null;
                         }
                         else
                         {
@@ -175,10 +175,10 @@ namespace ZooManager
                         }
                         break;
                     case Direction.right:
-                        if (x < Game.numCellsX - 1 && Game.animalZones[y][x + currentDistance].occupant == null)
+                        if (x < Game.numCellsX - 1 && Game.creatureZones[y][x + currentDistance].occupant == null)
                         {
-                            Game.animalZones[y][x + currentDistance].occupant = mover;
-                            Game.animalZones[y][x + (currentDistance - 1)].occupant = null;
+                            Game.creatureZones[y][x + currentDistance].occupant = mover;
+                            Game.creatureZones[y][x + (currentDistance - 1)].occupant = null;
                         }
                         else
                         {

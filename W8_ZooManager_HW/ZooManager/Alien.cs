@@ -58,12 +58,12 @@ namespace ZooManager
                 }
 
                 if (y < 0 || x < 0 || y > Game.numCellsY - 1 || x > Game.numCellsX - 1) return 0;
-                if (Game.animalZones[y][x].occupant == null)
+                if (Game.creatureZones[y][x].occupant == null)
                 {
                     return 0;
                 }
                 //if it finds out anything not Alien successfully
-                if(Game.animalZones[y][x].occupant.GetType() != typeof(Alien))
+                if(Game.creatureZones[y][x].occupant.GetType() != typeof(Alien))
                 {
                     return currentDistance;
                 };
