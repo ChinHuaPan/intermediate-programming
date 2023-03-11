@@ -86,7 +86,7 @@ namespace ZooManager
                 holdingPen.occupant.location.x = -1;
                 holdingPen.occupant.location.y = -1;
                 clickedZone.occupant = null;
-                ActivateAnimals();
+                ActivateCreatures();
             }
             else if (holdingPen.occupant != null && clickedZone.occupant == null)
             {
@@ -96,7 +96,7 @@ namespace ZooManager
                 clickedZone.occupant.location = clickedZone.location;
                 holdingPen.occupant = null;
                 Console.WriteLine("Empty spot now holds: " + clickedZone.emoji);
-                ActivateAnimals();
+                ActivateCreatures();
             }
             else if (holdingPen.occupant != null && clickedZone.occupant != null)
             {
@@ -120,7 +120,7 @@ namespace ZooManager
             if (animalType == "chick") holdingPen.occupant = new Chick("Clucky");
             if (animalType == "alien") holdingPen.occupant = new Alien("Ety");
             Console.WriteLine($"Holding pen occupant at {holdingPen.occupant.location.x},{holdingPen.occupant.location.y}");
-            ActivateAnimals();
+            ActivateCreatures();
         }
 
         /////////////// 👉 o: fix multiple Activate()  /////////////////
@@ -130,7 +130,7 @@ namespace ZooManager
          * INPUT: none
          * OUTPUT: none
          * **/
-        static private void ActivateAnimals()
+        static private void ActivateCreatures()
         {
             for (var r = 1; r < 11; r++) // reaction times from 1 to 10
             {
