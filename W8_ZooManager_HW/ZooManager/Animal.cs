@@ -4,7 +4,6 @@ namespace ZooManager
     public class Animal : Creature
     {
 
-        /////////////// 👉 o: fix multiple Activate()  /////////////////
         /*********** Activate() *************
          * Act a movement and return whether it has movement or not
          * Called by Game class
@@ -17,7 +16,6 @@ namespace ZooManager
             return false;
         }
 
-        /////////////// 👉 f: modify seek method /////////////////
         /*********** Seek() *************
          * Seek a particular target animal by checking direction in order
          * Called by each animal classes
@@ -60,6 +58,88 @@ namespace ZooManager
 
         }
 
+        /*********** Hunt() *************
+         * Find out cat or mouse to hunt or do nothing
+         * Called by: none
+         * INPUT: none
+         * OUTPUT: bool --> whether it hunt or not
+         * **/
+        public bool Hunt(string[] preys)
+        {
+            for (int i = 0; i < preys.Length; i++)
+            {
+                if (Convert.ToBoolean(Seek(location.x, location.y, Direction.up, preys[i])))
+                {
+                    if (Attack(this, Direction.up))
+                    {
+                        return true;
+                    }
+                }
+                else if (Convert.ToBoolean(Seek(location.x, location.y, Direction.down, preys[i])))
+                {
+                    if (Attack(this, Direction.down))
+                    {
+                        return true;
+                    }
+                }
+                else if (Convert.ToBoolean(Seek(location.x, location.y, Direction.left, preys[i])))
+                {
+                    if (Attack(this, Direction.left))
+                    {
+                        return true;
+                    }
+                }
+                else if (Convert.ToBoolean(Seek(location.x, location.y, Direction.right, preys[i])))
+                {
+                    if (Attack(this, Direction.right))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            return false;
+        }
 
+        /*********** Flee() *************
+         * Find out raptor to flee
+         * Called by: none
+         * INPUT: none
+         * OUTPUT: bool --> whether it has movement
+         * **/
+        virtual public bool Flee(string predator)
+        {
+            if (Convert.ToBoolean(Seek(location.x, location.y, Direction.up, predator)))
+            {
+                if (Retreat(this, Direction.down))
+                {
+                    return true;
+                }
+            }
+            if (Convert.ToBoolean(Seek(location.x, location.y, Direction.down, predator)))
+            {
+                if (Retreat(this, Direction.up))
+                {
+                    return true;
+                }
+            }
+            if (Convert.ToBoolean(Seek(location.x, location.y, Direction.left, predator)))
+            {
+                if (Retreat(this, Direction.right))
+                {
+                    return true;
+                }
+            }
+            if (Convert.ToBoolean(Seek(location.x, location.y, Direction.right, predator)))
+            {
+                if (Retreat(this, Direction.left))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
+
 }
