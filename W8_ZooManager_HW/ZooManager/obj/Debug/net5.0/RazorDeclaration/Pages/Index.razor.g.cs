@@ -91,7 +91,7 @@ using ZooManager;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 128 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W8_ZooManager_HW/ZooManager/Pages/Index.razor"
+#line 134 "/Users/chin-huapan/Documents/Northeastern University/2023winter_DGM6983_Intermediate Programming for Digital Media/intermediate-programming/W8_ZooManager_HW/ZooManager/Pages/Index.razor"
        
     protected override void OnInitialized()
     {

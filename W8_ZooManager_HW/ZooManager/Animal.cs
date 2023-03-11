@@ -20,7 +20,7 @@ namespace ZooManager
          * INPUT: none
          * OUTPUT: bool --> has movement or not
          * **/
-        virtual public bool Activate()
+        override public bool Activate()
         {
             Console.WriteLine($"Animal {name} at {location.x},{location.y} activated");
             return false;
