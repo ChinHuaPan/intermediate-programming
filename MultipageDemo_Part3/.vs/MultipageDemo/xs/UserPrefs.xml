@@ -1,0 +1,51 @@
+﻿<Properties StartupConfiguration="{F0AE8BE7-BD2D-48E2-83DA-0E5DACA56A9B}|Default">
+  <MonoDevelop.Ide.ItemProperties.MultipageDemo PreferredExecutionTarget="/Applications/Microsoft Edge.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MultipageDemo/Components/MyFirstComponent.razor">
+    <Files>
+      <File FileName="MultipageDemo/Pages/Counter.razor" Line="6" Column="45" />
+      <File FileName="MultipageDemo/Shared/MainLayout.razor" />
+      <File FileName="MultipageDemo/Shared/NavMenu.razor" />
+      <File FileName="MultipageDemo/Shared/SurveyPrompt.razor" />
+      <File FileName="MultipageDemo/Pages/Index.razor" Line="15" Column="1" />
+      <File FileName="MultipageDemo/Pages/FetchData.razor" />
+      <File FileName="../../../../../usr/local/share/dotnet/sdk/7.0.201/Sdks/Microsoft.NET.Sdk.Razor/targets/Sdk.Razor.CurrentVersion.targets" />
+      <File FileName="MultipageDemo/Pages/Admin/AdminUsers.razor" />
+      <File FileName="MultipageDemo/Pages/Admin/_Imports.razor" />
+      <File FileName="MultipageDemo/Shared/AdminLayout.razor" />
+      <File FileName="MultipageDemo/Components/MyFirstComponent.razor" Line="10" Column="32" />
+      <File FileName="MultipageDemo/_Imports.razor" />
+      <File FileName="MultipageDemo/Components/MySecondComponent.razor" />
+      <File FileName="MultipageDemo/Services/AppData.cs" />
+      <File FileName="MultipageDemo/Program.cs" />
+      <File FileName="MultipageDemo/App.razor" />
+      <File FileName="MultipageDemo/Components/DisplayComponent.razor" Line="3" Column="71" />
+      <File FileName="MultipageDemo/Components/InputComponent.razor" Line="5" Column="31" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="MultipageDemo" expanded="True">
+            <Node name="MultipageDemo" expanded="True">
+              <Node name="Components" expanded="True">
+                <Node name="MyFirstComponent.razor" selected="True" />
+              </Node>
+              <Node name="Pages" expanded="True">
+                <Node name="Admin" expanded="True" />
+              </Node>
+              <Node name="Properties" expanded="True" />
+              <Node name="Services" expanded="True" />
+              <Node name="Shared" expanded="True" />
+              <Node name="wwwroot" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

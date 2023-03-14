@@ -1,0 +1,30 @@
+﻿@page "/"
+@inject Services.AppData AppData
+
+<PlayerComponent />
+<hr />
+<PlayerComponent />
+<hr />
+<PlayerComponent />
+<hr />
+
+<button class="btn btn-primary" @onclick=IncrementScore>Hit me</button>
+<button class="btn btn-primary" @onclick=NextPlayer>Skip me</button>
+
+@code {
+
+    private void IncrementScore()
+    {
+        AppData.playerScores[AppData.currentPlayer]++;
+        Console.WriteLine("Player " + AppData.currentPlayer + " has "
+            + AppData.playerScores[AppData.currentPlayer]);
+        NextPlayer();
+    }
+
+    private void NextPlayer()
+    {
+        AppData.currentPlayer++;
+        if (AppData.currentPlayer >= AppData.playerScores.Count()) AppData.currentPlayer = 0;
+        StateHasChanged();
+    }
+}

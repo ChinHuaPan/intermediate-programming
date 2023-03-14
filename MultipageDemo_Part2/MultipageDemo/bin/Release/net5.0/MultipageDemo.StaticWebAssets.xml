@@ -1,0 +1,4 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="/" Path="/Users/jay/NU/DGM6308_Winter2023/MultipageDemo/MultipageDemo/bin/Release/net5.0/wwwroot/" />
+  <ContentRoot BasePath="/" Path="/Users/jay/NU/DGM6308_Winter2023/MultipageDemo/MultipageDemo/obj/Release/net5.0/scopedcss/bundle/" />
+</StaticWebAssets>

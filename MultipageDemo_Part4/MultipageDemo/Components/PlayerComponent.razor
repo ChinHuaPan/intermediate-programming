@@ -1,0 +1,18 @@
+﻿@inject Services.AppData AppData
+
+<h1 style="background-color:@(AppData.currentPlayer == myPlayerNum ? "#33FFFF" : "#FFFFFF")">
+    My Player #: @myPlayerNum</h1>
+<h2>My Score: @AppData.playerScores[myPlayerNum]</h2>
+@code {
+
+    private int myPlayerNum;
+
+    protected override void OnInitialized()
+    {
+        myPlayerNum = AppData.playerScores.Count();
+        AppData.playerScores.Add(0);
+        AppData.OnChange += StateHasChanged;
+    }
+
+}
+
