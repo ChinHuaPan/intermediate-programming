@@ -1,6 +1,11 @@
 ﻿@page "/"
 @inject NavigationManager NavManager
 
+@*.primaryBtn{
+background-color: black;
+
+}*@
+
 <div class="container">
     <div class="col-12 mx-auto">
         <div class="row mt-5 align-middle">
@@ -16,8 +21,8 @@
                     values as near to 21 as possible without exceeding or 'busting' it.
                 </p>
             </div>
-            <div class="row mx-auto my-2">
-                <button type="button" class="btn btn-primary" @onclick="GoToSetPlayers">Play</button>
+            <div class="row mx-auto my-2 primaryBtn">
+                <button type="button" class="btn btn-primary btn-block" @onclick="GoToSetPlayers">Play</button>
             </div>
         </div>
     </div>
