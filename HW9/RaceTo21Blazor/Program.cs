@@ -19,7 +19,7 @@ namespace RaceTo21Blazor
             Deck deck = new Deck();
             List<Player> players = new List<Player>();
 
-            deck.initializeGame(players);
+            //deck.initializeGame(players);
 
 
             var builder = WebAssemblyHostBuilder.CreateDefault(args);

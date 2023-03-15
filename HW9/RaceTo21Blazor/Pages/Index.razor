@@ -1,7 +1,55 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+<div class="container">
+    <div class="col-12 mx-auto">
+        <div class="row mt-5 align-middle">
+            <h1 class="mx-auto font-italic">Race to 21</h1>
+        </div>
+        <div class="row mt-5 mx-auto border border-warning rounded w-75 p-5">
+            <div class="row mx-auto my-2">
+                <h2>Play with your friends!</h2>
+            </div>
+            <div class="row mx-auto my-2">
+                <p class="text-center">
+                    The goal of this game is to amount your card
+                    values as near to 21 as possible without exceeding or 'busting' it.
+                </p>
+            </div>
+            <div class="row mx-auto my-2">
+                <button type="button" class="btn btn-primary" >Play</button>
+            </div>
+        </div>
+    </div>
 
-Welcome to your new app.
+        @*<div class="col-4">
+            @if (pickedCards == null)
+            {
+                <button type="button" class="btn btn-primary" @onclick="ShuffleDeck">Shuffle Deck</button>
+            }
+            else
+            {
+                <ul class="list-group">
+                    @foreach (var card in pickedCards)
+                    {
+                        <li class="list-group-item">
+                            <img src="card_assets/@card" />
+                        </li>
+                    }
+                </ul>
+            }
+        </div>*@
+</div>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code {
+    @*int numberOfCards = 5;
+    string[] pickedCards = new string[0];
+    void UpdateCards()
+    {
+        pickedCards = CardPicker.PickSomeCards(numberOfCards);
+    }
+
+    void ShuffleDeck()
+    {
+        CardPicker.BuildDeck();
+    }*@
+}
