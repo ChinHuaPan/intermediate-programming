@@ -10,7 +10,7 @@ namespace RaceTo21Blazor
         Deck deck = new Deck(); // deck of cards
         int currentPlayer = 0; // current player on list
         static public bool everyoneIsStay = true;  // is everyone stay?
-        public Task nextTask; // keeps track of game state
+        public Tasks nextTask; // keeps track of game state
 
         public Game(CardTable c, List<Player> playersTemp) //add one more signature to pass the previous players who keeps playing
         {
@@ -24,11 +24,11 @@ namespace RaceTo21Blazor
              * ***/
             if(playersTemp.Count == 0)
             {
-                nextTask = Task.GetPlayerList;
+                nextTask = Tasks.GetPlayerList;
             }
             else
             {
-                nextTask = Task.IntroducePlayers;
+                nextTask = Tasks.IntroducePlayers;
             }
             
         }
@@ -58,22 +58,22 @@ namespace RaceTo21Blazor
              * We use this condition to check the current task status
              * ******************************************************************/
 
-            if (nextTask == Task.GetPlayerList) // do the task: get the player list from console
+            if (nextTask == Tasks.GetPlayerList) // do the task: get the player list from console
             {
                 players = cardTable.GetPlayers(); // get player list
-                nextTask = Task.IntroducePlayers; // change next task to introduce players
+                nextTask = Tasks.IntroducePlayers; // change next task to introduce players
             }
-            else if (nextTask == Task.IntroducePlayers) // introduce players
+            else if (nextTask == Tasks.IntroducePlayers) // introduce players
             {
                 deck.shufflePlayers(players); // shuffle the players (to ensure the same person doesn’t always win a tiebreaker)
                 cardTable.ShowPlayers(players); // show all players
-                nextTask = Task.PlayerTurn; // change next task to player turns
+                nextTask = Tasks.PlayerTurn; // change next task to player turns
             }
             else if (cardTable.CheckOthersBust(players, currentPlayer)) // if there is only one player doesn't bust
             {
                 OverGame(); // game is over
             }
-            else if (nextTask == Task.PlayerTurn) // player turns
+            else if (nextTask == Tasks.PlayerTurn) // player turns
             {
                 cardTable.ShowHands(players); // show the player's cards
                 Player player = players[currentPlayer]; // pass current player
@@ -93,7 +93,7 @@ namespace RaceTo21Blazor
                         else if (player.score == 21 || player.cards.Count == 5) // if score exactly hits 21 or the player already has 5 cards
                         {
                             player.status = PlayerStatus.win; // change the player's status to win
-                            nextTask = Task.CheckForEnd;  // change next task to CheckForEnd
+                            nextTask = Tasks.CheckForEnd;  // change next task to CheckForEnd
 
                             OverGame(); // game is over
                         }
@@ -104,14 +104,14 @@ namespace RaceTo21Blazor
                     }
                 }
 
-                if(nextTask != Task.GameOver) // if game isn't over yet
+                if(nextTask != Tasks.GameOver) // if game isn't over yet
                 {
                     //cardTable.ShowHand(player);
-                    nextTask = Task.CheckForEnd; // change next task to CheckForEnd
+                    nextTask = Tasks.CheckForEnd; // change next task to CheckForEnd
                 }
                 
             }
-            else if (nextTask == Task.CheckForEnd) // check for end this round
+            else if (nextTask == Tasks.CheckForEnd) // check for end this round
             {
                 if (!CheckActivePlayers()) // if there is no active players
                 {
@@ -126,13 +126,13 @@ namespace RaceTo21Blazor
                     {
                         currentPlayer = 0; // back to the first player...
                     }
-                    nextTask = Task.PlayerTurn; // change next task to player turns
+                    nextTask = Tasks.PlayerTurn; // change next task to player turns
                 }
             }
             else // we shouldn't get here...
             {
                 Console.WriteLine("I'm sorry, I don't know what to do now!");
-                nextTask = Task.GameOver; // change next task to game over
+                nextTask = Tasks.GameOver; // change next task to game over
             }
         }
 
@@ -266,7 +266,7 @@ namespace RaceTo21Blazor
                 deck.initializeGame(playersTemp); //initialize the game
 
             }
-            nextTask = Task.GameOver; // change the next task to game over
+            nextTask = Tasks.GameOver; // change the next task to game over
         }
     }
 }

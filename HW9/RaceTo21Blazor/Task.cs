@@ -1,7 +1,7 @@
 ﻿using System;
 namespace RaceTo21Blazor
 {
-    public enum Task
+    public enum Tasks
     {
         GetPlayerList,
         IntroducePlayers,

@@ -22,7 +22,7 @@ namespace RaceTo21Blazor
         {
             for (int i = 0; i < players.Count; i++)
             {
-                players[i].Introduce(i+1); // List is 0-indexed but user-friendly player positions would start with 1...
+                players[i].Introduce(i + 1); // List is 0-indexed but user-friendly player positions would start with 1...
             }
         }
 
@@ -38,8 +38,10 @@ namespace RaceTo21Blazor
             List<Player> inputPlayers = new List<Player>();
             string[] playerNames;
 
-            while (true) {
-                string response = Console.ReadLine(); // read from console
+            while (true)
+            {
+                //TODO:read
+                string response = "2 adf"; // read from console
 
                 // Use TrimStart() and TrimEnd() to remove "space" in the response
                 // Reference: https://stackoverflow.com/questions/3381952/how-to-remove-all-white-space-from-the-beginning-or-end-of-a-string
@@ -57,11 +59,11 @@ namespace RaceTo21Blazor
             }
 
             // create player with name
-            for( int i=0; i < playerNames.Length; i++)
+            for (int i = 0; i < playerNames.Length; i++)
             {
-                inputPlayers.Add(new Player (playerNames[i]));
+                inputPlayers.Add(new Player(playerNames[i]));
             }
- 
+
             return inputPlayers;
         }
 
@@ -76,7 +78,8 @@ namespace RaceTo21Blazor
             while (true)
             {
                 Console.Write(player.name + ", do you want a card? (Y/N)");
-                string response = Console.ReadLine();
+                //TODO:ask someone if he wants a card
+                string response = "y";
 
                 if (response.ToUpper().StartsWith("Y"))
                 {
@@ -101,7 +104,7 @@ namespace RaceTo21Blazor
          */
         public void ShowHand(Player player)
         {
-            
+
             if (player.cards.Count > 0)
             {
                 Console.Write(player.name + " has: ");
@@ -145,8 +148,8 @@ namespace RaceTo21Blazor
                 ShowHand(player); // show card or status
             }
 
-                Console.WriteLine("-----");
-            
+            Console.WriteLine("-----");
+
         }
 
         /* ********* AnnounceWinner() **********
@@ -163,7 +166,8 @@ namespace RaceTo21Blazor
                 if (player.score == 21) // is the player hits 21
                 {
                     Console.WriteLine(player.name + " hits 21!");
-                }else if (player.cards.Count == 5) // if the player has already 5 cards
+                }
+                else if (player.cards.Count == 5) // if the player has already 5 cards
                 {
                     Console.WriteLine(player.name + " has 5 cards and haven't bustted yet!");
                 }
@@ -175,7 +179,7 @@ namespace RaceTo21Blazor
                 {
                     Console.WriteLine(player.name + " has the highest score and others bust!");
                 }
-               
+
             }
             else if (Game.everyoneIsStay) // if everyone is stay
             {
@@ -185,7 +189,7 @@ namespace RaceTo21Blazor
             {
                 Console.WriteLine("Everyone busted!");
             }
-            
+
         }
 
         /* ********* CheckOthersBust() **********
@@ -199,9 +203,9 @@ namespace RaceTo21Blazor
         {
             bool othersAreBust = true;
 
-            for(int i=0; i < players.Count; i++)
+            for (int i = 0; i < players.Count; i++)
             {
-                if(i != current)
+                if (i != current)
                 {
                     // default value of otherAreBust is TRUE
                     // thus, if there is any FALSE to && otherAreBust will be FALSE
@@ -227,7 +231,7 @@ namespace RaceTo21Blazor
                 // default value of everyoneIsStay is TRUE
                 // thus, if there is any FALSE to && everyoneIsStay will be FALSE
                 // if (player.status == PlayerStatus.stay) is FALSE, that means the one is not stay
-                Game.everyoneIsStay = Game.everyoneIsStay && (player.status == PlayerStatus.stay); 
+                Game.everyoneIsStay = Game.everyoneIsStay && (player.status == PlayerStatus.stay);
             }
 
             return Game.everyoneIsStay;
@@ -244,8 +248,10 @@ namespace RaceTo21Blazor
         {
             Console.Write("Play again...? (Y/N)");
 
-            while (true) {
-                string response = Console.ReadLine();
+            while (true)
+            {
+                //TODO:play again?
+                string response = "y";
 
                 if (response.ToUpper().StartsWith("Y")) // if the player says yes
                 {
@@ -280,8 +286,9 @@ namespace RaceTo21Blazor
 
             while (true)
             {
-                response = Console.ReadLine();
-                
+                //TODO:ask modify player list
+                response = "haha, good";
+
                 // Use TrimStart() and TrimEnd() to remove "space" in the response
                 // Reference: https://stackoverflow.com/questions/3381952/how-to-remove-all-white-space-from-the-beginning-or-end-of-a-string
                 playerNames = response.TrimStart().TrimEnd().Split(" ");
@@ -305,7 +312,7 @@ namespace RaceTo21Blazor
                 {
                     playersTemp.Add(new Player(playerNames[i]));
                 }
-                
+
             }
             else
             {

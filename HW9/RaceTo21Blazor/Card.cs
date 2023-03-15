@@ -31,9 +31,11 @@ namespace RaceTo21Blazor
 
         public string Id
         {
-            get {
+            get
+            {
 
-                return $"{ (int)Value}{Suit.ToString().Substring(0,1)}"; }
+                return $"{ (int)Value}{Suit.ToString().Substring(0, 1)}";
+            }
         }
 
     }

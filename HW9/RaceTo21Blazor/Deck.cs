@@ -65,7 +65,7 @@ namespace RaceTo21Blazor
             Random rng = new Random(); // create a random
 
             // use this loop to switch the positions of cards
-            for (int i=0; i<cards.Count; i++)
+            for (int i = 0; i < cards.Count; i++)
             {
                 Card tmp = cards[i];
                 int swapindex = rng.Next(cards.Count);
@@ -99,7 +99,7 @@ namespace RaceTo21Blazor
             CardTable cardTable = new CardTable(); // create a new cardTable
             Game game = new Game(cardTable, players); // create a new game
 
-            while (game.nextTask != Task.GameOver) // when game is not over
+            while (game.nextTask != Tasks.GameOver) // when game is not over
             {
                 game.DoNextTask(); // do the next task
             }

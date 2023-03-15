@@ -14,12 +14,22 @@ namespace RaceTo21Blazor
     {
         public static async Task Main(string[] args)
         {
+            //CardTable cardTable = new CardTable();
+            //Game game = new Game(cardTable);
+            Deck deck = new Deck();
+            List<Player> players = new List<Player>();
+
+            deck.initializeGame(players);
+
+
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             await builder.Build().RunAsync();
+
+
         }
     }
 }
