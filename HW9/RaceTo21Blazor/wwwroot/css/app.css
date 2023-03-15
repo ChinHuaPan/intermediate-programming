@@ -8,11 +8,40 @@ a, .btn-link {
     color: #0366d6;
 }
 
+/* Edited */
 .btn-primary {
     color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    border-color: #262626;
+    background-color: #262626;
+    min-width: 150px;
+    border-radius: 15px;
+    height: 50px;
 }
+
+/* Edited */
+.btn-primary:hover {
+    background-color: #FEC128;
+    border: none;
+    color: #262626;
+}
+
+/* Edited */
+.btn-secondary {
+    color: #262626;
+    border: 3px solid #262626;
+    background-color: #FFF;
+    min-width: 150px;
+    border-radius: 15px;
+    height: 50px;
+}
+
+/* Edited */
+.btn-primary:hover {
+    background-color: #FEC128;
+    border: none;
+    color: #262626;
+}
+
 
 .content {
     padding-top: 1.1rem;
@@ -48,3 +77,31 @@ a, .btn-link {
         right: 0.75rem;
         top: 0.5rem;
     }
+
+/**********************************/
+.descriptionBlock {
+    border: 3px solid #FEC128;
+    border-radius: 25px;
+    min-height:100px;
+}
+
+.nameBackground{
+    background-color:#FFF;
+    padding:2px;
+}
+
+.cardBlock {
+    max-width: 300px;
+    height: 70px;
+    border: 3px solid #262626;
+    border-radius: 15px;
+}
+
+.nameOverlap {
+    text-shadow: #FFF 1px 0 5px;
+}
+
+.optionBlock {
+    background-color: #FEC128;
+    border-radius:15px;
+}

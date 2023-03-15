@@ -1,17 +1,14 @@
 ﻿@page "/"
 @inject NavigationManager NavManager
 
-@*.primaryBtn{
-background-color: black;
 
-}*@
 
 <div class="container">
     <div class="col-12 mx-auto">
         <div class="row mt-5 align-middle">
             <h1 class="mx-auto font-italic">Race to 21</h1>
         </div>
-        <div class="row mt-5 mx-auto border border-warning rounded w-75 p-5">
+        <div class="row mt-5 mx-auto w-75 p-5 descriptionBlock">
             <div class="row mx-auto my-2">
                 <h2>Play with your friends!</h2>
             </div>
@@ -21,8 +18,8 @@ background-color: black;
                     values as near to 21 as possible without exceeding or 'busting' it.
                 </p>
             </div>
-            <div class="row mx-auto my-2 primaryBtn">
-                <button type="button" class="btn btn-primary btn-block" @onclick="GoToSetPlayers">Play</button>
+            <div class="row mx-auto my-2 ">
+                <button type="button" class="btn btn-primary" @onclick="GoToSetPlayers">Play</button>
             </div>
         </div>
     </div>

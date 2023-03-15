@@ -11,7 +11,7 @@
             </div>
             <div class="row my-3">
                 <div class="col d-flex flex-wrap flex-column align-content-center" style="height: 250px; ">
-                    @for (int playerNum = 0; playerNum < 8; playerNum++)
+                    @for (int player = 0; player < playerAllNum; player++)
                     {
                         <PlayersNameField></PlayersNameField>
                     }
@@ -25,6 +25,7 @@
     </div>
 
         @code {
+            int playerAllNum = 8;
 
             private void StartGame()
             {
