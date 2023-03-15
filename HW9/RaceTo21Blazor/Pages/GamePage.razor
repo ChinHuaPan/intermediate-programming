@@ -8,17 +8,17 @@
         <div class="row mt-5 align-middle">
             <h1 class="mx-auto font-italic">Race to 21</h1>
         </div>
-        <div class="row my-3 mx-auto d-flex align-items-center descriptionBlock">
+        <div class="row my-3 mx-auto d-flex align-items-center description-block">
             <h3 class="mx-auto">Emily hits 21!!</h3>
         </div>
-        <div class="row my-3">
-            <div class="col-9 mx-auto d-flex flex-wrap flex-column align-content-center" style="height: 500px;">
+        <div class="row my-5 mx-2 d-flex justify-content-center">
+            <div class="col-9 d-flex flex-wrap flex-column align-items-center " style="height: 500px;">
                     @for (int player = 0; player < 8; player++)
                     {
                         <PlayerBlock></PlayerBlock>
                     }
             </div>
-            <div class="col-3 d-flex align-items-start">
+            <div class="col-3 ">
                 <PlayerChoice></PlayerChoice>
             </div>
         </div>
