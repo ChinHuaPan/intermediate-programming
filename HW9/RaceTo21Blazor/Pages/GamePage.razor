@@ -1,0 +1,24 @@
+﻿@page "/game"
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+    <h1>Weather forecast</h1>
+
+    <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+
+    <button class="btn btn-primary" @onclick="GoToGamePage">Click me2</button>
+
+
+    @code{
+     
+        protected void GoToGamePage()
+        {
+            NavManager.NavigateTo("/");
+        }
+
+        private void IncrementCount()
+        {
+            NavManager.NavigateTo("/game");
+        }
+    }

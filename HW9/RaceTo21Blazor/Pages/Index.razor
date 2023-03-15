@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject NavigationManager NavManager
 
 <div class="container">
     <div class="col-12 mx-auto">
@@ -16,12 +17,12 @@
                 </p>
             </div>
             <div class="row mx-auto my-2">
-                <button type="button" class="btn btn-primary" >Play</button>
+                <button type="button" class="btn btn-primary" @onclick="GoToSetPlayers">Play</button>
             </div>
         </div>
     </div>
 
-        @*<div class="col-4">
+    @*<div class="col-4">
             @if (pickedCards == null)
             {
                 <button type="button" class="btn btn-primary" @onclick="ShuffleDeck">Shuffle Deck</button>
@@ -42,14 +43,23 @@
 
 @code {
     @*int numberOfCards = 5;
-    string[] pickedCards = new string[0];
-    void UpdateCards()
-    {
-        pickedCards = CardPicker.PickSomeCards(numberOfCards);
-    }
+        string[] pickedCards = new string[0];
+        void UpdateCards()
+        {
+            pickedCards = CardPicker.PickSomeCards(numberOfCards);
+        }
 
-    void ShuffleDeck()
+        void ShuffleDeck()
+        {
+            CardPicker.BuildDeck();
+        }*@
+}
+
+@code{
+
+    int playerNum = 1;
+    protected void GoToSetPlayers()
     {
-        CardPicker.BuildDeck();
-    }*@
+        NavManager.NavigateTo("/set");
+    }
 }

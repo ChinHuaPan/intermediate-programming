@@ -1,0 +1,32 @@
+﻿@page "/set"
+@inject NavigationManager NavManager
+
+<div class="container">
+    <h2>Who are the players?</h2>
+    <small>Please enter at least 2 player's name.</small>
+    <div class="row border d-flex flex-wrap" style="height: 200px;">
+        <div class="col ">
+            @for (int i = 0; i < 8; i++)
+            {
+                <PlayersNameField></PlayersNameField>
+            }
+        </div>
+    </div>
+
+    <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+</div>
+
+        @code {
+
+            private void IncrementCount()
+            {
+                NavManager.NavigateTo("/game");
+            }
+
+            protected void GoToGamePage()
+            {
+                NavManager.NavigateTo("/");
+            }
+        }
+        
