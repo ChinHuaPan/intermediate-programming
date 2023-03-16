@@ -1,29 +1,91 @@
 ﻿@page "/set"
 @inject NavigationManager NavManager
-
-
-<div class="container ">
-    <div class="col-8 mx-auto ">
-        <div class="row mt-5 align-middle ">
-            <h2 class="mx-auto">Who are the players?</h2>
-        </div>
-        <div class="row my-2">
-            <small class="mx-auto">Please enter at least 2 player's name.</small>
-        </div>
-        <div class="row my-3">
-            <div class="col d-flex flex-wrap flex-column align-content-center" style="height: 250px; ">
-                @for (int player = 0; player < playerAllNum; player++)
-                {
-                    <PlayersNameField></PlayersNameField>
-                }
+<!-- Modal -->
+@*<div class="modal fade" id="setPlayersModal" tabindex="-1" role="dialog" aria-labelledby="setPlayersModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="setPlayersModalTitle">Who are the players?</h5>
+                    <h2 class="mx-auto">Who are the players?</h2>
+                    <small class="mx-auto">Please enter at least 2 player's name.</small>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row my-3">
+                        <div class="col d-flex flex-wrap flex-column align-content-center" style="height: 250px; ">
+                            @for (int player = 0; player < playerAllNum; player++)
+                            {
+                                <PlayersNameField></PlayersNameField>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="GoBack">Close</button>
+                    <button type="button" class="btn btn-primary" @onclick="StartGame">Start</button>
+                </div>
             </div>
         </div>
-        <div class="row my-2">
-            <button class="btn btn-primary mx-auto" @onclick="GoBack">Back</button>
-            <button class="btn btn-primary mx-auto" @onclick="StartGame">Start</button>
+    </div>*@
+
+@*<div class="modal fade @ModalClass" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+              
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="() => Close()">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<div class="modal @ModalClass" tabindex="-1" role="dialog" style="display:@ModalDisplay">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header row">
+                @*<h5 class="modal-title" id="setPlayersModalTitle">Who are the players?</h5>*@
+                <h2 class="mx-auto">Who are the players?<br></h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="() => Close()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <small class="mx-auto text-center">Please enter at least 2 player's name.</small>
+            </div>
+            <div class="modal-body">
+                <div class="row my-3">
+                    <div class="col d-flex flex-wrap flex-column align-content-center" style="height: 250px; ">
+                        @for (int player = 0; player < playerAllNum; player++)
+                        {
+                            <PlayersNameField></PlayersNameField>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="() => Close()">Close</button>
+                <button type="button" class="btn btn-primary" @onclick="StartGame">Save changes</button>
+            </div>
         </div>
     </div>
 </div>
+
+@if (ShowBackdrop)
+{
+    <div class="modal-backdrop fade show"></div>
+}
+
+
 
 @code {
     int playerAllNum = 8;
@@ -33,9 +95,56 @@
         NavManager.NavigateTo("/game");
     }
 
-    protected void GoBack()
+    public Guid Guid = Guid.NewGuid();
+    public string ModalDisplay = "none;";
+    public string ModalClass = "";
+    public bool ShowBackdrop = false;
+
+    public void Open()
     {
-        NavManager.NavigateTo("/");
+        ModalDisplay = "block;";
+        ModalClass = "Show";
+        ShowBackdrop = true;
+        StateHasChanged();
+    }
+
+    public void Close()
+    {
+        ModalDisplay = "none";
+        ModalClass = "";
+        ShowBackdrop = false;
+        StateHasChanged();
     }
 }
+
+
+<!---->
+@*<div class="container ">
+        <div class="col-8 mx-auto ">
+            <div class="row mt-5 align-middle ">
+                <h2 class="mx-auto">Who are the players?</h2>
+            </div>
+            <div class="row my-2">
+                <small class="mx-auto">Please enter at least 2 player's name.</small>
+            </div>
+            <div class="row my-3">
+                <div class="col d-flex flex-wrap flex-column align-content-center" style="height: 250px; ">
+                    @for (int player = 0; player < playerAllNum; player++)
+                    {
+                        <PlayersNameField></PlayersNameField>
+                    }
+                </div>
+            </div>
+            <div class="row my-2">
+                <button class="btn btn-primary mx-auto" @onclick="GoBack">Back</button>
+                <button class="btn btn-primary mx-auto" @onclick="StartGame">Start</button>
+            </div>
+        </div>
+    </div>*@
+
+@*@code {
+        int playerAllNum = 8;
+
+
+    }*@
 
