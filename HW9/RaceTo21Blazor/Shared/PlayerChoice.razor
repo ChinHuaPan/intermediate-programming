@@ -1,8 +1,23 @@
-﻿<div class="row option-block p-4 d-flex mx-auto flex-column">
+﻿@inject NavigationManager NavManager
+
+<div class="row option-block p-4 d-flex mx-auto flex-column">
     <h4 class="text-center">Anna</h4>
     <h5 class="text-center">
         it's your turn!
     </h5>
-        <button type="button" class="btn btn-secondary my-2">Request</button>
-        <button type="button" class="btn btn-secondary my-2">Stay</button>
+    <button type="button" class="btn btn-secondary my-2" @onclick="IncrementCount">Request</button>
+    <button type="button" class="btn btn-secondary my-2" @onclick="GoToGamePage">Stay</button>
 </div>
+
+@code{
+
+    protected void GoToGamePage()
+    {
+        NavManager.NavigateTo("/");
+    }
+
+    private void IncrementCount()
+    {
+        NavManager.NavigateTo("/game");
+    }
+}
