@@ -1,69 +1,50 @@
 ﻿@page "/set"
 @inject NavigationManager NavManager
-<!-- Modal -->
-@*<div class="modal fade" id="setPlayersModal" tabindex="-1" role="dialog" aria-labelledby="setPlayersModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="setPlayersModalTitle">Who are the players?</h5>
-                    <h2 class="mx-auto">Who are the players?</h2>
-                    <small class="mx-auto">Please enter at least 2 player's name.</small>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row my-3">
-                        <div class="col d-flex flex-wrap flex-column align-content-center" style="height: 250px; ">
-                            @for (int player = 0; player < playerAllNum; player++)
-                            {
-                                <PlayersNameField></PlayersNameField>
-                            }
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="GoBack">Close</button>
-                    <button type="button" class="btn btn-primary" @onclick="StartGame">Start</button>
-                </div>
-            </div>
-        </div>
-    </div>*@
 
-@*<div class="modal fade @ModalClass" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-              
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="() => Close()">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>*@
+<style>
+    /* Edited */
+    .modal-content {
+        min-width: 650px;
+        border-radius: 15px;
+        border: none;
+        background-color: #FEC128;
+    }
+
+    .modal-dialog {
+        max-width: 700px;
+    }
+
+    /* Edited */
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        border: none;
+    }
+
+    .modal-body {
+        height: 250px;
+    }
+</style>
+
 
 <div class="modal @ModalClass" tabindex="-1" role="dialog" style="display:@ModalDisplay">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header row">
-                @*<h5 class="modal-title" id="setPlayersModalTitle">Who are the players?</h5>*@
-                <h2 class="mx-auto">Who are the players?<br></h2>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="() => Close()">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <small class="mx-auto text-center">Please enter at least 2 player's name.</small>
+            <div class="modal-header d-flex flex-column  align-items-center">
+                <div class="row col-12">
+                    <h2 class="mx-auto mt-4 text-center">Who are the players?<br></h2>
+                </div>
+                <div class="row col-12 position-absolute mr-2 justify-content-end ">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="() => Close()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="row mt-2">
+                    <small class="mx-auto text-center">Please enter at least 2 player's name.</small>
+                </div>
             </div>
-            <div class="modal-body">
-                <div class="row my-3">
+            <div class="modal-body my-0 py-0">
+                <div class="row my-3 my-0 py-0">
                     <div class="col d-flex flex-wrap flex-column align-content-center" style="height: 250px; ">
                         @for (int player = 0; player < playerAllNum; player++)
                         {
@@ -72,9 +53,17 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="() => Close()">Close</button>
-                <button type="button" class="btn btn-primary" @onclick="StartGame">Save changes</button>
+            <div class="modal-footer row w-100 d-flex flex-column mx-auto mb-4">
+                <div class="row mb-4">
+                    <small class="mx-auto text-center">We will shuffle your order in the game.</small>
+                </div>
+                <div class="row d-flex w-100 mx-auto  justify-content-center">
+
+                        <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal" @onclick="() => Close()">Close</button>
+
+                        <button type="button" class="btn btn-primary mx-2" style="width:400px;" @onclick="StartGame">Save changes</button>
+
+                </div>
             </div>
         </div>
     </div>

@@ -8,6 +8,8 @@ a, .btn-link {
     color: #0366d6;
 }
 
+
+
 /* Edited */
 .btn-primary {
     color: #fff;
@@ -84,9 +86,12 @@ a, .btn-link {
         top: 0.5rem;
     }
 
+/* Edited */
 .display-4{
     font-weight:700;
 }
+
+
 /**********************************/
 .description-block {
     border: 3px solid #FEC128;
