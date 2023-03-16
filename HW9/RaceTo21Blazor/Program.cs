@@ -16,8 +16,8 @@ namespace RaceTo21Blazor
         {
             //CardTable cardTable = new CardTable();
             //Game game = new Game(cardTable);
-            Deck deck = new Deck();
-            List<Player> players = new List<Player>();
+            //Deck deck = new Deck();
+            //List<Player> players = new List<Player>();
 
             //deck.initializeGame(players);
 
