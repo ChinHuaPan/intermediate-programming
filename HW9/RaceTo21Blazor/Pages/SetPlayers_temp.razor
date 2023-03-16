@@ -1,6 +1,7 @@
 ﻿@page "/set"
 @inject NavigationManager NavManager
 
+
 <div class="container ">
     <div class="col-8 mx-auto ">
         <div class="row mt-5 align-middle ">
@@ -8,33 +9,33 @@
         </div>
         <div class="row my-2">
             <small class="mx-auto">Please enter at least 2 player's name.</small>
-            </div>
-            <div class="row my-3">
-                <div class="col d-flex flex-wrap flex-column align-content-center" style="height: 250px; ">
-                    @for (int player = 0; player < playerAllNum; player++)
-                    {
-                        <PlayersNameField></PlayersNameField>
-                    }
-                </div>
-            </div>
-            <div class="row my-2">
-                <button class="btn btn-primary mx-auto" @onclick="GoBack">Back</button>
-                <button class="btn btn-primary mx-auto" @onclick="StartGame">Start</button>
+        </div>
+        <div class="row my-3">
+            <div class="col d-flex flex-wrap flex-column align-content-center" style="height: 250px; ">
+                @for (int player = 0; player < playerAllNum; player++)
+                {
+                    <PlayersNameField></PlayersNameField>
+                }
             </div>
         </div>
+        <div class="row my-2">
+            <button class="btn btn-primary mx-auto" @onclick="GoBack">Back</button>
+            <button class="btn btn-primary mx-auto" @onclick="StartGame">Start</button>
+        </div>
     </div>
+</div>
 
-        @code {
-            int playerAllNum = 8;
+@code {
+    int playerAllNum = 8;
 
-            private void StartGame()
-            {
-                NavManager.NavigateTo("/game");
-            }
+    private void StartGame()
+    {
+        NavManager.NavigateTo("/game");
+    }
 
-            protected void GoBack()
-            {
-                NavManager.NavigateTo("/");
-            }
-        }
-        
+    protected void GoBack()
+    {
+        NavManager.NavigateTo("/");
+    }
+}
+
