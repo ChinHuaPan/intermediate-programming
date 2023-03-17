@@ -5,13 +5,18 @@
 
 <div class="container ">
     <div class="col-11 mx-auto">
-        <div class="row d-flex mt-5 justify-content-center align-items-center">
+        <!-- Title -->
+        <div class="row d-flex justify-content-center align-items-center">
             <img style="height:50px;" src="card_assets/card_logo.png" />
             <h2 class="font-italic ml-3"><strong>Race to 21</strong></h2>
         </div>
+
+        <!-- Win reason -->
         <div class="row my-3 mx-auto d-flex align-items-center description-block">
             <h3 class="mx-auto">Emily hits 21!!</h3>
         </div>
+
+        <!-- Players block -->
         <div class="row my-5 d-flex flex-wrap">
             <div class="col-9 d-flex flex-wrap flex-column" style="height: 500px; ">
                     @for (int player = 0; player < 8; player++)
@@ -19,6 +24,7 @@
                         <PlayerBlock></PlayerBlock>
                     }
             </div>
+            <!-- Player Choices -->
             <div class="col-3 mt-2">
                 <PlayerChoice></PlayerChoice>
             </div>

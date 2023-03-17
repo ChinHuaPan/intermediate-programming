@@ -1,0 +1,202 @@
+﻿@page "/set"
+@inject NavigationManager NavManager
+
+<style>
+    /* Edited */
+    .modal-content {
+        min-width: 650px;
+        border-radius: 15px;
+        border: none;
+        background-color: #FEC128;
+    }
+
+    .modal-dialog {
+        max-width: 700px;
+    }
+
+    /* Edited */
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        border: none;
+    }
+
+    .modal-body {
+        height: 250px;
+    }
+
+    .name-input {
+        border-radius: 20px;
+    }
+
+    .form-control {
+        border: 1px solid #FFF;
+        height: 42px;
+    }
+
+</style>
+
+<!-- SetPlayersModal -->
+<div class="modal @ModalClass" tabindex="-1" role="dialog" style="display:@ModalDisplay" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <!-- Header: title, close-btn, hint -->
+            <div class="modal-header d-flex flex-column  align-items-center">
+                <!-- Title -->
+                <div class="row col-12">
+                    <h2 class="mx-auto mt-4 text-center">Who are the players?<br></h2>
+                </div>
+                <!-- CLose btn -->
+                <div class="row col-12 position-absolute mr-2 justify-content-end ">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="() => Close()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- Hint -->
+                <div class="row mt-2">
+                    <small class="mx-auto text-center">Please enter at least 2 player's name.</small>
+                </div>
+            </div>
+
+            <!-- Body: name fields-->
+            <div class="modal-body my-0 py-0">
+                <div class="col my-3 my-0 py-0">
+                    <EditForm Model="@nameList">
+                        <div class="col d-flex flex-wrap flex-column align-content-center" style="height: 250px; ">
+                            <div class="form-group d-flex align-items-center mr-2">
+                                <!-- Player number -->
+                                <label for="playersName" class="m-2"><strong>#1</strong></label>
+                                <!-- Name input -->
+                                <InputText class="form-control name-input" placeholder="e.g. Anna" @bind-Value="nameList.playerNum1"></InputText>
+                            </div>
+
+                            <div class="form-group d-flex align-items-center mr-2">
+                                <!-- Player number -->
+                                <label for="playersName" class="m-2"><strong>#2</strong></label>
+                                <!-- Name input -->
+                                <InputText class="form-control name-input" placeholder="e.g. Anna" @bind-Value="nameList.playerNum2"></InputText>
+                            </div>
+
+                            <div class="form-group d-flex align-items-center mr-2">
+                                <!-- Player number -->
+                                <label for="playersName" class="m-2"><strong>#3</strong></label>
+                                <!-- Name input -->
+                                <InputText class="form-control name-input" placeholder="e.g. Anna" @bind-Value="nameList.playerNum3"></InputText>
+                            </div>
+
+                            <div class="form-group d-flex align-items-center mr-2">
+                                <!-- Player number -->
+                                <label for="playersName" class="m-2"><strong>#4</strong></label>
+                                <!-- Name input -->
+                                <InputText class="form-control name-input" placeholder="e.g. Anna" @bind-Value="nameList.playerNum4"></InputText>
+                            </div>
+
+                            <div class="form-group d-flex align-items-center mr-2">
+                                <!-- Player number -->
+                                <label for="playersName" class="m-2"><strong>#5</strong></label>
+                                <!-- Name input -->
+                                <InputText class="form-control name-input" placeholder="e.g. Anna" @bind-Value="nameList.playerNum5"></InputText>
+                            </div>
+
+                            <div class="form-group d-flex align-items-center mr-2">
+                                <!-- Player number -->
+                                <label for="playersName" class="m-2"><strong>#6</strong></label>
+                                <!-- Name input -->
+                                <InputText class="form-control name-input" placeholder="e.g. Anna" @bind-Value="nameList.playerNum6"></InputText>
+                            </div>
+
+                            <div class="form-group d-flex align-items-center mr-2">
+                                <!-- Player number -->
+                                <label for="playersName" class="m-2"><strong>#7</strong></label>
+                                <!-- Name input -->
+                                <InputText class="form-control name-input" placeholder="e.g. Anna" @bind-Value="nameList.playerNum7"></InputText>
+                            </div>
+
+                            <div class="form-group d-flex align-items-center mr-2">
+                                <!-- Player number -->
+                                <label for="playersName" class="m-2"><strong>#8</strong></label>
+                                <!-- Name input -->
+                                <InputText class="form-control name-input" placeholder="e.g. Anna" @bind-Value="nameList.playerNum8"></InputText>
+                            </div>
+                        </div>
+                    </EditForm>
+
+                  
+                </div>
+            </div>
+
+            <!-- Footer: hint, btns-->
+            <div class="modal-footer row w-100 d-flex flex-column mx-auto mb-4">
+                <!-- Hint -->
+                <div class="row mb-4">
+                    <small class="mx-auto text-center">We will shuffle your order in the game.</small>
+                </div>
+                <!-- Buttons -->
+                <div class="row d-flex w-100 mx-auto  justify-content-center">
+                    <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal" @onclick="() => Close()">Close</button>
+                    <button type="button" class="btn btn-primary mx-2" style="width:400px;" @onclick="StartGame">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (ShowBackdrop)
+{
+    <div class="modal-backdrop fade show"></div>
+}
+
+
+
+@code {
+    int maxPlayers = 8;
+    PlayersNameModel nameList = new PlayersNameModel();
+    //List<string> playerNameList = new List<string>();
+
+    //[Parameter] public string playerNum1 { get; set; }
+
+    @*string playerNum1;
+    string playerNum2;
+    string playerNum3;
+    string playerNum4;
+    string playerNum5;
+    string playerNum6;
+    string playerNum7;
+    string playerNum8;*@
+
+
+
+
+private void StartGame()
+{
+    NavManager.NavigateTo("/game");
+    //nameList.SubmitAsync();
+}
+
+/*** for Modal ***/
+
+public Guid Guid = Guid.NewGuid();
+public string ModalDisplay = "none;";
+public string ModalClass = "";
+public bool ShowBackdrop = false;
+
+public void Open()
+{
+    ModalDisplay = "block;";
+    ModalClass = "Show";
+    ShowBackdrop = true;
+    StateHasChanged();
+}
+
+public void Close()
+{
+    ModalDisplay = "none";
+    ModalClass = "";
+    ShowBackdrop = false;
+    StateHasChanged();
+}
+}
+
+
+
