@@ -44,7 +44,7 @@ a, .btn-link {
 /* Edited */
     .btn-secondary:hover {
         background-color: #FFF;
-        border: 5px solid #000000;
+        border: 3px solid #000000;
         color: #000000;
         font-weight: 900;
         transform: scale(1.05);
@@ -105,3 +105,11 @@ a, .btn-link {
     border-radius: 15px;
 }
 
+.showWarning {
+    color: #E60609;
+    font-weight: 900;
+}
+
+.hidden{
+    display:none!important;
+}

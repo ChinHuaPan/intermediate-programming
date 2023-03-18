@@ -14,10 +14,10 @@ namespace RaceTo21Blazor
     {
         public static async Task Main(string[] args)
         {
-            //CardTable cardTable = new CardTable();
-            //Game game = new Game(cardTable);
-            //Deck deck = new Deck();
             //List<Player> players = new List<Player>();
+            //CardTable cardTable = new CardTable();
+            //Game game = new Game(cardTable, players);
+            //Deck deck = new Deck();
 
             //deck.initializeGame(players);
 

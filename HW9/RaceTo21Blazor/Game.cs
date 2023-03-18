@@ -5,9 +5,10 @@ namespace RaceTo21Blazor
 {
     public class Game
     {
-        List<Player> players; // list of objects containing player data
-        CardTable cardTable; // object in charge of displaying game information
-        Deck deck = new Deck(); // deck of cards
+        static public int maxPlayers = 8;
+        static public List<Player> players; // list of objects containing player data
+        static public CardTable cardTable; // object in charge of displaying game information
+        static public Deck deck = new Deck(); // deck of cards
         int currentPlayer = 0; // current player on list
         static public bool everyoneIsStay = true;  // is everyone stay?
         public Tasks nextTask; // keeps track of game state
@@ -60,7 +61,7 @@ namespace RaceTo21Blazor
 
             if (nextTask == Tasks.GetPlayerList) // do the task: get the player list from console
             {
-                players = cardTable.GetPlayers(); // get player list
+                //players = cardTable.GetPlayers(); // get player list
                 nextTask = Tasks.IntroducePlayers; // change next task to introduce players
             }
             else if (nextTask == Tasks.IntroducePlayers) // introduce players
@@ -262,8 +263,8 @@ namespace RaceTo21Blazor
                 }
                     Console.Write(" join the next round!");
 
-                Deck deck = new Deck(); // creat a deck
-                deck.initializeGame(playersTemp); //initialize the game
+                //Deck deck = new Deck(); // creat a deck
+                //deck.initializeGame(playersTemp); //initialize the game
 
             }
             nextTask = Tasks.GameOver; // change the next task to game over

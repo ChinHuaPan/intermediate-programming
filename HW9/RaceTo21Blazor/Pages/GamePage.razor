@@ -12,17 +12,16 @@
         </div>
 
         <!-- Win reason -->
-        <div class="row my-3 mx-auto d-flex align-items-center description-block">
-            <h3 class="mx-auto">Emily hits 21!!</h3>
-        </div>
+            <div class=" row my-3 mx-auto align-items-center description-block @ShowWinReason">
+                <h3 class="mx-auto">Emily hits 21!!</h3>
+            </div>
 
         <!-- Players block -->
         <div class="row my-5 d-flex flex-wrap">
             <div class="col-9 d-flex flex-wrap flex-column" style="height: 500px; ">
-                    @for (int player = 0; player < 8; player++)
-                    {
-                        <PlayerBlock></PlayerBlock>
-                    }
+
+                 <PlayerBlock></PlayerBlock>
+
             </div>
             <!-- Player Choices -->
             <div class="col-3 mt-2">
@@ -36,6 +35,9 @@
 
 
     @code{
+
+        string ShowWinReason = "hidden";
+        //string ShowWinReason = "d-flex";
 
         protected void GoToGamePage()
         {
