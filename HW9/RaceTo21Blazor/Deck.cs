@@ -98,7 +98,7 @@ namespace RaceTo21Blazor
             CardTable cardTable = new CardTable(); // create a new cardTable
             Game game = new Game(cardTable, players); // create a new game
 
-            while (game.nextTask != Tasks.GameOver) // when game is not over
+            while (Game.nextTask != Tasks.GameOver) // when game is not over
             {
                 game.DoNextTask(); // do the next task
             }

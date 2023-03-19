@@ -43,8 +43,14 @@
 
 .score-bust {
     color: #E60609;
+    margin: auto 0;
 }
+
 
 .hand-cards .cards:first-child {
     margin-left: 0px !important;
+}
+
+.hand-cards{
+    width: 245px;
 }

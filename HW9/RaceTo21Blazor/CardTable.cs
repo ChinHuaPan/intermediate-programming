@@ -223,7 +223,7 @@ namespace RaceTo21Blazor
          * INPUT: List<Player> players ---> the player list
          * OUTPUT: bool Game.everyoneIsStay ---> everyone stay or not
          */
-        public bool CheckEveryoneStay(List<Player> players)
+        public bool CheckEveryoneInactive(List<Player> players)
         {
 
             foreach (Player player in players) // check every players
@@ -231,7 +231,7 @@ namespace RaceTo21Blazor
                 // default value of everyoneIsStay is TRUE
                 // thus, if there is any FALSE to && everyoneIsStay will be FALSE
                 // if (player.status == PlayerStatus.stay) is FALSE, that means the one is not stay
-                Game.everyoneIsStay = Game.everyoneIsStay && (player.status == PlayerStatus.stay);
+                Game.everyoneIsStay = Game.everyoneIsStay && (player.status == PlayerStatus.stay || player.status == PlayerStatus.bust);
             }
 
             return Game.everyoneIsStay;

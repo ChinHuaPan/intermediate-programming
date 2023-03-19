@@ -3,8 +3,8 @@ namespace RaceTo21Blazor
 {
     public enum Tasks
     {
-        GetPlayerList,
-        IntroducePlayers,
+        //GetPlayerList,
+        //IntroducePlayers,
         PlayerTurn,
         CheckForEnd,
         GameOver

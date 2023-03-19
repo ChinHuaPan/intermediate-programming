@@ -11,7 +11,7 @@ namespace RaceTo21Blazor
         static public Deck deck = new Deck(); // deck of cards
         static public int currentPlayer = 0; // current player on list
         static public bool everyoneIsStay = true;  // is everyone stay?
-        public Tasks nextTask; // keeps track of game state
+        static public Tasks nextTask; // keeps track of game state
 
         public Game(CardTable c, List<Player> playersTemp) //add one more signature to pass the previous players who keeps playing
         {
@@ -23,15 +23,18 @@ namespace RaceTo21Blazor
             /* If it is the first round, go to get the player list,
              * if not, introduce the players directly
              * ***/
-            if(playersTemp.Count == 0)
-            {
-                nextTask = Tasks.GetPlayerList;
-            }
-            else
-            {
-                nextTask = Tasks.IntroducePlayers;
-            }
-            
+            //if(playersTemp.Count == 0)
+            //{
+            //    nextTask = Tasks.GetPlayerList;
+            //}
+            //else
+            //{
+            //    nextTask = Tasks.IntroducePlayers;
+            //}
+
+            nextTask = Tasks.PlayerTurn;
+
+
         }
 
         /* ******** AddPlayer() **********
@@ -59,18 +62,19 @@ namespace RaceTo21Blazor
              * We use this condition to check the current task status
              * ******************************************************************/
 
-            if (nextTask == Tasks.GetPlayerList) // do the task: get the player list from console
-            {
-                //players = cardTable.GetPlayers(); // get player list
-                nextTask = Tasks.IntroducePlayers; // change next task to introduce players
-            }
-            else if (nextTask == Tasks.IntroducePlayers) // introduce players
-            {
-                deck.shufflePlayers(players); // shuffle the players (to ensure the same person doesn’t always win a tiebreaker)
-                cardTable.ShowPlayers(players); // show all players
-                nextTask = Tasks.PlayerTurn; // change next task to player turns
-            }
-            else if (cardTable.CheckOthersBust(players, currentPlayer)) // if there is only one player doesn't bust
+            //if (nextTask == Tasks.GetPlayerList) // do the task: get the player list from console
+            //{
+            //    //players = cardTable.GetPlayers(); // get player list
+            //    nextTask = Tasks.IntroducePlayers; // change next task to introduce players
+            //}
+            //else if (nextTask == Tasks.IntroducePlayers) // introduce players
+            //{
+            //    deck.shufflePlayers(players); // shuffle the players (to ensure the same person doesn’t always win a tiebreaker)
+            //    cardTable.ShowPlayers(players); // show all players
+            //    nextTask = Tasks.PlayerTurn; // change next task to player turns
+            //}
+            //else
+            if (cardTable.CheckOthersBust(players, currentPlayer)) // if there is only one player doesn't bust
             {
                 OverGame(); // game is over
             }
@@ -116,7 +120,7 @@ namespace RaceTo21Blazor
             {
                 if (!CheckActivePlayers()) // if there is no active players
                 {
-                    cardTable.CheckEveryoneStay(players); // check whether everyone is stay or not
+                    cardTable.CheckEveryoneInactive(players); // check whether everyone is stay or not
                     OverGame(); // game is over
                 }
                 else // game continues...
@@ -221,7 +225,7 @@ namespace RaceTo21Blazor
             if (cardTable.CheckOthersBust(players, currentPlayer)) // check whether bust or not
             {
                 highScore = players[currentPlayer].score; // pass current player's score to highScore
-                players[currentPlayer].winReason = WinReason.othersBust;
+                
                 return players[currentPlayer]; // current player is the winner
             }
 
