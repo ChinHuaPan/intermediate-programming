@@ -7,7 +7,7 @@ namespace RaceTo21Blazor
     public class Deck
     {
         List<Card> cards = new List<Card>(); // creat list of card
-        Dictionary<string, string> cardsFileName = new Dictionary<string, string>(); // create a dictionary for cardsFileName
+        static public Dictionary<string, string> cardsFileName = new Dictionary<string, string>(); // create a dictionary for cardsFileName
 
         public Deck()
         {
@@ -45,9 +45,8 @@ namespace RaceTo21Blazor
                     Card card = new Card(cardVal, cardSuit);
 
                     cards.Add(card); // build the card
-
                     // store the file name of card to the cardsFileName dictionary
-                    cardsFileName.Add(card.Id, "card_" + cardSuit.ToString().ToLower() + "_" + cardFileVal + ".png"); ;
+                    cardsFileName.Add(card.Id, "card_assets/card_" + cardSuit.ToString().ToLower() + "_" + cardFileVal + ".png"); 
                 }
             }
         }

@@ -9,6 +9,7 @@ namespace RaceTo21Blazor
 		public List<Card> cards = new List<Card>();
 		public PlayerStatus status = PlayerStatus.active;
 		public int score;
+		public WinReason winReason;
 
 		public Player(string n)
 		{

@@ -9,7 +9,7 @@ namespace RaceTo21Blazor
         static public List<Player> players; // list of objects containing player data
         static public CardTable cardTable; // object in charge of displaying game information
         static public Deck deck = new Deck(); // deck of cards
-        int currentPlayer = 0; // current player on list
+        static public int currentPlayer = 0; // current player on list
         static public bool everyoneIsStay = true;  // is everyone stay?
         public Tasks nextTask; // keeps track of game state
 
@@ -143,7 +143,7 @@ namespace RaceTo21Blazor
          * INPUT: Player player --> the player whose cards we would like to calculate 
          * OUTPUT: int score ---> return the player's current total score
          */
-        public int ScoreHand(Player player)
+        static public int ScoreHand(Player player)
         {
             int score = 0;
 
@@ -176,7 +176,7 @@ namespace RaceTo21Blazor
          * INPUT: none
          * OUTPUT: bool --> if it's true, means that there is at least one active player
          */
-        public bool CheckActivePlayers()
+        static public bool CheckActivePlayers()
         {
             foreach (var player in players) // check every player
             {
@@ -195,7 +195,7 @@ namespace RaceTo21Blazor
          * INPUT: none
          * OUTOUT: Player player ---> return the winner player
          */
-        public Player DoFinalScoring()
+        static public Player DoFinalScoring()
         {
             int highScore = 0;
 
@@ -205,6 +205,7 @@ namespace RaceTo21Blazor
 
                 if (player.status == PlayerStatus.win) // someone hits 21
                 {
+                    players[currentPlayer].winReason = WinReason.hitTwentyOne;
                     return player;
                 }
                 if (player.status == PlayerStatus.stay) // still could win...
@@ -220,6 +221,7 @@ namespace RaceTo21Blazor
             if (cardTable.CheckOthersBust(players, currentPlayer)) // check whether bust or not
             {
                 highScore = players[currentPlayer].score; // pass current player's score to highScore
+                players[currentPlayer].winReason = WinReason.othersBust;
                 return players[currentPlayer]; // current player is the winner
             }
 
@@ -238,7 +240,7 @@ namespace RaceTo21Blazor
          * INPUT: none
          * OUTPUT: noen
          */
-        public void OverGame()
+        static public void OverGame()
         {
             Player winner = DoFinalScoring(); // pass the winner
             cardTable.AnnounceWinner(winner); // announce the winner
@@ -267,7 +269,7 @@ namespace RaceTo21Blazor
                 //deck.initializeGame(playersTemp); //initialize the game
 
             }
-            nextTask = Tasks.GameOver; // change the next task to game over
+            //nextTask = Tasks.GameOver; // change the next task to game over
         }
     }
 }

@@ -31,7 +31,7 @@ namespace RaceTo21Blazor
          * INPUT: none
          * OUTPUT: List<Player> inputPlayers --> the player list that the player typed
          * **/
-        public List<Player> GetPlayers()
+        /*public List<Player> GetPlayers()
         {
             Console.WriteLine("Please input player names: \n (2 to 8 names, separate with space) \n (We will shuffle your orders in the game!)");
 
@@ -65,7 +65,7 @@ namespace RaceTo21Blazor
             }
 
             return inputPlayers;
-        }
+        }*/
 
         /* ********* OfferACard() **********
          * Offer a card when a player request

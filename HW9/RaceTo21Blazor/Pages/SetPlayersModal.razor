@@ -151,7 +151,7 @@
 
     List<string> playerNameList = new List<string>(new string[8]);
     Game game = new Game(new CardTable(), new List<Player>());
-    Deck deck = new Deck();
+    //Deck deck = new Deck();
 
     string warning = "";
 
@@ -187,9 +187,10 @@
         //nameList.SubmitAsync();
         GetPlayerNameList();
 
+        //if (nextTask == Tasks.IntroducePlayers) // introduce players
         if (CheckMoreThanTwo()) {
-            deck.Shuffle(); // shuffle the cards
-            deck.shufflePlayers(Game.players); // shuffle the players (to ensure the same person doesn’t always win a tiebreaker)
+            Game.deck.Shuffle(); // shuffle the cards
+            Game.deck.shufflePlayers(Game.players); // shuffle the players (to ensure the same person doesn’t always win a tiebreaker)
             NavManager.NavigateTo("/game");
         }
 
