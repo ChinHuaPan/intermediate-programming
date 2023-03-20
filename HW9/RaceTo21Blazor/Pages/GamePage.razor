@@ -129,8 +129,7 @@
 
 
 <!-- Modal for setting up players -->
-@*<EditPlayersModal @ref="EditPlayerModal"></EditPlayersModal>*@
-
+    <EditPlayersModal @ref="EditPlayerModal"></EditPlayersModal>
 
 @code{
 
@@ -145,13 +144,14 @@
     string showPlayerChoices = "d-block";
     string showGameChoices = "d-none";
     bool isGameOver = false;
+    string showModal = "d-none";
 
     int activeNum = Game.players.Count;
     int potentialWinnerNum = 0;
     int stayNum = 0;
 
     /*** for EditPlayersModal ***/
-    //private EditPlayersModal EditPlayerModal { get; set; }
+    private EditPlayersModal EditPlayerModal { get; set; }
 
 
     private void RequestCard()
@@ -420,9 +420,9 @@
 
     private void PlayAgain()
     {
-
         DoSomethingAsync();
         //EditPlayerModal.Open();
+        NavManager.NavigateTo("/setPlayer");
 
     }
 
