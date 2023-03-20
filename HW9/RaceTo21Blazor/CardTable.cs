@@ -199,10 +199,9 @@ namespace RaceTo21Blazor
          *        int current ---> the current player
          * OUTPUT: bool otherAreBust --> others are bust or not
          */
-        public bool CheckOthersBust(List<Player> players, int current)
+        public bool CheckOthersBust(List<Player> players, int  current)
         {
             bool othersAreBust = true;
-
             for (int i = 0; i < players.Count; i++)
             {
                 if (i != current)

@@ -1,4 +1,4 @@
-﻿@page "/setPlayer"
+﻿@page "/editPlayer"
 @inject NavigationManager NavManager
 
 <style>
@@ -149,15 +149,14 @@
 @code {
 
 
-    List<string> playerNameList = new List<string>(new string[8]);
+    List<string> playerNameList = Game.previousList;
     Game game = new Game(new CardTable(), new List<Player>());
-    //Deck deck = new Deck();
 
     string warning = "";
 
     private void GetPlayerNameList()
     {
-        playerNameList.ForEach( x =>
+        playerNameList.ForEach(x =>
         {
             if (x != null)
             {
@@ -168,7 +167,7 @@
 
     private bool CheckMoreThanTwo()
     {
-        if(Game.players.Count < 2 || Game.players.Count >8)
+        if (Game.players.Count < 2 || Game.players.Count > 8)
         {
             warning = "showWarning";
             return false;
@@ -188,7 +187,8 @@
         GetPlayerNameList();
 
         //if (nextTask == Tasks.IntroducePlayers) // introduce players
-        if (CheckMoreThanTwo()) {
+        if (CheckMoreThanTwo())
+        {
             Game.deck.Shuffle(); // shuffle the cards
             Game.deck.shufflePlayers(Game.players); // shuffle the players (to ensure the same person doesn’t always win a tiebreaker)
             NavManager.NavigateTo("/game");

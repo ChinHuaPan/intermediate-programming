@@ -12,6 +12,7 @@ namespace RaceTo21Blazor
         static public int currentPlayer = 0; // current player on list
         static public bool everyoneIsStay = true;  // is everyone stay?
         static public Tasks nextTask; // keeps track of game state
+        static public List<string> previousList = new List<string>(new string[8]);
 
         public Game(CardTable c, List<Player> playersTemp) //add one more signature to pass the previous players who keeps playing
         {
@@ -209,7 +210,7 @@ namespace RaceTo21Blazor
 
                 if (player.status == PlayerStatus.win) // someone hits 21
                 {
-                    players[currentPlayer].winReason = WinReason.hitTwentyOne;
+                    players[currentPlayer].winReason = OverReason.hitTwentyOne;
                     return player;
                 }
                 if (player.status == PlayerStatus.stay) // still could win...

@@ -1,10 +1,12 @@
 ﻿using System;
 namespace RaceTo21Blazor
 {
-    public enum WinReason
+    public enum OverReason
     {
         hitTwentyOne,
         stayButHighestScore,
-        gotFiveCards
+        gotFiveCards,
+        othersAreBust,
+        everyoneIsStay
     }
 }

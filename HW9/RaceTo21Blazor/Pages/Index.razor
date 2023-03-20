@@ -22,25 +22,25 @@
                 </p>
             </div>
             <div class="row mx-auto my-2 ">
-                <button type="button" class="btn btn-primary" @onclick="() => Modal.Open()">Play</button>
+                <button type="button" class="btn btn-primary" @onclick="() => SetPlayerModal.Open()">Play</button>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Modal for setting up players -->
-<SetPlayersModal @ref="Modal"></SetPlayersModal>
+<SetPlayersModal @ref="SetPlayerModal"></SetPlayersModal>
 
 
 @code{
 
     /*** for SetPlayersModal ***/
-    private SetPlayersModal Modal { get; set; }
+    private SetPlayersModal SetPlayerModal { get; set; }
 
 
 
     int playerNum = 1;
-    protected void GoToSetPlayers()
+    @*protected void GoToSetPlayers()
     {
         NavManager.NavigateTo("/set");
     }
@@ -52,6 +52,6 @@
     protected void GoBack()
     {
         NavManager.NavigateTo("/");
-    }
+    }*@
 
 }

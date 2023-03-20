@@ -11,9 +11,9 @@
             <h2 class="font-italic ml-3"><strong>Race to 21</strong></h2>
         </div>
 
-        <!-- Win reason -->
-        <div class=" row my-3 mx-auto align-items-center description-block @ShowWinReason">
-            <h3 class="mx-auto">@winReasonDescription</h3>
+        <!-- Game Over reason -->
+        <div class=" row my-3 mx-auto align-items-center description-block @ShowOverReason">
+            <h3 class="mx-auto">@OverReasonDescription</h3>
         </div>
 
         <!-- Players block -->
@@ -30,23 +30,37 @@
 
                 @for (int player = 0; player < Game.players.Count; player++)
                 {
-
-                    <div class="row my-1 mx-1 player-block">
+            <div class="row my-1 mx-1 player-block">
                         <!-- Name -->
-                        <div class="row ml-5 mt-0 position-absolute name-background"><h4 class="name-overlap ">@Game.players[player].name</h4></div>
-
-                        <!-- Card & Score -->
-                        @if (player == Game.currentPlayer) {
-                            blockStatus = "card-block-turn";
-                        }
-                        else if (@Game.players[player].status == PlayerStatus.bust || @Game.players[player].status == PlayerStatus.stay)
+                        @if (isGameOver && @Game.players[player].status == PlayerStatus.win)
                         {
-                            blockStatus = "card-block-inactive";
+                            nameStyle = "name-background-win";
                         }
                         else
                         {
-                            blockStatus = "";
+                            nameStyle = "name-background";
                         }
+                        <div class="row ml-5 mt-0 position-absolute @nameStyle"><h4 class="name-overlap ">@Game.players[player].name</h4></div>
+
+                        <!-- Card & Score -->
+                        
+                            @if (player == Game.currentPlayer && !isGameOver)
+                            {
+                                blockStatus = "card-block-turn";
+                            }
+                            else if (@Game.players[player].status == PlayerStatus.bust || @Game.players[player].status == PlayerStatus.stay)
+                            {
+                                blockStatus = "card-block-inactive";
+                            }
+                            else if (@Game.players[player].status == PlayerStatus.win && isGameOver)
+                            {
+                                blockStatus = "card-block-win";
+                            }else
+                            {
+                                blockStatus = "";
+                            }
+                        
+                        
                         <div class="row d-flex justify-content-betweenm-2 m-2 mt-3 py-3 flex-nowrap card-block  @blockStatus">
 
                             <!-- Card -->
@@ -54,7 +68,6 @@
                                 @foreach (Card card in Game.players[player].cards)
                                 {
                                     <img class="cards" style="height: 50px; margin-left:-10px;" src="@Deck.cardsFileName[card.Id]" />
-
                                 }
                             </div>
 
@@ -65,7 +78,8 @@
                                     <h3 class="text-right font-italic mb-0 score-bust">@Game.players[player].score</h3>
                                     <h6 class="text-right font-italic mt-0 score-bust">@Game.players[player].status.ToString()</h6>
 
-                                }else if (@Game.players[player].status == PlayerStatus.stay)
+                                }
+                                else if (@Game.players[player].status == PlayerStatus.stay)
                                 {
                                     <h3 class="text-right font-italic mb-0 score-stay">@Game.players[player].score</h3>
                                     <h6 class="text-right font-italic mt-0 score-stay">@Game.players[player].status.ToString()</h6>
@@ -73,9 +87,16 @@
                                 }
                                 else
                                 {
-                                    <h3 class="text-right  m-2">@Game.players[player].score</h3>
-
+                                    if (Game.players[player].status == PlayerStatus.win)
+                                    { scoreWin = "font-weight-bold"; }
+                                    else
+                                    {
+                                        scoreWin = "";
+                                    }
+                   
+                                    <h3 class="text-right  m-2 @scoreWin">@Game.players[player].score</h3>
                                 }
+                                
                             </div>
                         </div>
                     </div>
@@ -84,7 +105,7 @@
 
             </div>
             <!-- Player Choices -->
-            <div class="col-3 mt-2 ">
+            <div class="col-3 mt-2 @showPlayerChoices">
                 <div class="row option-block p-4 d-flex mx-auto flex-column" style="max-width:250px;">
                     <h4 class="text-center">@Game.players[Game.currentPlayer].name</h4>
                     <h5 class="text-center">
@@ -93,58 +114,77 @@
                     <button type="button" class="btn btn-secondary my-2" @onclick="RequestCard">Request</button>
                     <button type="button" class="btn btn-secondary my-2" @onclick="Stay">Stay</button>
                 </div>
+            </div>
 
+            <!-- Game Choices -->
+            <div class="col-3 mt-2 @showGameChoices">
+                <div class="row option-block p-4 d-flex mx-auto flex-column">
+                    <h5 class="text-center">What a fun game!</h5>
+                    <button type="button" class="btn btn-primary my-2" @onclick="PlayAgain">Play again</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 
+<!-- Modal for setting up players -->
+@*<EditPlayersModal @ref="EditPlayerModal"></EditPlayersModal>*@
 
 
 @code{
 
-    string ShowWinReason = "hidden";
-    //string ShowWinReason = "d-flex";
+    string ShowOverReason = "hidden";
     string playerBlockWidth = "col-8";
-    string winReasonDescription;
+    string OverReasonDescription;
     string scoreStyle = "";
     string inactiveStatus = "hidden";
     string blockStatus = "";
+    string scoreWin = "";
+    string nameStyle = "";
+    string showPlayerChoices = "d-block";
+    string showGameChoices = "d-none";
+    bool isGameOver = false;
 
-    //Player player = Game.players[Game.currentPlayer]; // pass current player
+    int activeNum = Game.players.Count;
+    int potentialWinnerNum = 0;
+    int stayNum = 0;
+
+    /*** for EditPlayersModal ***/
+    //private EditPlayersModal EditPlayerModal { get; set; }
 
 
-        private void RequestCard()
+    private void RequestCard()
     {
-        @*Card card = Game.deck.DealTopCard(); // pass the top card
-            player.cards.Add(card); // give the top card to the current player
-            player.score = Game.ScoreHand(player); // calculate score the player has*@
-
-        //Game.cardTable.ShowHands(Game.players); // show the player's cards
+        Game.players.ForEach(x => Console.WriteLine(x.name));
         Player player = Game.players[Game.currentPlayer]; // pass current player
 
 
+        Console.WriteLine("DoTurns");
         DoTurns(player);
 
+        Console.WriteLine("CheckWin");
         CheckWin(player);
 
-        CheckForEnd(player);
+        Console.WriteLine("CheckForBust");
+        CheckForBust(Game.players, Game.currentPlayer);
 
+        Console.WriteLine("CheckEveryone");
+        CheckEveryone();
 
-    @*if (Game.cardTable.CheckOthersBust(Game.players, Game.currentPlayer)) // if there is only one player doesn't bust
-    {
-        Game.OverGame(); // game is over
-    }*@
+        Console.WriteLine("CheckForNoActive");
+        CheckForNoActive();
+
 
     }
 
     protected void Stay()
     {
-        Game.players[Game.currentPlayer].status = PlayerStatus.stay; // change the player's status to stay
-        Game.currentPlayer++; // index moves on
 
-        //NavManager.NavigateTo("/");
+        Game.players[Game.currentPlayer].status = PlayerStatus.stay; // change the player's status to stay
+        CheckEveryone();
+        CheckForNoActive();
+
     }
 
 
@@ -179,65 +219,59 @@
         else if (player.score == 21) // if score exactly hits 21
         {
             player.status = PlayerStatus.win; // change the player's status to win
-            player.winReason = WinReason.hitTwentyOne;
+            player.winReason = OverReason.hitTwentyOne;
             Game.nextTask = Tasks.CheckForEnd;  // change next task to CheckForEnd
 
-            Game.OverGame(); // game is over
+            OverGame(player.winReason); // game is over
         }
         else if (player.cards.Count == 5) // if the player already has 5 cards
         {
             player.status = PlayerStatus.win; // change the player's status to win
-            player.winReason = WinReason.gotFiveCards;
+            player.winReason = OverReason.gotFiveCards;
             Game.nextTask = Tasks.CheckForEnd;  // change next task to CheckForEnd
 
-            Game.OverGame(); // game is over
+            OverGame(player.winReason); // game is over
+        }
+        else
+        {
+            return;
         }
     }
 
-    private void CheckForEnd(Player player)
+    private void CheckForNoActive()
     {
         //if (nextTask == Tasks.CheckForEnd) // check for end this round
 
-        if (!Game.CheckActivePlayers()) // if there is no active players
+        if (activeNum == 0) // if there is no active players
         {
-            int highScore = 0;
-            Player winnerTemp = new Player("");
+            int highScore = -1;
+            int winnerIndex = -1;
 
-            foreach (var p in Game.players) // check every player
+            for (int i=0; i < Game.players.Count; i++)
             {
-                @*if (player.status == PlayerStatus.win) // someone hits 21
+                if (Game.players[i].status == PlayerStatus.stay) // still could win...
                 {
-                    player.winReason = WinReason.hitTwentyOne;
-                    Game.OverGame(); // game is over
-                    break;
-                }*@
-
-        if (p.status == PlayerStatus.stay) // still could win...
-        {
-            //find out the highest score
-            if (p.score > highScore)
-            {
-                highScore = p.score;
-                winnerTemp = p;
+                    //find out the highest score
+                    if (Game.players[i].score > highScore)
+                    {
+                        highScore = Game.players[i].score;
+                        winnerIndex = i;
+                    }
+                }
             }
+
+            Game.players[winnerIndex].status = PlayerStatus.win;
+            Game.players[winnerIndex].winReason = OverReason.stayButHighestScore;
+           
+            OverGame(Game.players[winnerIndex].winReason); // game is over
+
         }
-    }
-    winnerTemp.status = PlayerStatus.win;
-    winnerTemp.winReason = WinReason.stayButHighestScore;
-    Game.OverGame(); // game is over
-
-}
-else // game continues...
-{
-
-    ContinueGame();
-}
-
-        @*else // we shouldn't get here...
+        else // game continues...
         {
-            Console.WriteLine("I'm sorry, I don't know what to do now!");
-            nextTask = Tasks.GameOver; // change next task to game over
-        }*@
+
+            ContinueGame();
+        }
+
     }
 
     private void ContinueGame()
@@ -249,6 +283,7 @@ else // game continues...
             Game.currentPlayer = 0; // back to the first player...
         }
 
+        //skip
         while (Game.players[Game.currentPlayer].status == PlayerStatus.stay || Game.players[Game.currentPlayer].status == PlayerStatus.bust)
         {
             Game.currentPlayer++; // index moves on
@@ -256,65 +291,85 @@ else // game continues...
             {
                 Game.currentPlayer = 0; // back to the first player...
             }
+
+            if (isGameOver)
+            {
+                break;
+            }
         }
 
         Game.nextTask = Tasks.PlayerTurn; // change next task to player turns
     }
 
-    /* ********* ShowHands() **********
-     * Show all the cards the player has
-     * Called by Game object
-     * INPUT: List<Player> players ---> player list
-     * OUTPUT: none
-     * */
-    public void ShowHands(List<Player> players)
+    private void CheckForBust(List<Player> players, int current)
     {
-        foreach (Player player in players)
+
+        if (Game.players[current].status == PlayerStatus.bust && potentialWinnerNum == 1)
         {
-            ShowHand(player); // show card or status
+            Game.players.ForEach(x =>
+            {
+                if (x.status != PlayerStatus.bust)
+                {
+                    x.status = PlayerStatus.win; // change the player's status to win
+                    x.winReason = OverReason.othersAreBust;
+                    OverGame(x.winReason);
+                }
+            });
+        }
+    }
+
+    private void CheckEveryone()
+    {
+        activeNum = 0;
+        potentialWinnerNum = 0;
+        stayNum = 0;
+
+        foreach (var p in Game.players) // check every player
+        {
+            if (p.status == PlayerStatus.active)
+            {
+                activeNum++;
+            }
+
+            if (p.status == PlayerStatus.active || p.status == PlayerStatus.stay)
+            {
+                potentialWinnerNum++;
+            }
+
+            if (p.status == PlayerStatus.stay)
+            {
+                stayNum++;
+            }
         }
 
-        Console.WriteLine("-----");
+        @*Console.WriteLine("stayNum" + stayNum);
+        if (stayNum == Game.players.Count)
+        {
+            OverGame(OverReason.everyoneIsStay);
+        }*@
 
     }
 
-    /* ********* ShowHand() **********
-          * Show a card or status
-          * Called by ShowHands method
-          * INPUT: Player player ---> the current player
-          * OUTPUT: none
-          */
-    public void ShowHand(Player player)
+    private void OverGame(OverReason reason)
     {
+        ShowOverReason = "d-flex";
+        isGameOver = true;
 
-        if (player.cards.Count > 0)
+        if (reason == OverReason.everyoneIsStay)
         {
-            Console.Write(player.name + " has: ");
-
-            //if it's the first one, we won't give it a comma
-            //I figured out this way and was inspired by this solution: https://stackoverflow.com/questions/43021/how-do-you-get-the-index-of-the-current-iteration-of-a-foreach-loop
-            var isFirst = true;
-            foreach (Card card in player.cards)
-            {
-                if (isFirst) // it's the first one
-                {
-                    Console.Write(card.Name); // show the name directly
-                    isFirst = false; // change isFirst to false
-                }
-                else
-                {
-                    Console.Write(", " + card.Name); // show the name with a comma
-                }
-            }
-            Console.Write(" = " + player.score + "/21 "); // show score
-
-            if (player.status != PlayerStatus.active) // if the player's status is not active
-            {
-                Console.Write("(" + player.status.ToString().ToUpper() + ")"); // show the player's status
-            }
-            Console.WriteLine();
+            OverReasonDescription = "Come on, everyone...please be agressive!";
         }
+        else
+        {
+            Player winner = new Player("");
+            Game.players.ForEach(x => { if (x.status == PlayerStatus.win) winner = x; });
+            AnnounceWinner(winner);
+        }
+
+        ShowPlayAgain();
     }
+
+
 
     /* ********* AnnounceWinner() **********
     * Announce the winner and show the win reason
@@ -322,43 +377,67 @@ else // game continues...
     * INPUT: Player player ---> the winner player
     * OUTPUT: none
     */
-    public void AnnounceWinner(Player player)
+    private void AnnounceWinner(Player player)
     {
-        ShowWinReason = "d-flex";
+        ShowOverReason = "d-flex";
 
-        if (player != null) // if there is abviously a winner
+        // show the win reason based on different conditions
+        switch (player.winReason)
         {
-            // show the win reason based on different conditions
-            if (player.winReason == WinReason.hitTwentyOne) // is the player hits 21
-            {
-                winReasonDescription = player.name + " hits 21";
+            case OverReason.hitTwentyOne:
+                OverReasonDescription = player.name + " hits 21!";
                 Console.WriteLine(player.name + " hits 21!");
-            }
-            else if (player.winReason == WinReason.gotFiveCards) // if the player has already 5 cards
-            {
-                winReasonDescription = player.name + " has 5 cards and haven't bustted yet!";
+                break;
+
+            case OverReason.gotFiveCards:
+                OverReasonDescription = player.name + " has 5 cards and haven't bustted yet!";
                 Console.WriteLine(player.name + " has 5 cards and haven't bustted yet!");
-            }
-            else if (Game.everyoneIsStay) // if everyone stay, someone who has the highest score is the winner
-            {
-                winReasonDescription = player.name + " has the highest score and others stay!";
-                Console.WriteLine(player.name + " has the highest score and others stay!");
-            }
-            else // someone hasn't bustted and has the highest score, he/she is the winner
-            {
-                winReasonDescription = player.name + " has the highest score and others bust!";
-                Console.WriteLine(player.name + " has the highest score and others bust!");
-            }
+                break;
+
+            case OverReason.stayButHighestScore:
+                OverReasonDescription = player.name + " has the highest score and others are frozen!";
+                Console.WriteLine(player.name + " has the highest score and others are frozen!");
+                break;
+
+            case OverReason.othersAreBust:
+                OverReasonDescription = player.name + " wins because others are bust!";
+                Console.WriteLine(player.name + " wins because others are bust!");
+                break;
+
+            default:
+                break;
 
         }
-        else if (Game.everyoneIsStay) // if everyone is stay
+    }
+
+    private void ShowPlayAgain()
+    {
+        showPlayerChoices = "d-none";
+        showGameChoices = "d-block";
+
+
+    }
+
+    private void PlayAgain()
+    {
+
+        DoSomethingAsync();
+        //EditPlayerModal.Open();
+
+    }
+
+    private async Task DoSomethingAsync()
+    //private void checkPreviousList()
+    {
+        await Task.Run(() => PlayAgain());
+
+        int i = 0;
+
+        Game.previousList.ForEach(x =>
         {
-            Console.WriteLine("Come on, everyone...please be agressive!");
-        }
-        else // if everyone is bust
-        {
-            Console.WriteLine("Everyone busted!");
-        }
+            x = Game.players[i].name;
+            i++;
+        });
 
     }
 
