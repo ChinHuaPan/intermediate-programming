@@ -18,7 +18,7 @@ namespace RaceTo21Blazor
         static public bool isGameOver = false;
         static public string showModal = "d-none";
         static public string showReRenderBtn = "d-none";
-        
+        static public string showCrown = "d-none";
 
         static public int activeNum = Game.players.Count;
         static public int potentialWinnerNum = 0;

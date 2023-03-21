@@ -30,84 +30,97 @@
 
                 @for (int player = 0; player < Game.players.Count; player++)
                 {
-                    <div class="row my-1 mx-1 player-block">
-                        <!-- Name -->
-                        @if (GameUI.isGameOver && @Game.players[player].status == PlayerStatus.win)
-                        {
-                            GameUI.nameStyle = "name-background-win";
-                        }
-                        else
-                        {
-                            GameUI.nameStyle = "name-background";
-                        }
-                        <div class="row ml-5 position-absolute @GameUI.nameStyle"><h4 class="name-overlap ">@Game.players[player].name</h4></div>
+                <div class="row my-1 mx-1 player-block">
+                    <!-- Name -->
+                    @if (GameUI.isGameOver && @Game.players[player].status == PlayerStatus.win)
+                    {
+                        GameUI.nameStyle = "name-background-win";
+                    }
+                    else
+                    {
+                        GameUI.nameStyle = "name-background";
+                    }
+                    <div class="row mx-5 position-absolute  @GameUI.nameStyle" >
+                            <h4 class="name-overlap ">@Game.players[player].name</h4>
+                    </div>
+                    
 
-                        <!-- Card & Score -->
+                    <!-- Card & Score -->
 
-                        @if (player == Game.currentPlayer && !GameUI.isGameOver)
-                        {
-                            GameUI.blockStatus = "card-block-turn";
-                        }
-                        else if (@Game.players[player].status == PlayerStatus.bust || @Game.players[player].status == PlayerStatus.stay)
-                        {
-                            GameUI.blockStatus = "card-block-inactive";
-                        }
-                        else if (@Game.players[player].status == PlayerStatus.win && GameUI.isGameOver)
-                        {
-                            GameUI.blockStatus = "card-block-win";
-                        }
-                        else
-                        {
-                            GameUI.blockStatus = "";
-                        }
+                    @if (player == Game.currentPlayer && !GameUI.isGameOver)
+                    {
+                        GameUI.blockStatus = "card-block-turn";
+                    }
+                    else if (@Game.players[player].status == PlayerStatus.bust || @Game.players[player].status == PlayerStatus.stay)
+                    {
+                        GameUI.blockStatus = "card-block-inactive";
+                    }
+                    else if (@Game.players[player].status == PlayerStatus.win && GameUI.isGameOver)
+                    {
+                        GameUI.blockStatus = "card-block-win";
+                    }
+                    else
+                    {
+                        GameUI.blockStatus = "";
+                    }
 
 
-                        <div class="row d-flex justify-content-betweenm-2 m-2 mt-3 py-3 flex-nowrap card-block  @GameUI.blockStatus">
+                    <div class="row d-flex justify-content-betweenm-2 m-2 mt-3 py-3 flex-nowrap card-block  @GameUI.blockStatus">
 
-                            <!-- Card -->
-                            <div class="col-10 d-flex align-items-center overlow-hidden  pt-2 hand-cards">
-                                @if (Game.players[player].cards.Count != 0)
+                        <!-- Card -->
+                        <div class="col-10 d-flex align-items-center overlow-hidden  pt-2 hand-cards">
+                            @if (Game.players[player].cards.Count != 0)
+                            {
+                                foreach (Card card in Game.players[player].cards)
                                 {
-                                    foreach (Card card in Game.players[player].cards)
-                                    {
-                                        <img class="cards" style="height: 50px; margin-left:-10px;" src="@Deck.cardsFileName[card.Id]" />
-                                    }
+                                    <img class="cards" style="height: 50px; margin-left:-10px;" src="@Deck.cardsFileName[card.Id]" />
                                 }
+                            }
+                            else
+                            {
+                                <small class="card-empty font-italic">No card in your hand yet</small>
+                            }
+                        </div>
+
+                        <!-- Score -->
+                        <div class="col-1 d-flex align-items-center justify-content-center flex-column">
+                            @if(Game.players[player].status == PlayerStatus.win)
+                            {
+                                GameUI.showCrown = "d-block";
+                            }
+                            else
+                            {
+                                GameUI.showCrown = "d-none";
+                            }
+                            <img class="position-absolute crown-style @GameUI.showCrown" src="/crown.png" />
+
+                            @if (@Game.players[player].status == PlayerStatus.bust)
+                            {
+                                <h3 class="text-right font-italic mb-0 score-bust">@Game.players[player].score</h3>
+                                <h6 class="text-right font-italic mt-0 score-bust">@Game.players[player].status.ToString()</h6>
+
+                            }
+                            else if (@Game.players[player].status == PlayerStatus.stay)
+                            {
+                                <h3 class="text-right font-italic mb-0 score-stay">@Game.players[player].score</h3>
+                                <h6 class="text-right font-italic mt-0 score-stay">@Game.players[player].status.ToString()</h6>
+
+                            }
+                            else
+                            {
+                                if (Game.players[player].status == PlayerStatus.win)
+                                { GameUI.scoreWin = "font-weight-bold"; }
                                 else
                                 {
-                                    <small class="card-empty font-italic">No card in your hand yet</small>
-                                }
-                            </div>
-
-                            <!-- Score -->
-                            <div class="col-1 d-flex align-items-center justify-content-center flex-column">
-                                @if (@Game.players[player].status == PlayerStatus.bust)
-                                {
-                                    <h3 class="text-right font-italic mb-0 score-bust">@Game.players[player].score</h3>
-                                    <h6 class="text-right font-italic mt-0 score-bust">@Game.players[player].status.ToString()</h6>
-
-                                }
-                                else if (@Game.players[player].status == PlayerStatus.stay)
-                                {
-                                    <h3 class="text-right font-italic mb-0 score-stay">@Game.players[player].score</h3>
-                                    <h6 class="text-right font-italic mt-0 score-stay">@Game.players[player].status.ToString()</h6>
-
-                                }
-                                else
-                                {
-                                    if (Game.players[player].status == PlayerStatus.win)
-                                    { GameUI.scoreWin = "font-weight-bold"; }
-                                    else
-                                    {
-                                        GameUI.scoreWin = "";
-                                    }
-
-                                    <h3 class="text-right  m-2 @GameUI.scoreWin">@Game.players[player].score</h3>
+                                    GameUI.scoreWin = "";
                                 }
 
-                            </div>
+                                <h3 class="text-right  m-2 @GameUI.scoreWin">@Game.players[player].score</h3>
+                            }
+
                         </div>
                     </div>
+                </div>
                 }
 
 
@@ -174,8 +187,8 @@ else
         CheckWin(player);
 
         CheckEveryone();
-        CheckForBust(Game.players, Game.currentPlayer);
 
+        CheckForBust(Game.players, Game.currentPlayer);
 
         CheckForNoActive();
     }
