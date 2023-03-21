@@ -51,7 +51,7 @@ namespace RaceTo21Blazor
             }
         }
 
-        /* ********* Shuffle() **********
+        /* ********* ShuffleCards() **********
          * Shuffle cards
          * Called by Game object
          * INPUT: none
@@ -73,7 +73,7 @@ namespace RaceTo21Blazor
             }
         }
 
-        /* ********* Shuffle() **********
+        /* ********* DealTopCard() **********
          * Take the card from top and remove it from the cards
          * Called by Game object
          * INPUT: none
