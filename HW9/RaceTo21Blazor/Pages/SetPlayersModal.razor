@@ -160,13 +160,13 @@
     List<string> playerNameList = Game.previousList;
     List<Player> playerListTemp = new List<Player>();
     int maxPlayers = 8;
-    //Game game = new Game(new CardTable(), new List<Player>());
-    //Deck deck = new Deck();
 
     string warning = "";
 
     private void GetPlayerNameList()
     {
+        playerListTemp = new List<Player>();
+
         playerNameList.ForEach(x =>
         {
             if (x != null)
@@ -201,12 +201,35 @@
         if (CheckMoreThanTwo()) {
             Game game = new Game(new CardTable(), playerListTemp);
 
-            Game.deck.Shuffle(); // shuffle the cards
+            Game.deck.ShuffleCards(); // shuffle the cards
             Game.deck.shufflePlayers(Game.players); // shuffle the players (to ensure the same person doesn’t always win a tiebreaker)
             NavManager.NavigateTo("/game");
         }
+        initializePage();
         Close();
+
         //deck.initializeGame(GetPlayerNameList);
+    }
+
+    public void initializePage()
+    {
+        GameUI.ShowOverReason = "hidden";
+        GameUI.playerBlockWidth = "col-8";
+        GameUI.scoreStyle = "";
+        GameUI.inactiveStatus = "hidden";
+        GameUI.blockStatus = "";
+        GameUI.scoreWin = "";
+        GameUI.nameStyle = "";
+        GameUI.showPlayerChoices = "d-block";
+        GameUI.showGameChoices = "d-none";
+        GameUI.isGameOver = false;
+        GameUI.showModal = "d-none";
+
+        GameUI.activeNum = 0;
+        GameUI.potentialWinnerNum = 0;
+        GameUI.stayNum = 0;
+
+        StateHasChanged();
     }
 
 
@@ -224,6 +247,7 @@
         ShowBackdrop = true;
         StateHasChanged();
     }
+
 
     public void Close()
     {

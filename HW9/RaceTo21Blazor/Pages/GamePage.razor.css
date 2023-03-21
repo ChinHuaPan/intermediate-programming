@@ -5,6 +5,7 @@
 .name-overlap {
     text-shadow: #FFF 1px 0 5px;
     font-weight: 500;
+    margin-top: -5px;
 }
 
 .name-overlap-turn {

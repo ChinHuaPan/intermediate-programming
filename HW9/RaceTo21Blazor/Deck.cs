@@ -57,7 +57,7 @@ namespace RaceTo21Blazor
          * INPUT: none
          * OUTPUT: none
          */
-        public void Shuffle()
+        public void ShuffleCards()
         {
             Console.WriteLine("Shuffling Cards...");
 

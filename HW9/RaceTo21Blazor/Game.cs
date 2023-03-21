@@ -7,7 +7,7 @@ namespace RaceTo21Blazor
     public class Game
     {
         static public int maxPlayers = 8;
-        static public List<Player> players; // list of objects containing player data
+        static public List<Player> players = new List<Player>(2); // list of objects containing player data
         static public CardTable cardTable; // object in charge of displaying game information
         static public Deck deck = new Deck(); // deck of cards
         static public int currentPlayer = 0; // current player on list
@@ -20,12 +20,9 @@ namespace RaceTo21Blazor
             players = playersTemp; // overwrite the players
 
             cardTable = c; 
-            deck.Shuffle(); // shuffle the cards
+            deck.ShuffleCards(); // shuffle the cards
 
         }
-
-     
-        
 
         /* ********* ScoreHand() **********
          * Calculate the score player currently has in hand
