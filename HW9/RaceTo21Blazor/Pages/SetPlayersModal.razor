@@ -151,6 +151,7 @@
 
     List<string> playerNameList = new List<string>(new string[8]);
     List<Player> playerListTemp = new List<Player>();
+    int maxPlayers = 8;
     //Game game = new Game(new CardTable(), new List<Player>());
     //Deck deck = new Deck();
 
@@ -169,7 +170,7 @@
 
     private bool CheckMoreThanTwo()
     {
-        if(Game.players.Count < 2 || Game.players.Count > Game.maxPlayers)
+        if(playerListTemp.Count < 2 || playerListTemp.Count > maxPlayers)
         {
             warning = "showWarning";
             return false;
@@ -190,11 +191,12 @@
 
         //if (nextTask == Tasks.IntroducePlayers) // introduce players
         if (CheckMoreThanTwo()) {
+            Game game = new Game(new CardTable(), playerListTemp);
+
             Game.deck.Shuffle(); // shuffle the cards
             Game.deck.shufflePlayers(Game.players); // shuffle the players (to ensure the same person doesn’t always win a tiebreaker)
             NavManager.NavigateTo("/game");
         }
-        Game game = new Game(new CardTable(), playerListTemp);
 
         //deck.initializeGame(GetPlayerNameList);
     }
