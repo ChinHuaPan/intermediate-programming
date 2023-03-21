@@ -30,7 +30,7 @@
 
                 @for (int player = 0; player < Game.players.Count; player++)
                 {
-            <div class="row my-1 mx-1 player-block">
+                    <div class="row my-1 mx-1 player-block">
                         <!-- Name -->
                         @if (isGameOver && @Game.players[player].status == PlayerStatus.win)
                         {
@@ -43,24 +43,25 @@
                         <div class="row ml-5 mt-0 position-absolute @nameStyle"><h4 class="name-overlap ">@Game.players[player].name</h4></div>
 
                         <!-- Card & Score -->
-                        
-                            @if (player == Game.currentPlayer && !isGameOver)
-                            {
-                                blockStatus = "card-block-turn";
-                            }
-                            else if (@Game.players[player].status == PlayerStatus.bust || @Game.players[player].status == PlayerStatus.stay)
-                            {
-                                blockStatus = "card-block-inactive";
-                            }
-                            else if (@Game.players[player].status == PlayerStatus.win && isGameOver)
-                            {
-                                blockStatus = "card-block-win";
-                            }else
-                            {
-                                blockStatus = "";
-                            }
-                        
-                        
+
+                        @if (player == Game.currentPlayer && !isGameOver)
+                        {
+                            blockStatus = "card-block-turn";
+                        }
+                        else if (@Game.players[player].status == PlayerStatus.bust || @Game.players[player].status == PlayerStatus.stay)
+                        {
+                            blockStatus = "card-block-inactive";
+                        }
+                        else if (@Game.players[player].status == PlayerStatus.win && isGameOver)
+                        {
+                            blockStatus = "card-block-win";
+                        }
+                        else
+                        {
+                            blockStatus = "";
+                        }
+
+
                         <div class="row d-flex justify-content-betweenm-2 m-2 mt-3 py-3 flex-nowrap card-block  @blockStatus">
 
                             <!-- Card -->
@@ -93,10 +94,10 @@
                                     {
                                         scoreWin = "";
                                     }
-                   
+
                                     <h3 class="text-right  m-2 @scoreWin">@Game.players[player].score</h3>
                                 }
-                                
+
                             </div>
                         </div>
                     </div>
@@ -128,8 +129,9 @@
 </div>
 
 
-<!-- Modal for setting up players -->
+<!-- Modal for editting players -->
     <EditPlayersModal @ref="EditPlayerModal"></EditPlayersModal>
+
 
 @code{
 
@@ -153,26 +155,40 @@
     /*** for EditPlayersModal ***/
     private EditPlayersModal EditPlayerModal { get; set; }
 
+    protected override Task OnInitializedAsync()
+    {
+       ShowOverReason = "hidden";
+        playerBlockWidth = "col-8";
+        scoreStyle = "";
+        inactiveStatus = "hidden";
+        blockStatus = "";
+        scoreWin = "";
+        nameStyle = "";
+        showPlayerChoices = "d-block";
+        showGameChoices = "d-none";
+        isGameOver = false;
+        showModal = "d-none";
+
+        activeNum = Game.players.Count;
+        potentialWinnerNum = 0;
+        stayNum = 0;
+
+        return base.OnInitializedAsync();
+    }
 
     private void RequestCard()
     {
         Game.players.ForEach(x => Console.WriteLine(x.name));
         Player player = Game.players[Game.currentPlayer]; // pass current player
 
-
-        Console.WriteLine("DoTurns");
         DoTurns(player);
 
-        Console.WriteLine("CheckWin");
         CheckWin(player);
 
-        Console.WriteLine("CheckForBust");
         CheckForBust(Game.players, Game.currentPlayer);
 
-        Console.WriteLine("CheckEveryone");
         CheckEveryone();
 
-        Console.WriteLine("CheckForNoActive");
         CheckForNoActive();
 
 
@@ -247,7 +263,7 @@
             int highScore = -1;
             int winnerIndex = -1;
 
-            for (int i=0; i < Game.players.Count; i++)
+            for (int i = 0; i < Game.players.Count; i++)
             {
                 if (Game.players[i].status == PlayerStatus.stay) // still could win...
                 {
@@ -262,7 +278,7 @@
 
             Game.players[winnerIndex].status = PlayerStatus.win;
             Game.players[winnerIndex].winReason = OverReason.stayButHighestScore;
-           
+
             OverGame(Game.players[winnerIndex].winReason); // game is over
 
         }
@@ -343,10 +359,10 @@
         }
 
         @*Console.WriteLine("stayNum" + stayNum);
-        if (stayNum == Game.players.Count)
-        {
-            OverGame(OverReason.everyoneIsStay);
-        }*@
+            if (stayNum == Game.players.Count)
+            {
+                OverGame(OverReason.everyoneIsStay);
+            }*@
 
     }
 
@@ -420,25 +436,21 @@
 
     private void PlayAgain()
     {
-        DoSomethingAsync();
-        //EditPlayerModal.Open();
-        NavManager.NavigateTo("/setPlayer");
+        checkPreviousList();
+        EditPlayerModal.Open();
 
     }
 
-    private async Task DoSomethingAsync()
-    //private void checkPreviousList()
+    //private void checkList()
+    private void checkPreviousList()
     {
-        await Task.Run(() => PlayAgain());
 
-        int i = 0;
-
-        Game.previousList.ForEach(x =>
-        {
-            x = Game.players[i].name;
-            i++;
-        });
-
-    }
+    int i = 0;
+    Game.players.ForEach(x => {
+        Game.previousList[i] = x.name;
+        Console.WriteLine(Game.previousList[i]);
+        i++;
+    });
+}
 
 }

@@ -150,7 +150,8 @@
 
 
     List<string> playerNameList = Game.previousList;
-    Game game = new Game(new CardTable(), new List<Player>());
+    List<Player> playerListTemp = new List<Player>();
+    //Game game = new Game(new CardTable(), new List<Player>());
 
     string warning = "";
 
@@ -160,7 +161,7 @@
         {
             if (x != null)
             {
-                game.AddPlayer(x);
+                playerListTemp.Add(new Player(x));
             }
         });
     }
@@ -195,6 +196,9 @@
         }
 
         //deck.initializeGame(GetPlayerNameList);
+        Game game = new Game(new CardTable(), playerListTemp);
+
+        Close();
     }
 
 
