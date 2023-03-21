@@ -66,9 +66,16 @@
 
                             <!-- Card -->
                             <div class="col-10 d-flex align-items-center overlow-hidden  pt-2 hand-cards">
-                                @foreach (Card card in Game.players[player].cards)
+                                @if (Game.players[player].cards.Count != 0)
                                 {
-                                    <img class="cards" style="height: 50px; margin-left:-10px;" src="@Deck.cardsFileName[card.Id]" />
+                                    foreach (Card card in Game.players[player].cards)
+                                    {
+                                        <img class="cards" style="height: 50px; margin-left:-10px;" src="@Deck.cardsFileName[card.Id]" />
+                                    }
+                                }
+                                else
+                                {
+                                    <small class="card-empty font-italic">No card in your hand yet</small>
                                 }
                             </div>
 
@@ -155,26 +162,7 @@
     /*** for EditPlayersModal ***/
     private EditPlayersModal EditPlayerModal { get; set; }
 
-    @*protected override Task OnInitializedAsync()
-    {
-       ShowOverReason = "hidden";
-        playerBlockWidth = "col-8";
-        scoreStyle = "";
-        inactiveStatus = "hidden";
-        blockStatus = "";
-        scoreWin = "";
-        nameStyle = "";
-        showPlayerChoices = "d-block";
-        showGameChoices = "d-none";
-        isGameOver = false;
-        showModal = "d-none";
 
-        activeNum = Game.players.Count;
-        potentialWinnerNum = 0;
-        stayNum = 0;
-
-        return base.OnInitializedAsync();
-    }*@
 
 
     private void RequestCard()
