@@ -93,16 +93,16 @@ namespace RaceTo21Blazor
          * INPUT: List<Player> players --> the player list
          * OUTPUT: none
          * */
-        public void initializeGame(List<Player> players)
-        {
-            CardTable cardTable = new CardTable(); // create a new cardTable
-            Game game = new Game(cardTable, players); // create a new game
+        //public void initializeGame(List<Player> players)
+        //{
+        //    CardTable cardTable = new CardTable(); // create a new cardTable
+        //    Game game = new Game(cardTable, players); // create a new game
 
-            while (Game.nextTask != Tasks.GameOver) // when game is not over
-            {
-                game.DoNextTask(); // do the next task
-            }
-        }
+        //    while (Game.nextTask != Tasks.GameOver) // when game is not over
+        //    {
+        //        game.DoNextTask(); // do the next task
+        //    }
+        //}
 
         /* ********* shufflePlayers() **********
          * Shuffle the players
