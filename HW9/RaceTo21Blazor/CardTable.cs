@@ -96,61 +96,7 @@ namespace RaceTo21Blazor
             }
         }
 
-        /* ********* ShowHand() **********
-         * Show a card or status
-         * Called by ShowHands method
-         * INPUT: Player player ---> the current player
-         * OUTPUT: none
-         */
-        public void ShowHand(Player player)
-        {
-
-            if (player.cards.Count > 0)
-            {
-                Console.Write(player.name + " has: ");
-
-                //if it's the first one, we won't give it a comma
-                //I figured out this way and was inspired by this solution: https://stackoverflow.com/questions/43021/how-do-you-get-the-index-of-the-current-iteration-of-a-foreach-loop
-                var isFirst = true;
-                foreach (Card card in player.cards)
-                {
-                    if (isFirst) // it's the first one
-                    {
-                        Console.Write(card.Name); // show the name directly
-                        isFirst = false; // change isFirst to false
-                    }
-                    else
-                    {
-                        Console.Write(", " + card.Name); // show the name with a comma
-                    }
-                }
-                Console.Write(" = " + player.score + "/21 "); // show score
-
-                if (player.status != PlayerStatus.active) // if the player's status is not active
-                {
-                    Console.Write("(" + player.status.ToString().ToUpper() + ")"); // show the player's status
-                }
-                Console.WriteLine();
-            }
-        }
-
-
-        /* ********* ShowHands() **********
-         * Show all the cards the player has
-         * Called by Game object
-         * INPUT: List<Player> players ---> player list
-         * OUTPUT: none
-         * */
-        public void ShowHands(List<Player> players)
-        {
-            foreach (Player player in players)
-            {
-                ShowHand(player); // show card or status
-            }
-
-            Console.WriteLine("-----");
-
-        }
+      
 
         /* ********* AnnounceWinner() **********
          * Announce the winner and show the win reason

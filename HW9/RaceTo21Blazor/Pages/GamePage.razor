@@ -84,6 +84,8 @@
 
                         <!-- Score -->
                         <div class="col-1 d-flex align-items-center justify-content-center flex-column">
+
+                            <!-- Crwon -->
                             @if(Game.players[player].status == PlayerStatus.win)
                             {
                                 GameUI.showCrown = "d-block";
@@ -94,6 +96,7 @@
                             }
                             <img class="position-absolute crown-style @GameUI.showCrown" src="/crown.png" />
 
+                            <!-- Score and frozen status-->
                             @if (@Game.players[player].status == PlayerStatus.bust)
                             {
                                 <h3 class="text-right font-italic mb-0 score-bust">@Game.players[player].score</h3>
@@ -132,7 +135,9 @@
                     <h5 class="text-center">
                         it's your turn!
                     </h5>
+                    <!-- Request -->
                     <button type="button" class="btn btn-secondary my-2" @onclick="RequestCard">Request</button>
+                    <!-- Stay -->
                     <button type="button" class="btn btn-secondary my-2" @onclick="Stay">Stay</button>
                 </div>
             </div>
@@ -152,6 +157,7 @@
 <!-- Modal for setting up players -->
 <SetPlayersModal @ref="SetPlayerModal"></SetPlayersModal>
 
+<!-- Re-render temp btn -->
 @if (GameUI.showGameChoices == "d-block") {
     GameUI.showReRenderBtn = "d-block";
 }
@@ -170,46 +176,51 @@ else
     private SetPlayersModal SetPlayerModal { get; set; }
 
 
-    public void ReRenderPage()
-    {
-        Game.currentPlayer = 0;
-        StateHasChanged();
-    }
 
-
+    /* ********* onclick: RequestCard() **********
+         * Request a card
+         * Onclick event for "request" btn
+         * INPUT: none
+         * OUTPUT: none
+         */
     private void RequestCard()
     {
-        Game.players.ForEach(x => Console.WriteLine(x.name));
         Player player = Game.players[Game.currentPlayer]; // pass current player
 
         DoTurns(player);
 
         CheckWin(player);
 
-        CheckEveryone();
+        CalEveryone();
 
         CheckForBust(Game.players, Game.currentPlayer);
 
         CheckForNoActive();
     }
 
+    /* ********* onclick: Stay() **********
+         * Stay
+         * Onclick event for "Stay" btn
+         * INPUT: none
+         * OUTPUT: none
+         */
     protected void Stay()
     {
-
         Game.players[Game.currentPlayer].status = PlayerStatus.stay; // change the player's status to stay
-        CheckEveryone();
-        CheckForNoActive();
 
+        CalEveryone();
+
+        CheckForNoActive();
     }
 
-
+    /* ********* DoTurns() **********
+         * Process the current player
+         * Called by Request() method
+         * INPUT: Player player --> the player who we are processing
+         * OUTPUT: none
+         */
     private void DoTurns(Player player)
     {
-        //if (nextTask == Tasks.PlayerTurn) // player turns
-
-        Game.cardTable.ShowHands(Game.players); // show the player's cards
-                                                //Player player = players[currentPlayer]; // pass current player
-
         if (player.status == PlayerStatus.active) // if the curretn player's status is active
         {
             Card card = Game.deck.DealTopCard(); // pass the top card
@@ -217,14 +228,14 @@ else
             player.score = Game.ScoreHand(player); // calculate score the player has
         }
 
-        if (Game.nextTask != Tasks.GameOver) // if game isn't over yet
-        {
-            //cardTable.ShowHand(player);
-            Game.nextTask = Tasks.CheckForEnd; // change next task to CheckForEnd
-        }
-
     }
 
+    /* ********* CheckWin() **********
+         * Check whether the current player win obviously or not
+         * Called by Request() method
+         * INPUT: Player player --> the player who we are checking
+         * OUTPUT: none
+         */
     private void CheckWin(Player player)
     {
         if (player.score > 21) // if score is more than 21 --> bust
@@ -235,7 +246,6 @@ else
         {
             player.status = PlayerStatus.win; // change the player's status to win
             player.winReason = OverReason.hitTwentyOne;
-            Game.nextTask = Tasks.CheckForEnd;  // change next task to CheckForEnd
 
             OverGame(player.winReason); // game is over
         }
@@ -243,7 +253,6 @@ else
         {
             player.status = PlayerStatus.win; // change the player's status to win
             player.winReason = OverReason.gotFiveCards;
-            Game.nextTask = Tasks.CheckForEnd;  // change next task to CheckForEnd
 
             OverGame(player.winReason); // game is over
         }
@@ -253,10 +262,14 @@ else
         }
     }
 
+    /* ********* CheckForNoActive() **********
+        * Process the situation that everyone is inactive
+        * Called by Request() method
+        * INPUT: none
+        * OUTPUT: none
+        */
     private void CheckForNoActive()
     {
-        //if (nextTask == Tasks.CheckForEnd) // check for end this round
-
         if (GameUI.activeNum == 0) // if there is no active players
         {
             int highScore = -1;
@@ -289,6 +302,12 @@ else
 
     }
 
+    /* ********* ContinueGame() **********
+        * Continue game
+        * Called by CheckForNoActive() method
+        * INPUT: none
+        * OUTPUT: none
+        */
     private void ContinueGame()
     {
         Game.currentPlayer++; // index moves on
@@ -298,7 +317,7 @@ else
             Game.currentPlayer = 0; // back to the first player...
         }
 
-        //skip
+        //skip frozen palyers (bust and stay)
         while (Game.players[Game.currentPlayer].status == PlayerStatus.stay || Game.players[Game.currentPlayer].status == PlayerStatus.bust)
         {
             Game.currentPlayer++; // index moves on
@@ -316,9 +335,16 @@ else
         Game.nextTask = Tasks.PlayerTurn; // change next task to player turns
     }
 
+    /* ********* CheckForBust() **********
+        * Process the situation that everyone is inactive
+        * Called by Request() method
+        * INPUT: List<Player> players --> player list
+        *        int current --> the index of the current player
+        * OUTPUT: none
+        */
     private void CheckForBust(List<Player> players, int current)
     {
-
+        //if the current player is bust and there is only one potential player left
         if (Game.players[current].status == PlayerStatus.bust && GameUI.potentialWinnerNum == 1)
         {
             Game.players.ForEach(x =>
@@ -333,7 +359,13 @@ else
         }
     }
 
-    private void CheckEveryone()
+    /* ********* CalEveryone() **********
+        * Calculate the numbers for counters
+        * Called by Request() method
+        * INPUT: none
+        * OUTPUT: none
+        */
+    private void CalEveryone()
     {
         GameUI.activeNum = 0;
         GameUI.potentialWinnerNum = 0;
@@ -341,16 +373,19 @@ else
 
         foreach (var p in Game.players) // check every player
         {
+            //active num
             if (p.status == PlayerStatus.active)
             {
                 GameUI.activeNum++;
             }
 
+            //potential winner num
             if (p.status == PlayerStatus.active || p.status == PlayerStatus.stay)
             {
                 GameUI.potentialWinnerNum++;
             }
 
+            //stay num
             if (p.status == PlayerStatus.stay)
             {
                 GameUI.stayNum++;
@@ -365,6 +400,12 @@ else
 
     }
 
+    /* ********* OverGame() **********
+    * Calculate the numbers for counters
+    * Called when game is over
+    * INPUT: OverReason reason --> the reason of game over
+    * OUTPUT: none
+    */
     private void OverGame(OverReason reason)
     {
         GameUI.ShowOverReason = "d-flex";
@@ -388,7 +429,7 @@ else
 
     /* ********* AnnounceWinner() **********
     * Announce the winner and show the win reason
-    * Called by Game object
+    * Called by OverGame() method
     * INPUT: Player player ---> the winner player
     * OUTPUT: none
     */
@@ -401,22 +442,18 @@ else
         {
             case OverReason.hitTwentyOne:
                 GameUI.OverReasonDescription = player.name + " hits 21!";
-                Console.WriteLine(player.name + " hits 21!");
                 break;
 
             case OverReason.gotFiveCards:
                 GameUI.OverReasonDescription = player.name + " has 5 cards and haven't bustted yet!";
-                Console.WriteLine(player.name + " has 5 cards and haven't bustted yet!");
                 break;
 
             case OverReason.stayButHighestScore:
                 GameUI.OverReasonDescription = player.name + " has the highest score and others are frozen!";
-                Console.WriteLine(player.name + " has the highest score and others are frozen!");
                 break;
 
             case OverReason.othersAreBust:
                 GameUI.OverReasonDescription = player.name + " wins because others are bust!";
-                Console.WriteLine(player.name + " wins because others are bust!");
                 break;
 
             default:
@@ -425,14 +462,25 @@ else
         }
     }
 
+
+    /* ********* ShowPlayAgain() **********
+    * Show game choice (play again btn)
+    * Called by OverGame() method
+    * INPUT: none
+    * OUTPUT: none
+    */
     private void ShowPlayAgain()
     {
         GameUI.showPlayerChoices = "d-none";
         GameUI.showGameChoices = "d-block";
-
-
     }
 
+    /* ********* onlcick: PlayAgain() **********
+    * Open the setting up player list modal with the current list
+    * Onclick event for PlayAgain btn
+    * INPUT: none
+    * OUTPUT: none
+    */
     private void PlayAgain()
     {
         checkPreviousList();
@@ -440,6 +488,12 @@ else
 
     }
 
+    /* ********* checkPreviousList() **********
+    * Pass the names of current players list to previousList
+    * Called by PlayAgain() method
+    * INPUT: none
+    * OUTPUT: none
+    */
     private void checkPreviousList()
     {
         Game.previousList = new List<string>(new string[8]);
@@ -451,5 +505,19 @@ else
             i++;
         });
     }
+
+
+    /* ********* ReRenderPage() **********
+    * Re-render the page
+    * Onclick event for "ReRender" btn
+    * INPUT: none
+    * OUTPUT: none
+    */
+    public void ReRenderPage()
+    {
+        Game.currentPlayer = 0;
+        StateHasChanged();
+    }
+
 
 }
