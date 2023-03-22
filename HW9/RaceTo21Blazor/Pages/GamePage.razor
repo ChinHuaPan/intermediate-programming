@@ -1,7 +1,7 @@
 ﻿@page "/game"
 @inject HttpClient Http
 @inject NavigationManager NavManager
-
+@using System.Timers;
 
 <div class="container ">
     <div class="col-11 mx-auto">
@@ -157,25 +157,34 @@
 <!-- Modal for setting up players -->
 <SetPlayersModal @ref="SetPlayerModal"></SetPlayersModal>
 
-<!-- Re-render temp btn -->
-@if (GameUI.showGameChoices == "d-block") {
-    GameUI.showReRenderBtn = "d-block";
-}
-else
-{
-    GameUI.showReRenderBtn = "d-none";
-}
-    <button type="button" class="btn btn-primary @GameUI.showReRenderBtn" @onclick="ReRenderPage">Refresh page</button>
+
 
 
 @code{
 
 
-
     /*** for EditPlayersModal ***/
     private SetPlayersModal SetPlayerModal { get; set; }
 
+    Timer timer = new Timer(1000);
 
+    protected override void OnInitialized()
+    {
+        timer.Elapsed += Timer_Tick;
+        timer.Start();
+
+        //StateHasChanged();
+
+        base.OnInitialized();
+    }
+
+    private void Timer_Tick(Object source, ElapsedEventArgs e)
+    {
+        InvokeAsync(() =>
+        {
+            StateHasChanged();
+        });
+    }
 
     /* ********* onclick: RequestCard() **********
          * Request a card
@@ -191,7 +200,7 @@ else
 
         CheckWin(player);
 
-        CalEveryone();
+        CardTable.CalEveryone();
 
         CheckForBust(Game.players, Game.currentPlayer);
 
@@ -204,11 +213,11 @@ else
          * INPUT: none
          * OUTPUT: none
          */
-    protected void Stay()
+    private void Stay()
     {
         Game.players[Game.currentPlayer].status = PlayerStatus.stay; // change the player's status to stay
 
-        CalEveryone();
+        CardTable.CalEveryone();
 
         CheckForNoActive();
     }
@@ -302,6 +311,30 @@ else
 
     }
 
+    /* ********* CheckForBust() **********
+       * Process the situation that everyone is inactive
+       * Called by Request() method
+       * INPUT: List<Player> players --> player list
+       *        int current --> the index of the current player
+       * OUTPUT: none
+       */
+    private void CheckForBust(List<Player> players, int current)
+    {
+        //if the current player is bust and there is only one potential player left
+        if (Game.players[current].status == PlayerStatus.bust && GameUI.potentialWinnerNum == 1)
+        {
+            Game.players.ForEach(x =>
+            {
+                if (x.status != PlayerStatus.bust)
+                {
+                    x.status = PlayerStatus.win; // change the player's status to win
+                    x.winReason = OverReason.othersAreBust;
+                    OverGame(x.winReason);
+                }
+            });
+        }
+    }
+
     /* ********* ContinueGame() **********
         * Continue game
         * Called by CheckForNoActive() method
@@ -335,70 +368,6 @@ else
         Game.nextTask = Tasks.PlayerTurn; // change next task to player turns
     }
 
-    /* ********* CheckForBust() **********
-        * Process the situation that everyone is inactive
-        * Called by Request() method
-        * INPUT: List<Player> players --> player list
-        *        int current --> the index of the current player
-        * OUTPUT: none
-        */
-    private void CheckForBust(List<Player> players, int current)
-    {
-        //if the current player is bust and there is only one potential player left
-        if (Game.players[current].status == PlayerStatus.bust && GameUI.potentialWinnerNum == 1)
-        {
-            Game.players.ForEach(x =>
-            {
-                if (x.status != PlayerStatus.bust)
-                {
-                    x.status = PlayerStatus.win; // change the player's status to win
-                    x.winReason = OverReason.othersAreBust;
-                    OverGame(x.winReason);
-                }
-            });
-        }
-    }
-
-    /* ********* CalEveryone() **********
-        * Calculate the numbers for counters
-        * Called by Request() method
-        * INPUT: none
-        * OUTPUT: none
-        */
-    private void CalEveryone()
-    {
-        GameUI.activeNum = 0;
-        GameUI.potentialWinnerNum = 0;
-        GameUI.stayNum = 0;
-
-        foreach (var p in Game.players) // check every player
-        {
-            //active num
-            if (p.status == PlayerStatus.active)
-            {
-                GameUI.activeNum++;
-            }
-
-            //potential winner num
-            if (p.status == PlayerStatus.active || p.status == PlayerStatus.stay)
-            {
-                GameUI.potentialWinnerNum++;
-            }
-
-            //stay num
-            if (p.status == PlayerStatus.stay)
-            {
-                GameUI.stayNum++;
-            }
-        }
-
-        @*Console.WriteLine("stayNum" + stayNum);
-            if (stayNum == Game.players.Count)
-            {
-                OverGame(OverReason.everyoneIsStay);
-            }*@
-
-    }
 
     /* ********* OverGame() **********
     * Calculate the numbers for counters
@@ -507,16 +476,5 @@ else
     }
 
 
-    /* ********* ReRenderPage() **********
-    * Re-render the page
-    * Onclick event for "ReRender" btn
-    * INPUT: none
-    * OUTPUT: none
-    */
-    public void ReRenderPage()
-    {
-        Game.currentPlayer = 0;
-        StateHasChanged();
-    }
 
 }
