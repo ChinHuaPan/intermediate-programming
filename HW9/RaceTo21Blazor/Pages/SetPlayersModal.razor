@@ -201,17 +201,15 @@
         if (CheckMoreThanTwo()) {
             Game game = new Game(new CardTable(), playerListTemp);
 
-            Game.deck.ShuffleCards(); // shuffle the cards
-            Game.deck.shufflePlayers(Game.players); // shuffle the players (to ensure the same person doesn’t always win a tiebreaker)
             NavManager.NavigateTo("/game");
         }
-        initializePage();
+
+        resetPage();
         Close();
 
-        //deck.initializeGame(GetPlayerNameList);
     }
 
-    public void initializePage()
+    public void resetPage()
     {
         GameUI.ShowOverReason = "hidden";
         GameUI.playerBlockWidth = "col-8";

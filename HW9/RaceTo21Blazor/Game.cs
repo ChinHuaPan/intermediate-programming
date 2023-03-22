@@ -21,6 +21,8 @@ namespace RaceTo21Blazor
 
             cardTable = c; 
             deck.ShuffleCards(); // shuffle the cards
+            deck.shufflePlayers(players); // shuffle the players (to ensure the same person doesn’t always win a tiebreaker)
+
 
         }
 
