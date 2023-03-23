@@ -1,0 +1,42 @@
+﻿/* Edited */
+.modal-content {
+    min-width: 650px;
+    border-radius: 15px;
+    border: none;
+    background-color: #FEC128;
+}
+
+.modal-dialog {
+    max-width: 700px;
+}
+
+/* Edited */
+.modal-header,
+.modal-body,
+.modal-footer {
+    border: none;
+}
+
+.modal-body {
+    height: 250px;
+}
+
+.name-input {
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+    .name-input::placeholder {
+        font-style: italic;
+        color: #949494;
+        font-weight: 400;
+    }
+
+.form-control {
+    border: 1px solid #FFF;
+    height: 42px;
+}
+
+.name-warning {
+    border: solid 2px #E60609;
+}

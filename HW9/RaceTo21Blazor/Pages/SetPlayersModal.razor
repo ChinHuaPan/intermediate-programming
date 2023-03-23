@@ -1,50 +1,6 @@
 ﻿@page "/setPlayer"
 @inject NavigationManager NavManager
 
-<style>
-    /* Edited */
-    .modal-content {
-        min-width: 650px;
-        border-radius: 15px;
-        border: none;
-        background-color: #FEC128;
-    }
-
-    .modal-dialog {
-        max-width: 700px;
-    }
-
-    /* Edited */
-    .modal-header,
-    .modal-body,
-    .modal-footer {
-        border: none;
-    }
-
-    .modal-body {
-        height: 250px;
-    }
-
-    .name-input {
-        border-radius: 20px;
-        font-weight: bold;
-    }
-
-        .name-input::placeholder {
-            font-style: italic;
-            color: #949494;
-            font-weight: 400;
-        }
-
-    .form-control {
-        border: 1px solid #FFF;
-        height: 42px;
-    }
-
-    .name-warning {
-        border: solid 2px #E60609;
-    }
-</style>
 
 <!-- SetPlayersModal -->
 <div class="modal @ModalClass" tabindex="-1" role="dialog" style="display:@ModalDisplay" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -143,7 +99,7 @@
                 <!-- Buttons -->
                 <div class="row d-flex w-100 mx-auto  justify-content-center">
                     <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal" @onclick="() => Close()">Close</button>
-                    <button type="button" class="btn btn-primary mx-2" style="width:400px;" @onclick="StartGame">Save changes</button>
+                    <button type="button" class="btn btn-primary mx-2" style="width:400px;" @onclick="StartGame">Start Game</button>
                 </div>
             </div>
         </div>
@@ -166,11 +122,14 @@
     string[] nameWarning = new string[8];
 
     int maxPlayers = 8;
-
-
     string warning = "";
 
-
+    /* ********* onclick: StartGame() **********
+         * Start game
+         * Onclick event for "start game" btn
+         * INPUT: none
+         * OUTPUT: none
+         */
     private void StartGame()
     {
 
@@ -189,12 +148,22 @@
 
             NavManager.NavigateTo("/game");
         }
+        else
+        {
+            return;
+        }
 
         resetPage();
         Close();
 
     }
 
+    /* ********* GetPlayerNameList() **********
+         * Get player name list from the screen
+         * Called by StartGame() method
+         * INPUT: none
+         * OUTPUT: none
+         */
     private void GetPlayerNameList()
     {
         playerListTemp = new List<Player>();
@@ -208,24 +177,38 @@
         });
     }
 
+    /* ********* CheckMoreThanTwo() **********
+         * Check there are more than two players or stay on the setting page
+         * Called by StartGame() method
+         * INPUT: none
+         * OUTPUT: bool - TRUE  The number of players is valid
+         *              - FALSE There are less than 2 players or more than 8 
+         */
     private bool CheckMoreThanTwo()
     {
-        if (playerListTemp.Count < 2 || playerListTemp.Count > maxPlayers)
-        {
-            warning = "showWarning";
-            return false;
-        }
-        else
+        if (playerListTemp.Count >= 2 && playerListTemp.Count <= maxPlayers)
         {
             warning = "";
             return true;
         }
+        else
+        {
+            warning = "showWarning";
+            return false;
+        }
     }
 
+    /* ********* CheckDupliclatedNames() **********
+     * Check the times of showing up for each name
+     * Called by StartGame() method
+     * INPUT: none
+     * OUTPUT: none
+     */
     private void CheckDupliclatedNames()
     {
-
+        //I use the value of dictionary as counter to record how many times the name shows up
         Dictionary<string, int> nameOccurence = new Dictionary<string, int>();
+
         playerNameList.ForEach(x =>
         {
             if (x != null)
@@ -242,6 +225,7 @@
         });
 
         duplicatedList = new List<string>();
+
         foreach (KeyValuePair<string, int> kvpair in nameOccurence)
         {
             if (kvpair.Value > 1)
@@ -252,6 +236,13 @@
 
     }
 
+    /* ********* MarkDuplicated() **********
+     * Check there are more than two players or stay on the setting page
+     * Called by StartGame() method
+     * INPUT: none
+     * OUTPUT: bool - TRUE  There is something marked and block the following action
+     *              - FALSE There is nothing marked
+     */
     private bool MarkDuplicated()
     {
         for (int i = 0; i < nameWarning.Length; i++)
@@ -282,7 +273,12 @@
         return false;
     }
 
-
+    /* ********* resetPage() **********
+     * Reset the page
+     * Called by StartGame() method
+     * INPUT: none
+     * OUTPUT: none
+     */
     public void resetPage()
     {
         GameUI.ShowOverReason = "hidden";
