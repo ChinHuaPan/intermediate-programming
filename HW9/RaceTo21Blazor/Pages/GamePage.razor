@@ -136,7 +136,7 @@
                         it's your turn!
                     </h5>
                     <!-- Request -->
-                    <button type="button" class="btn btn-secondary my-2" @onclick="RequestCard">Request</button>
+                    <button type="button" class="btn btn-secondary my-2" @onclick="RequestCard">Draw</button>
                     <!-- Stay -->
                     <button type="button" class="btn btn-secondary my-2" @onclick="Stay">Stay</button>
                 </div>
@@ -162,8 +162,19 @@
 @code{
 
 
-    /*** for EditPlayersModal ***/
+    /*** for SetPlayersModal ***/
     private SetPlayersModal SetPlayerModal { get; set; }
+
+
+    // This timer part may be a bit tricky but I haven't find out a better way to deal with the problem I met
+    // I create a timer as trigger to re-render this page
+    // This is for the situation when the players would like to play again,
+    // after they edit the list and start the game,
+    // there is no event could trigger the page to re-render the page
+    // because they just close the modal and not access this page from other page.
+    // I've also tried to make this page reload automatically,
+    // however, once the page reload, it would crash
+    // because it has not get the player list yet.
 
     Timer timer = new Timer(1000);
 
@@ -268,6 +279,31 @@
         }
     }
 
+    /* ********* CheckForBust() **********
+       * Process the situation that everyone is inactive
+       * Called by Request() method
+       * INPUT: List<Player> players --> player list
+       *        int current --> the index of the current player
+       * OUTPUT: none
+       */
+    private void CheckForBust(List<Player> players, int current)
+    {
+        //if the current player is bust and there is only one potential player left
+        if (Game.players[current].status == PlayerStatus.bust && GameUI.potentialWinnerNum == 1)
+        {
+            Game.players.ForEach(x =>
+            {
+                if (x.status != PlayerStatus.bust)
+                {
+                    x.status = PlayerStatus.win; // change the player's status to win
+                    x.winReason = OverReason.othersAreBust;
+                    OverGame(x.winReason);
+                }
+            });
+        }
+    }
+
+
     /* ********* CheckForNoActive() **********
         * Process the situation that everyone is inactive
         * Called by Request() method
@@ -294,10 +330,18 @@
                 }
             }
 
-            Game.players[winnerIndex].status = PlayerStatus.win;
-            Game.players[winnerIndex].winReason = OverReason.stayButHighestScore;
+            if(highScore != 0)
+            {
+                Game.players[winnerIndex].status = PlayerStatus.win;
+                Game.players[winnerIndex].winReason = OverReason.stayButHighestScore;
+                OverGame(Game.players[winnerIndex].winReason); // game is over
+            }
+            else
+            {
+                //everyone is o and stay
+                OverGame(OverReason.everyoneIsStayAndZoro);
+            }
 
-            OverGame(Game.players[winnerIndex].winReason); // game is over
 
         }
         else // game continues...
@@ -308,29 +352,6 @@
 
     }
 
-    /* ********* CheckForBust() **********
-       * Process the situation that everyone is inactive
-       * Called by Request() method
-       * INPUT: List<Player> players --> player list
-       *        int current --> the index of the current player
-       * OUTPUT: none
-       */
-    private void CheckForBust(List<Player> players, int current)
-    {
-        //if the current player is bust and there is only one potential player left
-        if (Game.players[current].status == PlayerStatus.bust && GameUI.potentialWinnerNum == 1)
-        {
-            Game.players.ForEach(x =>
-            {
-                if (x.status != PlayerStatus.bust)
-                {
-                    x.status = PlayerStatus.win; // change the player's status to win
-                    x.winReason = OverReason.othersAreBust;
-                    OverGame(x.winReason);
-                }
-            });
-        }
-    }
 
     /* ********* ContinueGame() **********
         * Continue game
@@ -374,10 +395,9 @@
     */
     private void OverGame(OverReason reason)
     {
-        GameUI.ShowOverReason = "d-flex";
         GameUI.isGameOver = true;
 
-        if (reason == OverReason.everyoneIsStay)
+        if (reason == OverReason.everyoneIsStayAndZoro)
         {
             GameUI.OverReasonDescription = "Come on, everyone...please be agressive!";
         }
@@ -390,8 +410,6 @@
 
         ShowPlayAgain();
     }
-
-
 
     /* ********* AnnounceWinner() **********
     * Announce the winner and show the win reason
@@ -415,7 +433,7 @@
                 break;
 
             case OverReason.stayButHighestScore:
-                GameUI.OverReasonDescription = player.name + " has the highest score and others are frozen!";
+                GameUI.OverReasonDescription = player.name + " has the highest score firstly and others are frozen!";
                 break;
 
             case OverReason.othersAreBust:
@@ -471,7 +489,5 @@
             i++;
         });
     }
-
-
 
 }

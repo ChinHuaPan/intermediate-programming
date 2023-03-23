@@ -7,6 +7,6 @@ namespace RaceTo21Blazor
         stayButHighestScore,
         gotFiveCards,
         othersAreBust,
-        everyoneIsStay
+        everyoneIsStayAndZoro
     }
 }
