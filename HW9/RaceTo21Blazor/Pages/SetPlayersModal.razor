@@ -30,11 +30,11 @@
         font-weight: bold;
     }
 
-    .name-input::placeholder {
-        font-style: italic;
-        color: #949494;
-        font-weight: 400;
-    }
+        .name-input::placeholder {
+            font-style: italic;
+            color: #949494;
+            font-weight: 400;
+        }
 
     .form-control {
         border: 1px solid #FFF;
@@ -44,7 +44,6 @@
     .name-warning {
         border: solid 2px #E60609;
     }
-
 </style>
 
 <!-- SetPlayersModal -->
@@ -79,56 +78,56 @@
                                 <!-- Player number -->
                                 <label for="playersName" class="m-2"><strong>#1</strong></label>
                                 <!-- Name input -->
-                                <input type="text" class="form-control name-input name-warning" placeholder="e.g. Anna" @bind="playerNameList[0]" />
+                                <input type="text" class="form-control name-input @nameWarning[0]" placeholder="e.g. Anna" @bind="playerNameList[0]" />
                             </div>
 
                             <div class="form-group d-flex align-items-center mr-2">
                                 <!-- Player number -->
                                 <label for="playersName" class="m-2"><strong>#2</strong></label>
                                 <!-- Name input -->
-                                <input type="text" class="form-control name-input" placeholder="e.g. Belle" @bind="playerNameList[1]" />
+                                <input type="text" class="form-control name-input @nameWarning[1]" placeholder="e.g. Belle" @bind="playerNameList[1]" />
                             </div>
 
                             <div class="form-group d-flex align-items-center mr-2">
                                 <!-- Player number -->
                                 <label for="playersName" class="m-2"><strong>#3</strong></label>
                                 <!-- Name input -->
-                                <input type="text" class="form-control name-input" placeholder="e.g. Charles" @bind="playerNameList[2]" />
+                                <input type="text" class="form-control name-input @nameWarning[2]" placeholder="e.g. Charles" @bind="playerNameList[2]" />
                             </div>
 
                             <div class="form-group d-flex align-items-center mr-2">
                                 <!-- Player number -->
                                 <label for="playersName" class="m-2"><strong>#4</strong></label>
                                 <!-- Name input -->
-                                <input type="text" class="form-control name-input" placeholder="e.g. Dave" @bind="playerNameList[3]" />
+                                <input type="text" class="form-control name-input @nameWarning[3]" placeholder="e.g. Dave" @bind="playerNameList[3]" />
                             </div>
 
                             <div class="form-group d-flex align-items-center mr-2">
                                 <!-- Player number -->
                                 <label for="playersName" class="m-2"><strong>#5</strong></label>
                                 <!-- Name input -->
-                                <input type="text" class="form-control name-input" placeholder="e.g. Emily" @bind="playerNameList[4]" />
+                                <input type="text" class="form-control name-input @nameWarning[4]" placeholder="e.g. Emily" @bind="playerNameList[4]" />
                             </div>
 
                             <div class="form-group d-flex align-items-center mr-2">
                                 <!-- Player number -->
                                 <label for="playersName" class="m-2"><strong>#6</strong></label>
                                 <!-- Name input -->
-                                <input type="text" class="form-control name-input" placeholder="e.g. Frank" @bind="playerNameList[5]" />
+                                <input type="text" class="form-control name-input @nameWarning[5]" placeholder="e.g. Frank" @bind="playerNameList[5]" />
                             </div>
 
                             <div class="form-group d-flex align-items-center mr-2">
                                 <!-- Player number -->
                                 <label for="playersName" class="m-2"><strong>#7</strong></label>
                                 <!-- Name input -->
-                                <input type="text" class="form-control name-input" placeholder="e.g. Gianna" @bind="playerNameList[6]" />
+                                <input type="text" class="form-control name-input @nameWarning[6]" placeholder="e.g. Gianna" @bind="playerNameList[6]" />
                             </div>
 
                             <div class="form-group d-flex align-items-center mr-2">
                                 <!-- Player number -->
                                 <label for="playersName" class="m-2"><strong>#8</strong></label>
                                 <!-- Name input -->
-                                <input type="text" class="form-control name-input" placeholder="e.g. Hailey" @bind="playerNameList[7]" />
+                                <input type="text" class="form-control name-input @nameWarning[7]" placeholder="e.g. Hailey" @bind="playerNameList[7]" />
                             </div>
                         </div>
                     </form>
@@ -164,6 +163,8 @@
     List<string> playerNameList = Game.previousList;
     List<Player> playerListTemp = new List<Player>();
     List<string> duplicatedList = new List<string>();
+    string[] nameWarning = new string[8];
+
     int maxPlayers = 8;
 
 
@@ -175,17 +176,19 @@
 
         GetPlayerNameList();
 
-        @*if (duplicatedList.Count != 0)
-            {
-                
-            }*@
+        CheckDupliclatedNames();
 
-            if (CheckMoreThanTwo())
-            {
-                Game game = new Game(new CardTable(), playerListTemp);
+        if (MarkDuplicated())
+        {
+            return;
+        }
 
-                NavManager.NavigateTo("/game");
-            }
+        if (CheckMoreThanTwo())
+        {
+            Game game = new Game(new CardTable(), playerListTemp);
+
+            NavManager.NavigateTo("/game");
+        }
 
         resetPage();
         Close();
@@ -207,7 +210,7 @@
 
     private bool CheckMoreThanTwo()
     {
-        if(playerListTemp.Count < 2 || playerListTemp.Count > maxPlayers)
+        if (playerListTemp.Count < 2 || playerListTemp.Count > maxPlayers)
         {
             warning = "showWarning";
             return false;
@@ -219,29 +222,65 @@
         }
     }
 
-    private List<string> CheckDulpiclatedNames()
+    private void CheckDupliclatedNames()
     {
+
         Dictionary<string, int> nameOccurence = new Dictionary<string, int>();
         playerNameList.ForEach(x =>
         {
-            if (!nameOccurence.ContainsKey(x))
+            if (x != null)
             {
-                nameOccurence.Add(x, 0);
+                if (x != "")
+                {
+                    if (!nameOccurence.ContainsKey(x))
+                    {
+                        nameOccurence.Add(x, 0);
+                    }
+                    nameOccurence[x] += 1;
+                }
             }
-            nameOccurence[x] += 1;
         });
 
         duplicatedList = new List<string>();
         foreach (KeyValuePair<string, int> kvpair in nameOccurence)
         {
-            if (kvpair.Value > 1) {
+            if (kvpair.Value > 1)
+            {
                 duplicatedList.Add(kvpair.Key);
             }
         }
-        return duplicatedList;
+
     }
 
+    private bool MarkDuplicated()
+    {
+        for (int i = 0; i < nameWarning.Length; i++)
+        {
+            nameWarning[i] = "";
+        }
 
+        if (duplicatedList.Count != 0)
+        {
+            duplicatedList.ForEach(x =>
+            {
+                int i = 0;
+
+                playerNameList.ForEach(y =>
+                {
+                    if (x == y)
+                    {
+                        nameWarning[i] = "name-warning";
+                    }
+
+                    i++;
+                });
+            });
+
+            return true;
+        }
+
+        return false;
+    }
 
 
     public void resetPage()

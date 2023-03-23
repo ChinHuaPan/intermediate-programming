@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace RaceTo21Blazor
 {
@@ -18,13 +19,18 @@ namespace RaceTo21Blazor
         static public bool isGameOver = false;
         static public string showModal = "d-none";
         static public string showCrown = "d-none";
+        //static public List<string> nameWarning = new List<string>(8);
 
         static public int activeNum = Game.players.Count;
         static public int potentialWinnerNum = 0;
         static public int stayNum = 0;
-        
+
         public GameUI()
         {
+            //for (int i = 0; i < 8; i++)
+            //{
+            //    nameWarning.Add("");
+            //}
         }
 
     }
