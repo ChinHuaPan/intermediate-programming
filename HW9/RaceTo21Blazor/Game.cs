@@ -14,6 +14,9 @@ namespace RaceTo21Blazor
         static public bool everyoneIsStay = true;  // is everyone stay?
         static public Tasks nextTask; // keeps track of game state
         static public List<string> previousList = new List<string>(new string[8]);
+        static public int highScore = -1;
+        static public int winnerIndex = -1;
+
 
         public Game(CardTable c, List<Player> playersTemp) //add one more signature to pass the previous players who keeps playing
         {
