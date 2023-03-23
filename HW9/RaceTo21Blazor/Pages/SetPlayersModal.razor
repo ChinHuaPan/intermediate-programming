@@ -41,6 +41,10 @@
         height: 42px;
     }
 
+    .name-warning {
+        border: solid 2px #E60609;
+    }
+
 </style>
 
 <!-- SetPlayersModal -->
@@ -62,7 +66,7 @@
                 </div>
                 <!-- Hint -->
                 <div class="row mt-2 ">
-                    <small class="mx-auto text-center @warning">Please enter at least 2 player's name.</small>
+                    <small class="mx-auto text-center @warning">Please enter at least 2 distinct player names.</small>
                 </div>
             </div>
 
@@ -75,7 +79,7 @@
                                 <!-- Player number -->
                                 <label for="playersName" class="m-2"><strong>#1</strong></label>
                                 <!-- Name input -->
-                                <input type="text" class="form-control name-input" placeholder="e.g. Anna" @bind="playerNameList[0]" />
+                                <input type="text" class="form-control name-input name-warning" placeholder="e.g. Anna" @bind="playerNameList[0]" />
                             </div>
 
                             <div class="form-group d-flex align-items-center mr-2">
@@ -159,9 +163,34 @@
 
     List<string> playerNameList = Game.previousList;
     List<Player> playerListTemp = new List<Player>();
+    List<string> duplicatedList = new List<string>();
     int maxPlayers = 8;
 
+
     string warning = "";
+
+
+    private void StartGame()
+    {
+
+        GetPlayerNameList();
+
+        @*if (duplicatedList.Count != 0)
+            {
+                
+            }*@
+
+            if (CheckMoreThanTwo())
+            {
+                Game game = new Game(new CardTable(), playerListTemp);
+
+                NavManager.NavigateTo("/game");
+            }
+
+        resetPage();
+        Close();
+
+    }
 
     private void GetPlayerNameList()
     {
@@ -169,7 +198,7 @@
 
         playerNameList.ForEach(x =>
         {
-            if (x != null)
+            if (x != null && x != "" && x != string.Empty)
             {
                 playerListTemp.Add(new Player(x));
             }
@@ -190,24 +219,30 @@
         }
     }
 
-
-    private void StartGame()
+    private List<string> CheckDulpiclatedNames()
     {
+        Dictionary<string, int> nameOccurence = new Dictionary<string, int>();
+        playerNameList.ForEach(x =>
+        {
+            if (!nameOccurence.ContainsKey(x))
+            {
+                nameOccurence.Add(x, 0);
+            }
+            nameOccurence[x] += 1;
+        });
 
-        //nameList.SubmitAsync();
-        GetPlayerNameList();
-
-        //if (nextTask == Tasks.IntroducePlayers) // introduce players
-        if (CheckMoreThanTwo()) {
-            Game game = new Game(new CardTable(), playerListTemp);
-
-            NavManager.NavigateTo("/game");
+        duplicatedList = new List<string>();
+        foreach (KeyValuePair<string, int> kvpair in nameOccurence)
+        {
+            if (kvpair.Value > 1) {
+                duplicatedList.Add(kvpair.Key);
+            }
         }
-
-        resetPage();
-        Close();
-
+        return duplicatedList;
     }
+
+
+
 
     public void resetPage()
     {

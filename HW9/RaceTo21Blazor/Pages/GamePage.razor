@@ -12,7 +12,7 @@
         </div>
 
         <!-- Game Over reason -->
-        <div class=" row my-3 mx-auto align-items-center description-block @GameUI.ShowOverReason">
+        <div class=" row my-3 mx-5 align-items-center description-block @GameUI.ShowOverReason">
             <h3 class="mx-auto">@GameUI.OverReasonDescription</h3>
         </div>
 
@@ -339,7 +339,8 @@
             else
             {
                 //everyone is o and stay
-                OverGame(OverReason.everyoneIsStayAndZoro);
+                Console.WriteLine("zero");
+                OverGame(OverReason.everyoneIsStayAndZero);
             }
 
 
@@ -396,8 +397,10 @@
     private void OverGame(OverReason reason)
     {
         GameUI.isGameOver = true;
+        GameUI.ShowOverReason = "d-flex";
 
-        if (reason == OverReason.everyoneIsStayAndZoro)
+
+        if (reason == OverReason.everyoneIsStayAndZero)
         {
             GameUI.OverReasonDescription = "Come on, everyone...please be agressive!";
         }
@@ -419,7 +422,7 @@
     */
     private void AnnounceWinner(Player player)
     {
-        GameUI.ShowOverReason = "d-flex";
+        //GameUI.ShowOverReason = "d-flex";
 
         // show the win reason based on different conditions
         switch (player.winReason)
