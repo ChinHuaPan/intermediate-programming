@@ -89,7 +89,7 @@ namespace RaceTo21Blazor
 
 
         /* ********* shufflePlayers() **********
-         * Shuffle the players
+         * Shuffle the players, if there is a previous winner, put him/her at the last position
          * Called by Game object
          * INPUT: List<Player> players ---> the current players
          * OUTPUT: List<Player> players ---> the shuffled players

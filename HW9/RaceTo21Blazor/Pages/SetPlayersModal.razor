@@ -187,6 +187,11 @@
                 playerListTemp.Add(new Player(x));
             }
         });
+
+        if (!playerNameList.Contains(Game.previousWinner)){
+            Game.previousWinner = "";
+        };
+
     }
 
     /* ********* CheckMoreThanTwo() **********
