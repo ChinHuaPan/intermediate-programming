@@ -94,16 +94,29 @@ namespace RaceTo21Blazor
          * INPUT: List<Player> players ---> the current players
          * OUTPUT: List<Player> players ---> the shuffled players
          * **/
-        public List<Player> shufflePlayers(List<Player> players)
+        public List<Player> shufflePlayers(List<Player> players, string preWinner)
         {
             Random rng = new Random(); // create a rendom
 
-            for (int i = 0; i < players.Count; i++) // check every player
+            // if there is a previous winner, remove it
+            if (preWinner != "")
             {
-                Player tmp = players[i]; // pass the current play to temp player
-                int swapindex = rng.Next(players.Count); // store swapindex
-                players[i] = players[swapindex]; // pass it to the current player
-                players[swapindex] = tmp; // pass temp player to the other one
+                players.RemoveAll(x => x.name == preWinner);
+            }
+
+            //shuffle
+                for (int i = 0; i < players.Count; i++) // check every player
+                {
+                    Player tmp = players[i]; // pass the current play to temp player
+                    int swapindex = rng.Next(players.Count); // store swapindex
+                    players[i] = players[swapindex]; // pass it to the current player
+                    players[swapindex] = tmp; // pass temp player to the other one
+                }
+
+            // if there is a previous winner, add it into the last position
+            if (preWinner != "")
+            {
+                players.Add(new Player(preWinner));
             }
 
             return players;

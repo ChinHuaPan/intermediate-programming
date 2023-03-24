@@ -5,11 +5,6 @@ namespace RaceTo21Blazor
 {
     public class CardTable
     {
-        public CardTable()
-        {
-            Console.WriteLine("Setting Up Table...");
-        }
-
 
         /* ********* CalEveryone() **********
         * Calculate the numbers for counters

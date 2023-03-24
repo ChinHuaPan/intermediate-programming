@@ -25,13 +25,6 @@ namespace RaceTo21Blazor
         static public int potentialWinnerNum = 0;
         static public int stayNum = 0;
 
-        public GameUI()
-        {
-            //for (int i = 0; i < 8; i++)
-            //{
-            //    nameWarning.Add("");
-            //}
-        }
 
     }
 }

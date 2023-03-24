@@ -1,7 +1,6 @@
 ﻿@page "/setPlayer"
 @inject NavigationManager NavManager
 
-
 <!-- SetPlayersModal -->
 <div class="modal @ModalClass" tabindex="-1" role="dialog" style="display:@ModalDisplay" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -31,56 +30,56 @@
                     <form>
                         <div class="col d-flex flex-wrap flex-column align-content-center" style="height: 250px; ">
                             <div class="form-group d-flex align-items-center mr-2">
-                                <!-- Player number -->
+                                <!-- Player number 1 -->
                                 <label for="playersName" class="m-2"><strong>#1</strong></label>
                                 <!-- Name input -->
                                 <input type="text" class="form-control name-input @nameWarning[0]" placeholder="e.g. Anna" @bind="playerNameList[0]" />
                             </div>
 
                             <div class="form-group d-flex align-items-center mr-2">
-                                <!-- Player number -->
+                                <!-- Player number 2 -->
                                 <label for="playersName" class="m-2"><strong>#2</strong></label>
                                 <!-- Name input -->
                                 <input type="text" class="form-control name-input @nameWarning[1]" placeholder="e.g. Belle" @bind="playerNameList[1]" />
                             </div>
 
                             <div class="form-group d-flex align-items-center mr-2">
-                                <!-- Player number -->
+                                <!-- Player number 3 -->
                                 <label for="playersName" class="m-2"><strong>#3</strong></label>
                                 <!-- Name input -->
                                 <input type="text" class="form-control name-input @nameWarning[2]" placeholder="e.g. Charles" @bind="playerNameList[2]" />
                             </div>
 
                             <div class="form-group d-flex align-items-center mr-2">
-                                <!-- Player number -->
+                                <!-- Player number 4 -->
                                 <label for="playersName" class="m-2"><strong>#4</strong></label>
                                 <!-- Name input -->
                                 <input type="text" class="form-control name-input @nameWarning[3]" placeholder="e.g. Dave" @bind="playerNameList[3]" />
                             </div>
 
                             <div class="form-group d-flex align-items-center mr-2">
-                                <!-- Player number -->
+                                <!-- Player number 5 -->
                                 <label for="playersName" class="m-2"><strong>#5</strong></label>
                                 <!-- Name input -->
                                 <input type="text" class="form-control name-input @nameWarning[4]" placeholder="e.g. Emily" @bind="playerNameList[4]" />
                             </div>
 
                             <div class="form-group d-flex align-items-center mr-2">
-                                <!-- Player number -->
+                                <!-- Player number 6 -->
                                 <label for="playersName" class="m-2"><strong>#6</strong></label>
                                 <!-- Name input -->
                                 <input type="text" class="form-control name-input @nameWarning[5]" placeholder="e.g. Frank" @bind="playerNameList[5]" />
                             </div>
 
                             <div class="form-group d-flex align-items-center mr-2">
-                                <!-- Player number -->
+                                <!-- Player number 7 -->
                                 <label for="playersName" class="m-2"><strong>#7</strong></label>
                                 <!-- Name input -->
                                 <input type="text" class="form-control name-input @nameWarning[6]" placeholder="e.g. Gianna" @bind="playerNameList[6]" />
                             </div>
 
                             <div class="form-group d-flex align-items-center mr-2">
-                                <!-- Player number -->
+                                <!-- Player number 8 -->
                                 <label for="playersName" class="m-2"><strong>#8</strong></label>
                                 <!-- Name input -->
                                 <input type="text" class="form-control name-input @nameWarning[7]" placeholder="e.g. Hailey" @bind="playerNameList[7]" />
@@ -98,7 +97,9 @@
                 </div>
                 <!-- Buttons -->
                 <div class="row d-flex w-100 mx-auto  justify-content-center">
+                    <!-- Close btn -->
                     <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal" @onclick="() => Close()">Close</button>
+                    <!-- Start Game btn -->
                     <button type="button" class="btn btn-primary mx-2" style="width:400px;" @onclick="StartGame">Start Game</button>
                 </div>
             </div>
@@ -106,15 +107,23 @@
     </div>
 </div>
 
+
+<!-- Modal Backdrop -->
 @if (ShowBackdrop)
 {
     <div class="modal-backdrop fade show"></div>
 }
 
+<!-- Reference:
+    I learned how to use Modal here.
+    I've tried to use the boostrap's modal and searched several methods,
+    but this is the only method that works for me.
+    https://stackoverflow.com/questions/59256798/how-to-use-bootstrap-modal-in-blazor-client-app
+    -->
+
 
 
 @code {
-
 
     List<string> playerNameList = Game.previousList;
     List<Player> playerListTemp = new List<Player>();
@@ -137,6 +146,7 @@
 
         CheckDupliclatedNames();
 
+        // if there is any name is duplicated, block
         if (MarkDuplicated())
         {
             return;
@@ -144,17 +154,19 @@
 
         if (CheckMoreThanTwo())
         {
+            // create a new game
             Game game = new Game(new CardTable(), playerListTemp);
 
             NavManager.NavigateTo("/game");
         }
-        else
+        else // if the number of players is invalid, block
         {
             return;
         }
 
-        resetPage();
-        Close();
+        resetPage(); // reset the page style
+
+        Close(); // close modal
 
     }
 
@@ -182,7 +194,7 @@
          * Called by StartGame() method
          * INPUT: none
          * OUTPUT: bool - TRUE  The number of players is valid
-         *              - FALSE There are less than 2 players or more than 8 
+         *              - FALSE There are less than 2 players or more than 8
          */
     private bool CheckMoreThanTwo()
     {
@@ -298,6 +310,8 @@
         GameUI.stayNum = 0;
 
         Game.currentPlayer = 0;
+        Game.highScoreInStay = -1;
+        Game.winnerIndexInStay = -1;
 
     }
 

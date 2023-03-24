@@ -6,17 +6,15 @@ namespace RaceTo21Blazor
 {
     public class Game
     {
-        static public int maxPlayers = 8;
+        static public int maxPlayers = 8; // maximun of players is 8
         static public List<Player> players = new List<Player>(2); // list of objects containing player data
         static public CardTable cardTable; // object in charge of displaying game information
         static public Deck deck = new Deck(); // deck of cards
         static public int currentPlayer = 0; // current player on list
-        static public bool everyoneIsStay = true;  // is everyone stay?
-        static public Tasks nextTask; // keeps track of game state
-        static public List<string> previousList = new List<string>(new string[8]);
-        static public int highScore = -1;
-        static public int winnerIndex = -1;
-
+        static public List<string> previousList = new List<string>(new string[8]); //
+        static public string previousWinner = "";
+        static public int highScoreInStay = -1; // the highest score in the stay list
+        static public int winnerIndexInStay = -1; // the index of someone is the temporary winner in the stay list
 
         public Game(CardTable c, List<Player> playersTemp) //add one more signature to pass the previous players who keeps playing
         {
@@ -24,7 +22,7 @@ namespace RaceTo21Blazor
 
             cardTable = c; 
             deck.ShuffleCards(); // shuffle the cards
-            deck.shufflePlayers(players); // shuffle the players (to ensure the same person doesn’t always win a tiebreaker)
+            deck.shufflePlayers(players, previousWinner); // shuffle the players (to ensure the same person doesn’t always win a tiebreaker)
 
 
         }
