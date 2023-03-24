@@ -224,7 +224,7 @@
     private void CheckDupliclatedNames()
     {
         //I use the value of dictionary as counter to record how many times the name shows up
-        Dictionary<string, int> nameOccurence = new Dictionary<string, int>();
+        Dictionary<string, int> nameOccurrence = new Dictionary<string, int>();
 
         playerNameList.ForEach(x =>
         {
@@ -232,18 +232,23 @@
             {
                 if (x != "")
                 {
-                    if (!nameOccurence.ContainsKey(x))
+                    // I found this method can return whether there contains the key (x) I give in the dictionary
+                    // https://www.geeksforgeeks.org/c-sharp-dictionary-containskey-method/
+                    // if x is not in the dictionary 
+                    if (!nameOccurrence.ContainsKey(x))
                     {
-                        nameOccurence.Add(x, 0);
+                        nameOccurrence.Add(x, 0); // add it into the dictionary and set th value is 0
                     }
-                    nameOccurence[x] += 1;
+
+                    // find the key (x) and add 2 to its value 
+                    nameOccurrence[x] += 1;
                 }
             }
         });
 
         duplicatedList = new List<string>();
 
-        foreach (KeyValuePair<string, int> kvpair in nameOccurence)
+        foreach (KeyValuePair<string, int> kvpair in nameOccurrence)
         {
             if (kvpair.Value > 1)
             {

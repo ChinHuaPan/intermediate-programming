@@ -20,7 +20,7 @@
         <div class="row my-5 d-flex flex-wrap justify-content-center">
             @if (Game.players.Count <= 4)
             {
-                GameUI.playerBlockWidth = "col-4";
+                GameUI.playerBlockWidth = "col-5";
             }
             else
             {
@@ -400,7 +400,7 @@
         if (reason == OverReason.everyoneIsStayAndZero)
         {
             Game.previousWinner = "";
-            GameUI.OverReasonDescription = "Come on, everyone...please be agressive!";
+            GameUI.OverReasonDescription = "Come on, everyone...please be agressive!🤷‍♀️";
         }
         else
         {
@@ -420,25 +420,24 @@
     */
     private void AnnounceWinner(Player player)
     {
-        //GameUI.ShowOverReason = "d-flex";
 
         // show the win reason based on different conditions
         switch (player.winReason)
         {
             case OverReason.hitTwentyOne:
-                GameUI.OverReasonDescription = player.name + " hits 21!";
+                GameUI.OverReasonDescription = player.name + " hits 21!🎉";
                 break;
 
             case OverReason.gotFiveCards:
-                GameUI.OverReasonDescription = player.name + " has 5 cards and haven't bustted yet!";
+                GameUI.OverReasonDescription = player.name + " has 5 cards and haven't bustted yet!🎉";
                 break;
 
             case OverReason.stayButHighestScore:
-                GameUI.OverReasonDescription = player.name + " has the highest score firstly and others are frozen!";
+                GameUI.OverReasonDescription = player.name + " has the highest score firstly and others are frozen!🎊";
                 break;
 
             case OverReason.othersAreBust:
-                GameUI.OverReasonDescription = player.name + " wins because others are bust!";
+                GameUI.OverReasonDescription = player.name + " wins because others are bust!🎊";
                 break;
 
             default:
