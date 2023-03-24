@@ -20,7 +20,7 @@
                 </div>
                 <!-- Hint -->
                 <div class="row mt-2 ">
-                    <small class="mx-auto text-center @warning">Please enter at least 2 distinct player names.</small>
+                    <small class="mx-auto text-center @hintWarning">Please enter at least 2 distinct player names.</small>
                 </div>
             </div>
 
@@ -131,7 +131,7 @@
     string[] nameWarning = new string[8];
 
     int maxPlayers = 8;
-    string warning = "";
+    string hintWarning = "";
 
     /* ********* onclick: StartGame() **********
          * Start game
@@ -205,12 +205,12 @@
     {
         if (playerListTemp.Count >= 2 && playerListTemp.Count <= maxPlayers)
         {
-            warning = "";
+            hintWarning = "";
             return true;
         }
         else
         {
-            warning = "showWarning";
+            hintWarning = "showWarning";
             return false;
         }
     }
@@ -269,6 +269,8 @@
 
         if (duplicatedList.Count != 0)
         {
+            hintWarning = "showWarning";
+
             duplicatedList.ForEach(x =>
             {
                 int i = 0;
